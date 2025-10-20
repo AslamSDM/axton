@@ -37,6 +37,7 @@ export function GlobeVisualization() {
   const globeRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState<any>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setIsClient(true);
@@ -55,16 +56,15 @@ export function GlobeVisualization() {
       const GlobeModule = await import("globe.gl");
       Globe = GlobeModule.default;
 
-      // Start with empty arcs
-      const colors = ["#10b981", "#ef4444", "#3b82f6", "#5d0bf5ff"];
+      // Start with empty arcs - all arcs are now white
+      const colors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff"];
       const colorNames = ["BUY", "SELL", "SWAP", "TRANSFER"];
       currentArcs = [];
 
       globeInstance = Globe()(globeRef.current!)
-        .globeImageUrl(
-          "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-        )
-        .backgroundColor("rgba(0,0,0,0)") // Transparent background
+        .globeImageUrl("/earth.png")
+        .showGraticules(true)
+        .backgroundColor("rgba(0, 0, 0, 0)") // Transparent background
         .arcsData(currentArcs)
         .arcColor("color")
         .arcLabel("type")
@@ -74,12 +74,23 @@ export function GlobeVisualization() {
         .arcStroke(1.5) // Thicker for better visibility
         .arcAltitudeAutoScale(0.3) // Higher arcs for dramatic effect
         .arcsTransitionDuration(1000) // Instant appearance
-        .atmosphereColor("#0ea5e9")
+        .atmosphereColor("#cef0ffff")
         .atmosphereAltitude(0.15)
+        .enablePointerInteraction(true) // Enable interaction
+        .onGlobeReady(() => {
+          // Ensure arcs are part of the globe scene so they rotate with it
+          const scene = globeInstance.scene();
+          const arcsGroup = scene.children.find(
+            (obj: any) => obj.type === "Group" && obj.__globeObjType === "arcs"
+          );
+          if (arcsGroup) {
+            arcsGroup.matrixAutoUpdate = true;
+          }
+        })
         .width(globeRef.current!.offsetWidth)
         .height(300)
-        .onArcHover((arc: any) => {
-          if (arc) {
+        .onArcHover((arc: any, event: any) => {
+          if (arc && event) {
             const types = ["BUY", "SELL", "SWAP", "STAKE"];
             const amounts = [
               "50,000",
@@ -89,6 +100,9 @@ export function GlobeVisualization() {
               "1,000,000",
             ];
             const currencies = ["USDC", "ETH", "BTC", "AXN"];
+
+            // Update mouse position for dialog placement
+            setMousePosition({ x: event.clientX, y: event.clientY });
 
             setCurrentTransaction({
               from: arc.fromCity,
@@ -106,11 +120,39 @@ export function GlobeVisualization() {
       // Set initial point of view
       globeInstance.pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
 
+      // Make globe material transparent with black color
+      const globeMaterial = globeInstance.globeMaterial();
+      if (globeMaterial) {
+        globeMaterial.transparent = true;
+        globeMaterial.opacity = 0.9;
+        globeMaterial.color.setHex(0x000000); // Black color
+      }
+
       // Auto-rotate
       const controls = globeInstance.controls();
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.5;
       controls.enableZoom = false;
+
+      // Function to calculate distance between two cities (Haversine formula)
+      const calculateDistance = (
+        lat1: number,
+        lng1: number,
+        lat2: number,
+        lng2: number
+      ) => {
+        const R = 6371; // Earth's radius in km
+        const dLat = ((lat2 - lat1) * Math.PI) / 180;
+        const dLng = ((lng2 - lng1) * Math.PI) / 180;
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLng / 2) *
+            Math.sin(dLng / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; // Distance in km
+      };
 
       // Function to add a single random arc with 2 second lifetime
       const addRandomArc = () => {
@@ -122,16 +164,34 @@ export function GlobeVisualization() {
           }
         }
 
-        // Pick two random different cities
-        const fromCity =
-          MAJOR_CITIES[Math.floor(Math.random() * MAJOR_CITIES.length)];
-        let toCity =
-          MAJOR_CITIES[Math.floor(Math.random() * MAJOR_CITIES.length)];
+        // Pick two random different cities with minimum distance
+        let fromCity, toCity, distance;
+        let attempts = 0;
+        const minDistance = 2000; // Minimum distance in km (avoid cities too close)
 
-        // Ensure different cities
-        while (toCity.name === fromCity.name) {
+        do {
+          fromCity =
+            MAJOR_CITIES[Math.floor(Math.random() * MAJOR_CITIES.length)];
           toCity =
             MAJOR_CITIES[Math.floor(Math.random() * MAJOR_CITIES.length)];
+          distance = calculateDistance(
+            fromCity.lat,
+            fromCity.lng,
+            toCity.lat,
+            toCity.lng
+          );
+          attempts++;
+        } while (
+          (toCity.name === fromCity.name || distance < minDistance) &&
+          attempts < 50
+        );
+
+        // If we couldn't find a good pair after 50 attempts, skip this arc
+        if (attempts >= 50) {
+          const nextDelay = Math.random() * 1300 + 2000;
+          const nextTimeout = setTimeout(addRandomArc, nextDelay);
+          arcTimeouts.push(nextTimeout);
+          return;
         }
 
         // Create arc with unique ID
@@ -184,18 +244,18 @@ export function GlobeVisualization() {
   }, [isClient]);
 
   return (
-    <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 p-6 flex flex-col justify-between items-center">
+    <Card className="backdrop-blur-sm p-6 flex flex-col justify-between items-center">
       <div className="flex justify-between items-center w-full mb-2">
         <h3 className="font-semibold text-white text-sm">Live Transactions</h3>
         <div className="flex items-center gap-1 text-green-500 text-sm font-medium">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full  bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex  h-2 w-2 bg-green-500"></span>
           </span>
           <span className="text-xs">LIVE</span>
         </div>
       </div>
-      <div className="relative w-full h-[300px] flex items-center justify-center overflow-hidden rounded-lg">
+      <div className="relative w-full h-[300px] flex items-center justify-center overflow-hidden ">
         {!isClient && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-zinc-500">Loading Globe...</div>
@@ -207,8 +267,14 @@ export function GlobeVisualization() {
           style={{ background: "transparent" }}
         />
         {currentTransaction && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-200">
-            <div className="bg-zinc-900/95 backdrop-blur-sm border border-zinc-700 rounded-lg px-3 py-2 text-xs text-center min-w-[200px] shadow-lg">
+          <div
+            className="fixed z-50 pointer-events-none transition-opacity duration-200"
+            style={{
+              left: `${mousePosition.x + 15}px`,
+              top: `${mousePosition.y + 15}px`,
+            }}
+          >
+            <div className="bg-zinc-900/95 backdrop-blur-sm border border-zinc-700  px-3 py-2 text-xs text-center min-w-[200px] shadow-lg">
               <p className="text-zinc-300">
                 <span
                   className={`${
@@ -246,8 +312,8 @@ export function GlobeVisualization() {
           </div>
         )}
       </div>
-      <Button className="w-full py-3 mt-4 text-base font-semibold bg-sky-500 hover:bg-sky-500/90">
-        Initiate an OTC Deal
+      <Button variant="gradient" className="w-full py-3 mt-4 text-base">
+        ⚡ Initiate An OTC Deal
       </Button>
     </Card>
   );

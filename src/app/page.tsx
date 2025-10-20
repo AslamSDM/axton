@@ -82,7 +82,7 @@ function DashboardPage() {
 // --- The App Layout ---
 export default function Page() {
   return (
-    <div className="relative min-h-screen text-white font-sans">
+    <div className="relative min-h-screen text-white ">
       {/* Fixed background grid */}
       <div className="fixed inset-0 z-0">
         <FlickeringGrid

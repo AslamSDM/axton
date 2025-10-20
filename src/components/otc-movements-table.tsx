@@ -14,6 +14,12 @@ import { otcMovements as initialOtcMovements } from "@/lib/data";
 import { useEffect } from "react";
 import { useOtcStore } from "@/store/useOtcStore";
 
+// Utility function to truncate addresses
+const truncateAddress = (address: string, startChars = 6, endChars = 4) => {
+  if (address.length <= startChars + endChars) return address;
+  return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
+};
+
 export function OtcMovementsTable() {
   const movements = useOtcStore((state) => state.movements);
   const isConnected = useOtcStore((state) => state.isConnected);
@@ -31,7 +37,7 @@ export function OtcMovementsTable() {
         <h3 className="font-semibold text-white">Latest OTC Movements</h3>
         <div className="flex items-center gap-2 text-xs">
           <div
-            className={`w-2 h-2 rounded-full ${
+            className={`w-2 h-2  ${
               isConnected ? "bg-green-500 animate-pulse" : "bg-zinc-600"
             }`}
           />
@@ -40,11 +46,11 @@ export function OtcMovementsTable() {
           </span>
         </div>
       </div>
-      <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 p-0">
+      <Card className="backdrop-blur-sm p-0">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="border-zinc-800 hover:bg-transparent">
+              <TableRow className="border-zinc-800 hover:bg-transparent bg-zinc-800/50">
                 <TableHead className="text-zinc-400"></TableHead>
                 <TableHead className="text-zinc-400">Time (UTC)</TableHead>
                 <TableHead className="text-zinc-400">Token</TableHead>
@@ -75,11 +81,11 @@ export function OtcMovementsTable() {
                       {item.tradeType}
                     </Tag>
                   </TableCell>
-                  <TableCell className="text-sky-400 font-medium">
-                    {item.buyer}
+                  <TableCell className="text-sky-400 font-medium font-mono">
+                    {truncateAddress(item.buyer)}
                   </TableCell>
-                  <TableCell className="text-sky-400 font-medium">
-                    {item.seller}
+                  <TableCell className="text-sky-400 font-medium font-mono">
+                    {truncateAddress(item.seller)}
                   </TableCell>
                 </TableRow>
               ))}

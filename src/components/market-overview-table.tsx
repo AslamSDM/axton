@@ -107,11 +107,11 @@ export function MarketOverviewTable() {
           </div>
         </div>
       </div>
-      <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 p-0">
+      <Card className="backdrop-blur-sm p-0">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="border-zinc-800 hover:bg-transparent">
+              <TableRow className="border-zinc-800 hover:bg-transparent bg-zinc-800/50">
                 <TableHead className="text-zinc-400">Asset</TableHead>
                 <TableHead className="text-zinc-400">Price</TableHead>
                 <TableHead className="text-zinc-400">Volume (24h)</TableHead>
@@ -142,10 +142,10 @@ export function MarketOverviewTable() {
                           <img
                             src={item.image}
                             alt={item.asset}
-                            className="w-6 h-6 rounded-full"
+                            className="w-6 h-6 "
                           />
                         ) : (
-                          <div className="w-6 h-6 rounded-full bg-zinc-700 flex items-center justify-center">
+                          <div className="w-6 h-6  bg-zinc-700 flex items-center justify-center">
                             <Globe className="w-4 h-4 text-zinc-400" />
                           </div>
                         )}

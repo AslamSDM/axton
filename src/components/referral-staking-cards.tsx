@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export function ReferralStakingCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 md:col-span-1 flex flex-col justify-between">
+      <Card className="backdrop-blur-sm md:col-span-1 flex flex-col justify-between">
         <CardContent className="p-4">
           <div>
             <p className="text-sm text-zinc-400">TOTAL REFERRAL EARNINGS</p>
@@ -12,12 +12,12 @@ export function ReferralStakingCards() {
               1,500 <span className="text-sky-400">AXN</span>
             </p>
           </div>
-          <Button className="w-full py-3 mt-4 bg-sky-500 hover:bg-sky-500/90">
+          <Button variant="gradient" className="w-full py-3 mt-4">
             Invite Friends
           </Button>
         </CardContent>
       </Card>
-      <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 md:col-span-1">
+      <Card className="backdrop-blur-sm md:col-span-1">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <p className="text-sm text-zinc-400">TOTAL REFERRAL REWARDS</p>
@@ -31,7 +31,7 @@ export function ReferralStakingCards() {
           </Button>
         </CardContent>
       </Card>
-      <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 md:col-span-1">
+      <Card className="backdrop-blur-sm md:col-span-1">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <p className="text-sm text-zinc-400">YOUR SWAP</p>
