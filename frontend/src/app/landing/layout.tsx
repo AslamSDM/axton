@@ -63,19 +63,16 @@ export default function LandingLayout({
       </nav>
 
       {/* Background with slanted lines */}
-      <div
-        className="relative"
-        style={{
-          background: `#000000`,
-          backgroundImage: `repeating-linear-gradient(
-            15deg,
-            transparent,
-            transparent 30px,
-            rgba(255, 255, 255, 0.1) 30px,
-            rgba(255, 255, 255, 0.1) 32px
-          )`,
-        }}
-      >
+      <div className="relative">
+        Helloo
+        <div className="absolute inset-0 w-full h-[5586px]  top-[-388px] left-[0px] z-0">
+          {/* Background Image */}
+          <img
+            className="absolute top-[-68px] left-[70px] w-[1532px] h-[5586px] pointer-events-none"
+            alt="Vector"
+            src="https://c.animaapp.com/mh5u2ufjtn0KBG/img/vector-15.svg"
+          />
+        </div>
         {children}
       </div>
     </div>

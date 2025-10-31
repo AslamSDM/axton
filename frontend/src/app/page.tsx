@@ -75,7 +75,7 @@ function DashboardPage() {
       </div>
 
       {/* Latest OTC Movements */}
-      <OtcMovementsTable />
+      <OtcMovementsTable />``
     </main>
   );
 }
