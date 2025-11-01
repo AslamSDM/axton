@@ -47,7 +47,7 @@ export default function AxtonNavbar({ onMenuClick }: AxtonNavbarProps) {
         </div>
 
         {/* Connect Wallet Button */}
-        <button className="border border-[#2ef68d] px-6 py-2 h-[42px] w-[159px] hover:bg-[#2ef68d]/10 transition-colors">
+        <button className="border border-[#2ef68d] px-6 py-2 h-[42px] w-[189px] hover:bg-[#2ef68d]/10 transition-colors">
           <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
             Connect Wallet
           </span>

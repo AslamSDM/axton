@@ -4,59 +4,60 @@ import React, { useState } from "react";
 import AxtonHero from "./AxtonHero";
 import AxtonHeroFull from "./AxtonHeroFull";
 import AxtonLandingPage from "./AxtonLandingPage";
-import AxtonLandingPage1 from "./AxtonLandingPage1";
-import AxtonLandingPage2 from "./AxtonLandingPage2";
-import AxtonLandingPage3 from "./AxtonLandingPage3";
-import AxtonLandingPage4 from "./AxtonLandingPage4";
-import AxtonLandingPage5 from "./AxtonLandingPage5";
-import AxtonLandingPage6 from "./AxtonLandingPage6";
-import AxtonLandingPage7 from "./AxtonLandingPage7";
-import AxtonLandingPage8 from "./AxtonLandingPage8";
+import AxtonLandingPage1 from "./AboutAxton";
+import HowToEarnSection from "./HowToEarnSection";
+import InvestmentPackagesSection from "./InvestmentPackagesSection";
+import BinaryPlanSection from "./BinaryPlanSection";
 import AxtonLandingPage9 from "./AxtonLandingPage9";
-import AxtonLandingPage10 from "./AxtonLandingPage10";
-import AxtonLandingPage11 from "./AxtonLandingPage11";
+import AnalyticsSection from "./AnalyticsSection";
+import CTASection from "./CTASection";
 import AxtonSidebar from "./AxtonSidebar";
 import AxtonNavbar from "./AxtonNavbar";
-import {
-  FeaturesSection,
-  StatsSection,
-  SolutionsSection,
-  CTASection,
-} from "./components";
+import AnimatedSection from "./AnimatedSection";
+import Footer from "./Footer";
+import { FeaturesSection, StatsSection, SolutionsSection } from "./components";
+
+// Shared background vector image
+const imgVector15 =
+  "https://www.figma.com/api/mcp/asset/d49c8135-7c4d-4a9e-af1a-1dc89703bb77";
 
 export default function LandingPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <>
+    <div className="relative bg-[#0b0b0d]">
+      {/* Global Background Vector Pattern - Fixed */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-68px] w-[1531.705px] opacity-30">
+          <img
+            alt=""
+            className="block max-w-none size-full"
+            src={imgVector15}
+          />
+        </div>
+      </div>
+
       {/* Fixed Navbar */}
       <AxtonNavbar onMenuClick={() => setIsSidebarOpen(true)} />
 
       {/* Sidebar */}
-      <AxtonSidebar
+      {/* <AxtonSidebar
         isOpen={isSidebarOpen}
         onCloseAction={() => setIsSidebarOpen(false)}
-      />
+      /> */}
 
       {/* Page Content */}
-      <AxtonHero />
-      <AxtonHeroFull />
-      <AxtonLandingPage />
-      <AxtonLandingPage1 />
-      <AxtonLandingPage2 />
-      <AxtonLandingPage3 />
-      <AxtonLandingPage4 />
-      <AxtonLandingPage5 />
-      <AxtonLandingPage6 />
-      <AxtonLandingPage7 />
-      <AxtonLandingPage8 />
-      <AxtonLandingPage9 />
-      <AxtonLandingPage10 />
-      <AxtonLandingPage11 />
-      {/* <FeaturesSection />
-      <StatsSection />
-      <SolutionsSection />
-      <CTASection /> */}
-    </>
+      <div className="relative z-10">
+        <AxtonHero />
+        <AxtonLandingPage1 />
+        <HowToEarnSection />
+        <InvestmentPackagesSection />
+        <BinaryPlanSection />
+        {/* <AnimatedSection><AxtonLandingPage9 /></AnimatedSection> */}
+        <AnalyticsSection />
+        <CTASection />
+        <Footer />
+      </div>
+    </div>
   );
 }

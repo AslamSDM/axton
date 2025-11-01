@@ -1,28 +1,15 @@
-const imgWhatsAppImage20251008At1630064Aed90101 =
-  "https://www.figma.com/api/mcp/asset/59267f29-8dc4-4bbd-8f6d-7920625166ac";
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/5ae419f4-dcd0-468a-b5a3-23b9e15a71a3";
-const imgGroup56 =
-  "https://www.figma.com/api/mcp/asset/15f46b9b-cc84-4987-a591-d75b46f358bf";
+"use client";
 
-export default function AxtonLandingPage11() {
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+export default function CTASection() {
   return (
-    <section className="bg-[#0b0b0d] relative min-h-screen w-full overflow-hidden flex items-center justify-center">
-      {/* Background Pattern */}
-      <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-5278px] w-[1531.705px]">
-        <div className="absolute inset-[-0.03%_-0.26%_-0.45%_-1.63%]">
-          <img
-            alt=""
-            className="block max-w-none size-full"
-            src={imgVector15}
-          />
-        </div>
-      </div>
-
+    <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-[#0b0b0d]">
       {/* Top Gradient Glow */}
       <div className="absolute backdrop-blur-[2px] backdrop-filter bg-gradient-to-r blur-[26.5px] filter from-[rgba(52,113,192,0.7)] h-[605px] left-0 mix-blend-color-dodge to-[rgba(46,246,141,0.7)] top-[-680px] w-full" />
 
-      {/* Main CTA Content */}
+      {/* Main CTA Content - Fixed in Center */}
       <main className="relative z-10 text-center px-8">
         <h1
           className="font-['Space_Mono',monospace] font-bold text-[35px] tracking-[-1.75px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] bg-clip-text mb-6"

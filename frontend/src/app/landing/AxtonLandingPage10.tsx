@@ -45,38 +45,6 @@ export default function AxtonLandingPage10() {
       {/* Top Gradient Glow */}
       <div className="absolute backdrop-blur-[2px] backdrop-filter bg-gradient-to-r blur-[26.5px] filter from-[rgba(52,113,192,0.7)] h-[605px] left-0 mix-blend-color-dodge to-[rgba(46,246,141,0.7)] top-[-680px] w-full" />
 
-      {/* Header Navigation */}
-      <header className="absolute left-[56px] top-[26px] right-[56px]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="size-[39px]">
-              <img
-                alt="Axton Protocol Logo"
-                className="w-full h-full object-cover mix-blend-exclusion"
-                src={imgWhatsAppImage20251008At1630064Aed90101}
-              />
-            </div>
-            <p className="font-['Space_Mono',monospace] font-bold text-[20px] text-white tracking-[-1px]">
-              Axton Protocol
-            </p>
-          </div>
-          <div className="relative">
-            <div className="border border-[#2ef68d] h-[42px] w-[159px] flex items-center justify-center">
-              <p className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
-                Connect Wallet
-              </p>
-            </div>
-            <div className="absolute inset-[4.16%_94.7%_93.98%_3.7%]">
-              <img
-                alt=""
-                className="block max-w-none size-full"
-                src={imgGroup56}
-              />
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="relative px-[57px] pt-[87px]">
         <h1 className="font-['Space_Mono',monospace] font-bold text-[35px] text-white tracking-[-1.75px] leading-[125px] max-w-[592px]">
