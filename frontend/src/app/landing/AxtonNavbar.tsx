@@ -1,3 +1,5 @@
+import { ConnectWallet } from "@/components/ConnectWallet";
+
 const imgWhatsAppImage20251008At1630064Aed90101 =
   "https://www.figma.com/api/mcp/asset/55a9350c-eff8-43a5-9d71-2bb6e766a97b";
 
@@ -47,11 +49,7 @@ export default function AxtonNavbar({ onMenuClick }: AxtonNavbarProps) {
         </div>
 
         {/* Connect Wallet Button */}
-        <button className="border border-[#2ef68d] px-6 py-2 h-[42px] w-[189px] hover:bg-[#2ef68d]/10 transition-colors">
-          <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
-            Connect Wallet
-          </span>
-        </button>
+        <ConnectWallet />
       </div>
     </header>
   );

@@ -32,7 +32,7 @@ export default function AxtonHero() {
   const titleFontSize = useTransform(
     scrollYProgress,
     [0, 0.2],
-    ["125px", "60px"]
+    ["clamp(48px, 8vw, 125px)", "clamp(32px, 5vw, 60px)"]
   );
   const contentOpacity = useTransform(
     scrollYProgress,
@@ -47,17 +47,17 @@ export default function AxtonHero() {
     >
       {/* Content Container - Fixed and Animated */}
       <motion.div
-        className="fixed top-20 left-0 right-0 h-screen w-full px-4 md:px-[94px]"
+        className="fixed top-16 md:top-20 left-0 right-0 h-screen w-full px-4 sm:px-8 md:px-16 lg:px-[94px]"
         style={{ opacity: contentOpacity }}
       >
-        <div className="relative z-10 w-full max-w-[1512px] mx-auto h-full flex flex-col justify-center">
+        <div className="relative z-10 w-full max-w-[1512px] mx-auto h-full flex flex-col justify-center pt-8 md:pt-0">
           {/* Hero Heading - Animated */}
           <motion.h1
             style={{
               y: titleY,
               fontSize: titleFontSize,
             }}
-            className="font-['Space_Mono',monospace] font-bold text-[#d9d9d9] tracking-[-0.02em] max-w-[1296px] mb-8 leading-tight"
+            className="font-['Space_Mono',monospace] font-bold text-[#d9d9d9] tracking-[-0.02em] max-w-full md:max-w-[1296px] mb-4 md:mb-8 leading-tight"
           >
             Reinventing Passive Income Through Blockchain Intelligence
           </motion.h1>
@@ -65,7 +65,7 @@ export default function AxtonHero() {
           {/* Hero Subtext */}
           <motion.p
             style={{ opacity: statsOpacity }}
-            className="font-['Space_Mono',monospace] text-sm md:text-base text-white/80 tracking-[-0.02em] max-w-[624px] mb-8"
+            className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-base text-white/80 tracking-[-0.02em] max-w-full md:max-w-[624px] mb-6 md:mb-8"
           >
             Axton Protocol merges DeFi transparency with network-powered earning
             — built on Binance Smart Chain (BEP-20 USDT).
@@ -74,16 +74,16 @@ export default function AxtonHero() {
           {/* CTA Buttons */}
           <motion.div
             style={{ opacity: statsOpacity }}
-            className="flex flex-wrap gap-4 mb-12"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mb-8 md:mb-12"
           >
-            <button className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] px-8 flex items-center justify-center hover:opacity-90 transition-opacity">
-              <span className="font-['Space_Mono',monospace] font-bold text-sm text-white tracking-[-0.02em]">
+            <button className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] px-6 md:px-8 flex items-center justify-center hover:opacity-90 transition-opacity w-full sm:w-auto">
+              <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-sm text-white tracking-[-0.02em]">
                 Start Earning
               </span>
             </button>
 
-            <button className="border border-[#2ef68d] h-[42px] px-8 flex items-center justify-center hover:bg-[#2ef68d]/10 transition-colors">
-              <span className="font-['Space_Mono',monospace] font-bold text-sm text-white tracking-[-0.02em]">
+            <button className="border border-[#2ef68d] h-[42px] px-6 md:px-8 flex items-center justify-center hover:bg-[#2ef68d]/10 transition-colors w-full sm:w-auto">
+              <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-sm text-white tracking-[-0.02em]">
                 View Smart Contract
               </span>
             </button>
@@ -92,44 +92,44 @@ export default function AxtonHero() {
           {/* Stats Cards - Fade in on scroll */}
           <motion.div
             style={{ opacity: statsOpacity }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-4xl"
           >
             {/* Stat Card 1 */}
-            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-6">
-              <p className="font-['Space_Mono',monospace] text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
+            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
+              <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Total Investors
               </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-2xl text-white tracking-[-0.02em]">
+              <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
                 12,254
               </p>
             </div>
 
             {/* Stat Card 2 */}
-            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2f2f2f] p-6">
-              <p className="font-['Space_Mono',monospace] text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
+            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2f2f2f] p-4 md:p-6">
+              <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 24h ROI Paid
               </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-2xl text-white tracking-[-0.02em]">
+              <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
                 $1,20,254
               </p>
             </div>
 
             {/* Stat Card 3 */}
-            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-6">
-              <p className="font-['Space_Mono',monospace] text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
+            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
+              <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Active Referrals
               </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-2xl text-white tracking-[-0.02em]">
+              <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
                 25,689
               </p>
             </div>
 
             {/* Stat Card 4 */}
-            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-6">
-              <p className="font-['Space_Mono',monospace] text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
+            <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
+              <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Binary Volume
               </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-2xl text-white tracking-[-0.02em]">
+              <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
                 $5.1M
               </p>
             </div>

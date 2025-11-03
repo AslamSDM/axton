@@ -1,19 +1,19 @@
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0b0b0d] border-t border-[#2f2f2f] py-12 px-8">
+    <footer className="relative bg-[#0b0b0d] border-t border-[#2f2f2f] py-8 md:py-12 px-4 sm:px-6 md:px-8">
       <div className="max-w-[1512px] mx-auto">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* Brand Section */}
-          <div className="col-span-1 md:col-span-1">
-            <h2 className="font-['Space_Mono',monospace] font-bold text-[24px] text-white tracking-[-1.2px] mb-4">
+          <div className="col-span-1 sm:col-span-2 md:col-span-1">
+            <h2 className="font-['Space_Mono',monospace] font-bold text-lg md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px] mb-3 md:mb-4">
               Axton Protocol
             </h2>
-            <p className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] mb-4">
+            <p className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] mb-3 md:mb-4">
               Reinventing Passive Income Through Blockchain Intelligence
             </p>
             {/* Social Links */}
-            <div className="flex gap-4">
+            <div className="flex gap-3 md:gap-4">
               <a
                 href="#"
                 className="w-[32px] h-[32px] border border-[#2ef68d] flex items-center justify-center hover:bg-[#2ef68d]/10 transition-colors"
@@ -58,10 +58,10 @@ export default function Footer() {
 
           {/* Product Section */}
           <div>
-            <h3 className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px] mb-4">
+            <h3 className="font-['Space_Mono',monospace] font-bold text-sm md:text-[14px] text-white tracking-[-0.7px] mb-3 md:mb-4">
               Product
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 md:space-y-2">
               {[
                 "Features",
                 "How it Works",
@@ -71,7 +71,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href="#"
-                    className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
+                    className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
                   >
                     {item}
                   </a>
@@ -82,16 +82,16 @@ export default function Footer() {
 
           {/* Resources Section */}
           <div>
-            <h3 className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px] mb-4">
+            <h3 className="font-['Space_Mono',monospace] font-bold text-sm md:text-[14px] text-white tracking-[-0.7px] mb-3 md:mb-4">
               Resources
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 md:space-y-2">
               {["Documentation", "Whitepaper", "Smart Contract", "FAQ"].map(
                 (item) => (
                   <li key={item}>
                     <a
                       href="#"
-                      className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
+                      className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
                     >
                       {item}
                     </a>
@@ -103,10 +103,10 @@ export default function Footer() {
 
           {/* Legal Section */}
           <div>
-            <h3 className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px] mb-4">
+            <h3 className="font-['Space_Mono',monospace] font-bold text-sm md:text-[14px] text-white tracking-[-0.7px] mb-3 md:mb-4">
               Legal
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 md:space-y-2">
               {[
                 "Terms of Service",
                 "Privacy Policy",
@@ -116,7 +116,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href="#"
-                    className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
+                    className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
                   >
                     {item}
                   </a>
@@ -127,21 +127,21 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[#2f2f2f] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px]">
+        <div className="border-t border-[#2f2f2f] pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+          <p className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] text-center md:text-left">
             © 2025 Axton Protocol. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-4 text-center">
             <a
               href="#"
-              className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
+              className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
             >
               Built on BSC
             </a>
             <span className="text-white/20">•</span>
             <a
               href="#"
-              className="font-['Space_Mono',monospace] text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
+              className="font-['Space_Mono',monospace] text-[10px] md:text-[12px] text-white/60 tracking-[-0.6px] hover:text-[#2ef68d] transition-colors"
             >
               Audited by CertiK
             </a>

@@ -29,11 +29,19 @@ export default function AxtonSidebar({
   onCloseAction,
 }: AxtonSidebarProps) {
   const menuItems = [
-    { title: "About", number: "01" },
-    { title: "Packages", number: "02" },
-    { title: "Structure", number: "03" },
-    { title: "Analytics", number: "04" },
+    { title: "About", number: "01", id: "about" },
+    { title: "Packages", number: "02", id: "packages" },
+    { title: "Structure", number: "03", id: "structure" },
+    { title: "Analytics", number: "04", id: "analytics" },
   ];
+
+  const handleNavClick = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      onCloseAction();
+    }
+  };
 
   return (
     <>
@@ -104,10 +112,9 @@ export default function AxtonSidebar({
           <ul className="space-y-[48px]">
             {menuItems.map((item, index) => (
               <li key={index}>
-                <a
-                  href={`#${item.title.toLowerCase()}`}
-                  className="flex items-center gap-4 group cursor-pointer"
-                  onClick={onCloseAction}
+                <button
+                  onClick={() => handleNavClick(item.id)}
+                  className="flex items-center gap-4 group cursor-pointer w-full text-left"
                 >
                   <span className="font-['Space_Mono',monospace] font-bold text-[44px] text-white tracking-[-2.2px] group-hover:text-[#2ef68d] transition-colors">
                     {item.title}
@@ -115,7 +122,7 @@ export default function AxtonSidebar({
                   <span className="font-['Space_Mono',monospace] text-[24px] text-[#2ef68d] tracking-[-1.2px]">
                     {item.number}
                   </span>
-                </a>
+                </button>
               </li>
             ))}
           </ul>

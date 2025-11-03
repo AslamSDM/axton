@@ -57,7 +57,7 @@ export default function InvestmentPackagesSection() {
   const headingFontSize = useTransform(
     scrollYProgress,
     [0, 0.2],
-    ["125px", "45px"]
+    ["clamp(48px, 8vw, 125px)", "clamp(28px, 5vw, 45px)"]
   );
   // Animate heading top position
   const headingTop = useTransform(scrollYProgress, [0, 0.2], ["50%", "28px"]);
@@ -82,6 +82,7 @@ export default function InvestmentPackagesSection() {
 
   return (
     <section
+      id="packages"
       ref={containerRef}
       className="bg-[#0b0b0d] relative w-full h-[300vh] overflow-hidden"
     >
@@ -103,7 +104,7 @@ export default function InvestmentPackagesSection() {
       <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
         {/* Animated Heading */}
         <motion.div
-          className="absolute w-full px-[56px]"
+          className="absolute w-full px-4 sm:px-8 md:px-[56px]"
           style={{
             top: headingTop,
             y: headingTranslateY,
@@ -114,7 +115,7 @@ export default function InvestmentPackagesSection() {
             style={{
               fontSize: headingFontSize,
             }}
-            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-6.25px] leading-tight"
+            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
             Choose Your Investment Package
           </motion.h1>
@@ -123,18 +124,18 @@ export default function InvestmentPackagesSection() {
         {/* Fading in content from AxtonLandingPage6 */}
         <motion.div
           style={{ opacity: contentOpacity }}
-          className="absolute top-0 left-0 w-full h-full px-[56px] pt-[120px] pointer-events-auto overflow-y-auto"
+          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[100px] md:pt-[120px] pointer-events-auto overflow-y-auto"
         >
-          <p className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px] max-w-[1084px] mb-8">
+          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] max-w-[1084px] mb-4 md:mb-8">
             Select the package that fits your investment goals
           </p>
 
           {/* Package Cards Grid */}
-          <div className="grid grid-cols-4 gap-8 max-w-[1760px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-[1760px] pb-8">
             {packages.map((pkg, index) => (
               <div key={index} className="relative">
                 {/* Texture Background with Gradient Overlay */}
-                <div className="absolute inset-0 h-[426px]">
+                <div className="absolute inset-0 min-h-[380px] sm:h-[400px] md:h-[426px]">
                   <div
                     className="absolute inset-0 opacity-10 pointer-events-none"
                     style={{
@@ -148,10 +149,10 @@ export default function InvestmentPackagesSection() {
 
                 {/* Featured Badge for 1000 USDT package */}
                 {pkg.featured && (
-                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-20">
+                  <div className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 z-20">
                     <div className="relative">
-                      <div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-full w-24 h-24 flex items-center justify-center">
-                        <span className="font-['Space_Mono',monospace] text-[10px] text-white text-center uppercase leading-tight">
+                      <div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
+                        <span className="font-['Space_Mono',monospace] text-[8px] sm:text-[9px] md:text-[10px] text-white text-center uppercase leading-tight">
                           Suggested
                           <br />
                           Plans
@@ -162,72 +163,72 @@ export default function InvestmentPackagesSection() {
                 )}
 
                 {/* Card Content */}
-                <div className="relative p-8 h-[426px]">
+                <div className="relative p-5 sm:p-6 md:p-8 min-h-[380px] sm:h-[400px] md:h-[426px]">
                   {/* Package Amount */}
-                  <div className="text-center mb-8 pt-4">
-                    <p className="font-['Space_Mono',monospace] font-bold text-[35px] text-white tracking-[-1.75px] mb-1">
+                  <div className="text-center mb-6 md:mb-8 pt-3 md:pt-4">
+                    <p className="font-['Space_Mono',monospace] font-bold text-2xl sm:text-3xl md:text-[35px] text-white tracking-[-0.05em] md:tracking-[-1.75px] mb-1">
                       {pkg.amount}
                     </p>
-                    <p className="font-['Space_Mono',monospace] text-[15px] text-[#929292] tracking-[-0.75px]">
+                    <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[15px] text-[#929292] tracking-[-0.05em] md:tracking-[-0.75px]">
                       USDT
                     </p>
                   </div>
 
                   {/* Package Details */}
-                  <div className="space-y-6">
+                  <div className="space-y-4 md:space-y-6">
                     {/* Daily ROI */}
-                    <div className="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div className="flex justify-between items-start pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
                         Daily ROI
                       </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-[#02c8c8] tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
                         {pkg.dailyROI}
                       </span>
                     </div>
 
                     {/* Maximum Income */}
-                    <div className="pb-4 border-b border-white/10">
+                    <div className="pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
                         Maximum Income
                       </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-[#02c8c8] tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
                         {pkg.maxIncome}
                       </span>
                     </div>
 
                     {/* Binary Cap */}
-                    <div className="pb-4 border-b border-white/10">
+                    <div className="pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
                         Binary Cap
                       </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-[#02c8c8] tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
                         {pkg.binaryCap}
                       </span>
                     </div>
 
                     {/* Duration */}
                     <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
                         Duration
                       </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-[#02c8c8] tracking-[-0.7px]">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
                         {pkg.duration}
                       </span>
                     </div>
                   </div>
 
                   {/* Activate Button */}
-                  <button className="absolute bottom-8 left-8 right-8 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] flex items-center justify-center hover:opacity-90 transition-opacity">
-                    <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
+                  <button className="absolute bottom-5 sm:bottom-6 md:bottom-8 left-5 sm:left-6 md:left-8 right-5 sm:right-6 md:right-8 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[38px] sm:h-[40px] md:h-[42px] flex items-center justify-center hover:opacity-90 transition-opacity">
+                    <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
                       Activate Now
                     </span>
                   </button>

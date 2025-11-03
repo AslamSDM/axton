@@ -41,10 +41,10 @@ export default function LandingPage() {
       <AxtonNavbar onMenuClick={() => setIsSidebarOpen(true)} />
 
       {/* Sidebar */}
-      {/* <AxtonSidebar
+      <AxtonSidebar
         isOpen={isSidebarOpen}
         onCloseAction={() => setIsSidebarOpen(false)}
-      /> */}
+      />
 
       {/* Page Content */}
       <div className="relative z-10">

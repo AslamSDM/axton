@@ -24,10 +24,14 @@ export default function AnalyticsSection() {
   const headingFontSize = useTransform(
     scrollYProgress,
     [0, 0.2],
-    ["125px", "35px"]
+    ["clamp(48px, 8vw, 125px)", "clamp(24px, 4vw, 35px)"]
   );
 
-  const headingTop = useTransform(scrollYProgress, [0, 0.2], ["50%", "80px"]);
+  const headingTop = useTransform(
+    scrollYProgress,
+    [0, 0.2],
+    ["50%", "clamp(60px, 8vh, 80px)"]
+  );
   const headingTranslateY = useTransform(
     scrollYProgress,
     [0, 0.2],
@@ -49,6 +53,7 @@ export default function AnalyticsSection() {
 
   return (
     <section
+      id="analytics"
       ref={containerRef}
       className="relative w-full h-[300vh] overflow-hidden"
     >
@@ -69,10 +74,10 @@ export default function AnalyticsSection() {
       <div className="absolute backdrop-blur-[2px] backdrop-filter bg-gradient-to-r blur-[26.5px] filter from-[rgba(52,113,192,0.7)] h-[605px] left-0 mix-blend-color-dodge to-[rgba(46,246,141,0.7)] top-[-680px] w-full" />
 
       {/* Fixed container for the animation */}
-      <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
+      <div className="fixed top-0 left-0 w-full h-screen pointer-events-none z-10">
         {/* Animated Heading */}
         <motion.div
-          className="absolute w-full px-[57px]"
+          className="absolute w-full px-4 sm:px-8 md:px-[57px]"
           style={{
             top: headingTop,
             y: headingTranslateY,
@@ -83,7 +88,7 @@ export default function AnalyticsSection() {
             style={{
               fontSize: headingFontSize,
             }}
-            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-1.75px] leading-tight max-w-[592px]"
+            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.05em] md:tracking-[-1.75px] leading-tight max-w-full md:max-w-[592px]"
           >
             Analytics Transparency
           </motion.h1>
@@ -91,17 +96,17 @@ export default function AnalyticsSection() {
 
         {/* Main Content */}
         <motion.main
-          className="absolute top-0 left-0 w-full h-full px-[57px] pt-[200px] pointer-events-auto"
+          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[57px] pt-32 md:pt-[200px] pointer-events-auto overflow-y-auto"
           style={{ opacity: contentOpacity }}
         >
-          <p className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px] mb-12 max-w-[1084px]">
+          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px]">
             Real-time insights into network performance and ROI distribution
           </p>
 
           {/* Analytics Cards Grid */}
-          <div className="grid grid-cols-2 gap-8 max-w-[1263px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-full md:max-w-[1263px]">
             {/* Total ROI Distributed Card */}
-            <div className="relative h-[450px]">
+            <div className="relative h-[400px] sm:h-[420px] md:h-[450px]">
               {/* Card Background with Texture */}
               <div className="absolute inset-0 bg-black/50">
                 <div
@@ -115,13 +120,13 @@ export default function AnalyticsSection() {
               </div>
 
               {/* Card Content */}
-              <div className="relative h-full p-8 flex flex-col">
-                <h2 className="font-['Space_Mono',monospace] font-bold text-[20px] text-white tracking-[-1px] mb-8">
+              <div className="relative h-full p-4 sm:p-6 md:p-8 flex flex-col">
+                <h2 className="font-['Space_Mono',monospace] font-bold text-base sm:text-lg md:text-[20px] text-white tracking-[-1px] mb-4 md:mb-8">
                   Total ROI Distributed
                 </h2>
 
                 {/* Bar Chart */}
-                <div className="flex items-end gap-8 h-[250px] mt-auto mb-8">
+                <div className="flex items-end gap-4 sm:gap-6 md:gap-8 h-[150px] sm:h-[160px] md:h-[180px] mt-auto mb-4 md:mb-8">
                   {[115, 138, 149, 160, 171, 182, 193].map((height, index) => (
                     <div
                       key={index}
@@ -148,7 +153,7 @@ export default function AnalyticsSection() {
               </div>
 
               {/* Bottom Stats Section */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/50 h-[126px] p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 h-auto md:h-[126px] p-4 md:p-6">
                 <div
                   className="absolute inset-0 opacity-5"
                   style={{
@@ -157,13 +162,13 @@ export default function AnalyticsSection() {
                   }}
                 />
                 <div className="relative">
-                  <p className="font-['Space_Mono',monospace] font-bold text-[25px] text-white tracking-[-1.25px] mb-2">
+                  <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[25px] text-white tracking-[-0.05em] md:tracking-[-1.25px] mb-1 md:mb-2">
                     30,800 USDT
                   </p>
-                  <p className="font-['Space_Mono',monospace] text-[12px] text-white tracking-[-0.6px] mb-1">
+                  <p className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.6px] mb-1">
                     ROI distribution has grown 43% over the last month
                   </p>
-                  <p className="font-['Space_Mono',monospace] text-[12px] text-[#2ef68d] tracking-[-0.6px]">
+                  <p className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-[#2ef68d] tracking-[-0.6px]">
                     +8.2% this week
                   </p>
                 </div>
@@ -171,7 +176,7 @@ export default function AnalyticsSection() {
             </div>
 
             {/* Live Network Growth Card */}
-            <div className="relative h-[450px]">
+            <div className="relative h-[400px] sm:h-[420px] md:h-[450px]">
               {/* Card Background with Texture */}
               <div className="absolute inset-0 bg-black/50">
                 <div
@@ -185,13 +190,13 @@ export default function AnalyticsSection() {
               </div>
 
               {/* Card Content */}
-              <div className="relative h-full p-8 flex flex-col">
-                <h2 className="font-['Space_Mono',monospace] font-bold text-[20px] text-white tracking-[-1px] mb-8">
+              <div className="relative h-full p-4 sm:p-6 md:p-8 flex flex-col">
+                <h2 className="font-['Space_Mono',monospace] font-bold text-base sm:text-lg md:text-[20px] text-white tracking-[-1px] mb-4 md:mb-8">
                   Live Network Growth
                 </h2>
 
                 {/* Line Chart */}
-                <div className="relative h-[150px] mt-12">
+                <div className="relative h-[120px] sm:h-[135px] md:h-[150px] mt-4 md:mt-8">
                   <img alt="" className="absolute" src={imgVector14} />
                   {/* Data Points */}
                   {[
@@ -245,7 +250,7 @@ export default function AnalyticsSection() {
               </div>
 
               {/* Bottom Stats Section */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/50 h-[126px] p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 h-auto md:h-[126px] p-4 md:p-6">
                 <div
                   className="absolute inset-0 opacity-5"
                   style={{
@@ -254,13 +259,13 @@ export default function AnalyticsSection() {
                   }}
                 />
                 <div className="relative">
-                  <p className="font-['Space_Mono',monospace] font-bold text-[25px] text-white tracking-[-1.25px] mb-2">
+                  <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[25px] text-white tracking-[-0.05em] md:tracking-[-1.25px] mb-1 md:mb-2">
                     136 New Activations
                   </p>
-                  <p className="font-['Space_Mono',monospace] text-[12px] text-white tracking-[-0.6px] mb-1">
+                  <p className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.6px] mb-1">
                     User base has expanded 62% in the past 30 days
                   </p>
-                  <p className="font-['Space_Mono',monospace] text-[12px] text-[#2ef68d] tracking-[-0.6px]">
+                  <p className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-[#2ef68d] tracking-[-0.6px]">
                     +15.3% today
                   </p>
                 </div>

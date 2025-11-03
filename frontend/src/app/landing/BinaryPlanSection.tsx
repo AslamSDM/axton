@@ -26,10 +26,14 @@ export default function BinaryPlanSection() {
   const headingFontSize = useTransform(
     scrollYProgress,
     [0, 0.2],
-    ["125px", "45px"]
+    ["clamp(48px, 8vw, 125px)", "clamp(28px, 5vw, 45px)"]
   );
   // Animate heading top position
-  const headingTop = useTransform(scrollYProgress, [0, 0.2], ["50%", "80px"]);
+  const headingTop = useTransform(
+    scrollYProgress,
+    [0, 0.2],
+    ["50%", "clamp(40px, 8vw, 80px)"]
+  );
   const headingTranslateY = useTransform(
     scrollYProgress,
     [0, 0.2],
@@ -51,6 +55,7 @@ export default function BinaryPlanSection() {
 
   return (
     <section
+      id="structure"
       ref={containerRef}
       className="bg-[#0b0b0d] relative w-full h-[300vh] overflow-hidden"
     >
@@ -85,7 +90,7 @@ export default function BinaryPlanSection() {
       <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
         {/* Animated Heading */}
         <motion.div
-          className="absolute w-full px-[100px]"
+          className="absolute w-full px-4 sm:px-8 md:px-16 lg:px-[100px]"
           style={{
             top: headingTop,
             y: headingTranslateY,
@@ -96,11 +101,11 @@ export default function BinaryPlanSection() {
             style={{
               fontSize: headingFontSize,
             }}
-            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-6.25px] leading-tight"
+            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
             Binary Plan Structure
           </motion.h1>
-          <p className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px] mt-4 mb-8">
+          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mt-3 md:mt-4 mb-4 md:mb-8">
             Build two teams and earn matching bonuses daily
           </p>
         </motion.div>
@@ -108,29 +113,29 @@ export default function BinaryPlanSection() {
         {/* Fading in content from AxtonLandingPage8 */}
         <motion.div
           style={{ opacity: contentOpacity }}
-          className="absolute top-0 left-0 w-full h-full px-[56px] pt-[80px] pointer-events-auto"
+          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[60px] sm:pt-[70px] md:pt-[80px] pointer-events-auto overflow-y-auto"
         >
           {/* Binary Tree Structure */}
-          <div className="relative mt-20">
+          <div className="relative mt-12 sm:mt-16 md:mt-20 pb-8">
             {/* You (Top User) */}
             <div className="absolute left-1/2 -translate-x-1/2 top-0 text-center">
-              <div className="relative w-[100px] h-[100px] mb-4 mx-auto">
+              <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
                 <img
                   alt=""
                   className="block max-w-none size-full"
                   src={imgGroup58}
                 />
               </div>
-              <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+              <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                 You
               </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-white tracking-[-1.2px]">
+              <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
                 $1000
               </p>
             </div>
 
             {/* Connection Lines */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-[150px] h-[88.527px] w-[125.32px]">
+            <div className="absolute left-1/2 -translate-x-1/2 top-[110px] sm:top-[130px] md:top-[150px] h-[60px] w-[85px] sm:h-[74px] sm:w-[105px] md:h-[88.527px] md:w-[125.32px]">
               <img
                 alt=""
                 className="block max-w-none size-full"
@@ -139,70 +144,70 @@ export default function BinaryPlanSection() {
             </div>
 
             {/* Left and Right Teams */}
-            <div className="flex justify-center gap-32 mt-[250px]">
+            <div className="flex flex-col sm:flex-row justify-center items-center sm:gap-16 md:gap-24 lg:gap-32 mt-[180px] sm:mt-[210px] md:mt-[250px] gap-8">
               {/* Left Team */}
               <div className="text-center">
-                <div className="relative w-[100px] h-[100px] mb-4 mx-auto">
+                <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
                   <img
                     alt=""
                     className="block max-w-none size-full"
                     src={imgGroup58}
                   />
                 </div>
-                <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                   Left Team
                 </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-white tracking-[-1.2px]">
+                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
                   $1000
                 </p>
               </div>
 
               {/* Right Team */}
               <div className="text-center">
-                <div className="relative w-[100px] h-[100px] mb-4 mx-auto">
+                <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
                   <img
                     alt=""
                     className="block max-w-none size-full"
                     src={imgGroup58}
                   />
                 </div>
-                <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                   Right Team
                 </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-white tracking-[-1.2px]">
+                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
                   $1000
                 </p>
               </div>
             </div>
 
             {/* Bottom Cards */}
-            <div className="flex justify-center gap-8 mt-12">
+            <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 md:gap-6 lg:gap-8 mt-8 md:mt-12 max-w-[700px] mx-auto">
               {/* Weaker */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] h-[118px] w-[205px] p-6">
-                <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
+                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                   Weaker
                 </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-[#02c8c8] tracking-[-1.2px] text-center">
+                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
                   $1000
                 </p>
               </div>
 
               {/* Daily Match */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] h-[118px] w-[205px] p-6">
-                <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
+                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                   Daily Match (10%)
                 </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-[#02c8c8] tracking-[-1.2px] text-center">
+                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
                   $1000
                 </p>
               </div>
 
               {/* Carry Forward */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] h-[118px] w-[205px] p-6">
-                <p className="font-['Space_Mono',monospace] text-[14px] text-center text-white tracking-[-0.7px] mb-2">
+              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
+                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
                   Carry Forward
                 </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-[24px] text-[#02c8c8] tracking-[-1.2px] text-center">
+                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
                   $1000
                 </p>
               </div>
