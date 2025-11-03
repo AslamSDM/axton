@@ -9,7 +9,7 @@ interface AxtonNavbarProps {
 
 export default function AxtonNavbar({ onMenuClick }: AxtonNavbarProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0b0b0d]/80 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xs">
       <div className="flex items-center justify-between px-[56px] lg:px-[100px] py-[26px]">
         {/* Logo Section */}
         <div className="flex items-center gap-3">

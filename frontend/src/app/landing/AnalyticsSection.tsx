@@ -17,7 +17,7 @@ export default function AnalyticsSection() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end end"],
   });
 
   // Heading animations
@@ -52,10 +52,17 @@ export default function AnalyticsSection() {
   );
 
   return (
-    <section
+    <motion.section
       id="analytics"
       ref={containerRef}
-      className="relative w-full h-[300vh] overflow-hidden"
+      className="relative w-full h-[300vh] overflow-hidden bg-[#0b0b0d9e]"
+      style={{
+        backgroundColor: useTransform(
+          scrollYProgress,
+          [0, 0.5, 0.8, 1],
+          ["#0b0b0d00", "#0b0b0d9e", "#0b0b0d9e", "#0b0b0d00"]
+        ),
+      }}
     >
       {/* Dot Grid Background */}
       <div className="absolute h-[150px] left-0 opacity-10 overflow-clip top-0 w-full">
@@ -87,6 +94,16 @@ export default function AnalyticsSection() {
           <motion.h1
             style={{
               fontSize: headingFontSize,
+              y: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [300, 100]
+              ),
+              x: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [10, 0]
+              )
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.05em] md:tracking-[-1.75px] leading-tight max-w-full md:max-w-[592px]"
           >
@@ -99,7 +116,7 @@ export default function AnalyticsSection() {
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[57px] pt-32 md:pt-[200px] pointer-events-auto overflow-y-auto"
           style={{ opacity: contentOpacity }}
         >
-          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px]">
+          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px] pt-12">
             Real-time insights into network performance and ROI distribution
           </p>
 
@@ -130,16 +147,15 @@ export default function AnalyticsSection() {
                   {[115, 138, 149, 160, 171, 182, 193].map((height, index) => (
                     <div
                       key={index}
-                      className={`w-[9px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] ${
-                        index === 6 ? "border-2 border-white" : ""
-                      }`}
+                      className={`w-[9px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] ${index === 6 ? "border-2 border-white" : ""
+                        }`}
                       style={{ height: `${height}px` }}
                     />
                   ))}
                 </div>
 
                 {/* Hover Info Box */}
-                <div className="absolute left-[488px] top-[409px] bg-[#2b2b2b] w-[160px] h-[107px] p-4">
+                {/* <div className="absolute left-[488px] top-[409px] bg-[#2b2b2b] w-[160px] h-[107px] p-4">
                   <p className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px] mb-2">
                     Oct 6
                   </p>
@@ -149,7 +165,7 @@ export default function AnalyticsSection() {
                   <p className="font-['Space_Mono',monospace] text-[12px] text-white/50 tracking-[-0.6px]">
                     ROI Distributed
                   </p>
-                </div>
+                </div> */}
               </div>
 
               {/* Bottom Stats Section */}
@@ -236,7 +252,7 @@ export default function AnalyticsSection() {
                 </div>
 
                 {/* Hover Info Box */}
-                <div className="absolute left-[1050px] top-[381px] bg-[#2b2b2b] w-[205px] h-[107px] p-4">
+                {/* <div className="absolute left-[1050px] top-[381px] bg-[#2b2b2b] w-[205px] h-[107px] p-4">
                   <p className="font-['Space_Mono',monospace] text-[14px] text-white tracking-[-0.7px] mb-2">
                     Feb
                   </p>
@@ -246,7 +262,7 @@ export default function AnalyticsSection() {
                   <p className="font-['Space_Mono',monospace] text-[12px] text-white/50 tracking-[-0.6px]">
                     New Users
                   </p>
-                </div>
+                </div> */}
               </div>
 
               {/* Bottom Stats Section */}
@@ -274,6 +290,6 @@ export default function AnalyticsSection() {
           </div>
         </motion.main>
       </div>
-    </section>
+    </motion.section>
   );
 }

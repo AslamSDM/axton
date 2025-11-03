@@ -9,20 +9,6 @@ const stats = [
   { label: "BINARY VOLUME", value: "$5.1M", color: "text-blue-400" },
 ];
 
-// Helper component for the stat cards
-const StatCard = ({ label, value, color }: any) => (
-  <div className="p-4 sm:p-6 bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 transition duration-300 hover:bg-white/10 h-full">
-    <p className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-1">
-      {label}
-    </p>
-    <h3
-      className={`text-3xl sm:text-4xl font-extrabold ${color} leading-tight`}
-    >
-      {value}
-    </h3>
-  </div>
-);
-
 export const AxtonHero = () => {
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);

@@ -3,12 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-// Image assets (valid for 7 days from Figma API)
-const imgImage28 =
-  "https://www.figma.com/api/mcp/asset/8a150328-ecb4-4fa2-91c5-8e588f231212";
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/d49c8135-7c4d-4a9e-af1a-1dc89703bb77";
-
 export default function AxtonHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -17,18 +11,19 @@ export default function AxtonHero() {
   });
 
   // Transform scroll progress to opacity values
-  const heroOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.5, 0.9, 1],
-    [1, 1, 0, 0]
-  );
+  // const heroOpacity = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.5, 0.9, 1],
+  //   [1, 1, 0, 0]
+  // );
+  const statsY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
   const statsOpacity = useTransform(
     scrollYProgress,
     [0, 0.3, 0.9, 1],
     [0, 1, 1, 0]
   );
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const titleY = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
+  // const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const titleY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
   const titleFontSize = useTransform(
     scrollYProgress,
     [0, 0.2],
@@ -47,33 +42,34 @@ export default function AxtonHero() {
     >
       {/* Content Container - Fixed and Animated */}
       <motion.div
-        className="fixed top-16 md:top-20 left-0 right-0 h-screen w-full px-4 sm:px-8 md:px-16 lg:px-[94px]"
+        className="fixed top-16 md:top-20 left-0 right-0 h-screen w-full px-4 sm:px-8 md:px-16 lg:px-[94px] "
         style={{ opacity: contentOpacity }}
       >
         <div className="relative z-10 w-full max-w-[1512px] mx-auto h-full flex flex-col justify-center pt-8 md:pt-0">
-          {/* Hero Heading - Animated */}
           <motion.h1
             style={{
               y: titleY,
               fontSize: titleFontSize,
+              mixBlendMode: 'exclusion'
             }}
-            className="font-['Space_Mono',monospace] font-bold text-[#d9d9d9] tracking-[-0.02em] max-w-full md:max-w-[1296px] mb-4 md:mb-8 leading-tight"
+            className="font-['Space_Mono',monospace] font-bold text-[#d9d9d9] tracking-[-0.02em] max-w-full md:max-w-[80%] mb-4 md:mb-8 leading-[1.125em] mt-[200px]"
           >
             Reinventing Passive Income Through Blockchain Intelligence
           </motion.h1>
 
-          {/* Hero Subtext */}
           <motion.p
-            style={{ opacity: statsOpacity }}
+            style={{
+              opacity: statsOpacity,
+              y: statsY
+            }}
             className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-base text-white/80 tracking-[-0.02em] max-w-full md:max-w-[624px] mb-6 md:mb-8"
           >
             Axton Protocol merges DeFi transparency with network-powered earning
             — built on Binance Smart Chain (BEP-20 USDT).
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
-            style={{ opacity: statsOpacity }}
+            style={{ opacity: statsOpacity, y: statsY }}
             className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mb-8 md:mb-12"
           >
             <button className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] px-6 md:px-8 flex items-center justify-center hover:opacity-90 transition-opacity w-full sm:w-auto">
@@ -89,12 +85,10 @@ export default function AxtonHero() {
             </button>
           </motion.div>
 
-          {/* Stats Cards - Fade in on scroll */}
           <motion.div
-            style={{ opacity: statsOpacity }}
+            style={{ opacity: statsOpacity, y: statsY }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-4xl"
           >
-            {/* Stat Card 1 */}
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Total Investors
@@ -104,7 +98,7 @@ export default function AxtonHero() {
               </p>
             </div>
 
-            {/* Stat Card 2 */}
+
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 24h ROI Paid
@@ -114,7 +108,6 @@ export default function AxtonHero() {
               </p>
             </div>
 
-            {/* Stat Card 3 */}
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Active Referrals
@@ -124,7 +117,6 @@ export default function AxtonHero() {
               </p>
             </div>
 
-            {/* Stat Card 4 */}
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
                 Binary Volume

@@ -17,7 +17,7 @@ export default function HowToEarnSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
 
   // Animate heading font size from large to small
@@ -48,25 +48,21 @@ export default function HowToEarnSection() {
   );
 
   return (
-    <section
+    <motion.section
       ref={containerRef}
-      className="bg-[#0b0b0d] relative w-full h-[300vh] overflow-hidden"
+      className="relative w-full h-[300vh]"
+      style={{
+        backgroundColor: useTransform(
+          scrollYProgress,
+          [0, 0.5, 1],
+          ["#0b0b0d", "#0b0b0d", "#0b0b0d00"]
+        ),
+      }}
     >
-      {/* Background vector pattern */}
-      <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-2048px] w-[1531.705px]">
-        <div className="absolute inset-[-0.03%_-0.26%_-0.45%_-1.63%]">
-          <img
-            alt=""
-            className="block max-w-none size-full"
-            src={imgVector15}
-          />
-        </div>
-      </div>
-
       {/* Fixed container for the animation */}
-      <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
+      < div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10" >
         {/* Animated Heading */}
-        <motion.div
+        < motion.div
           className="absolute w-full px-4 sm:px-8 md:px-[56px]"
           style={{
             top: headingTop,
@@ -77,15 +73,25 @@ export default function HowToEarnSection() {
           <motion.h1
             style={{
               fontSize: headingFontSize,
+              y: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [300, 0]
+              ),
+              x: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [10, 0]
+              )
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
             How can you Earn ?
           </motion.h1>
-        </motion.div>
+        </motion.div >
 
         {/* Fading in content from AxtonLandingPage3 */}
-        <motion.div
+        < motion.div
           style={{ opacity: contentOpacity }}
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[100px] md:pt-[120px] pointer-events-auto overflow-y-auto"
         >
@@ -203,8 +209,8 @@ export default function HowToEarnSection() {
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </motion.div >
+      </div >
+    </motion.section >
   );
 }

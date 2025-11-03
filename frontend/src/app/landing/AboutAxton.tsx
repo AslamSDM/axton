@@ -23,16 +23,10 @@ export default function AxtonLandingPage1() {
     offset: ["start start", "end end"],
   });
 
-  // Animate heading font size from large to small
-  const headingFontSize = useTransform(
-    scrollYProgress,
-    [0, 0.2],
-    ["clamp(48px, 8vw, 100px)", "clamp(24px, 4vw, 30px)"]
-  );
   // Animate heading top position
   const headingTop = useTransform(
     scrollYProgress,
-    [0, 0.2],
+    [0, 0.5],
     ["50%", "clamp(20px, 3vw, 28px)"]
   );
   const headingTranslateY = useTransform(
@@ -55,21 +49,25 @@ export default function AxtonLandingPage1() {
   );
 
   return (
-    <section
+    <motion.section
       id="about"
       ref={containerRef}
-      className="bg-[#0b0b0d] relative w-full overflow-hidden h-[300vh]"
+      className="relative w-full overflow-hidden h-[300vh]"
+      style={{
+        backgroundColor: useTransform(
+          scrollYProgress,
+          [0, 1],
+          ["#0b0b0d7e", "#0b0b0ddd"]
+        )
+      }}
     >
-      {/* Background vector pattern */}
-      <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-768px] w-[1531.705px] opacity-30">
-        <img alt="" className="block max-w-none size-full" src={imgVector15} />
-      </div>
+
 
       {/* Fixed container for the animation */}
       <div className="fixed top-16 md:top-20 left-0 w-full h-screen pointer-events-none z-10">
         {/* Animated Heading */}
         <motion.div
-          className="absolute w-full px-4 sm:px-8 md:px-[56px]"
+          className="absolute w-full px-4 sm:px-8 md:px-[56px] mt-24"
           style={{
             top: headingTop,
             y: headingTranslateY,
@@ -78,9 +76,23 @@ export default function AxtonLandingPage1() {
         >
           <motion.h2
             style={{
-              fontSize: headingFontSize,
+              fontSize: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                ["clamp(48px, 8vw, 100px)", "clamp(24px, 4vw, 50px)"]
+              ),
+              y: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [300, 0]
+              ),
+              x: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [10, 0]
+              )
             }}
-            className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.05em] md:tracking-[-2.25px] leading-tight"
+            className="absolute top-0 font-['Space_Mono',monospace] font-bold text-white tracking-[-0.05em] md:tracking-[-2.25px] leading-tight"
           >
             About Axton Protocol
           </motion.h2>
@@ -89,7 +101,7 @@ export default function AxtonLandingPage1() {
         {/* Fading in content */}
         <motion.div
           style={{ opacity: contentOpacity }}
-          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-24 md:pt-[120px] pointer-events-auto overflow-y-auto"
+          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-24 md:pt-[120px] pointer-events-auto overflow-y-auto mt-24"
         >
           {/* Animated About Heading */}
 
@@ -179,6 +191,6 @@ export default function AxtonLandingPage1() {
           <motion.div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] h-[3px] w-full max-w-[470px] mx-auto" />
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

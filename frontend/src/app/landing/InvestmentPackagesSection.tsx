@@ -81,12 +81,19 @@ export default function InvestmentPackagesSection() {
   );
 
   return (
-    <section
+    <motion.section
       id="packages"
       ref={containerRef}
-      className="bg-[#0b0b0d] relative w-full h-[300vh] overflow-hidden"
+      className=" relative w-full h-[300vh] overflow-hidden "
+      style={{
+        // backgroundColor: useTransform(
+        //   scrollYProgress,
+        //   [0, 0.2, 1],
+        //   ["#0b0b0d", "#0b0b0d", "#0b0b0d00"]
+        // ),
+      }}
     >
-      {/* Background vector pattern */}
+      {/* Background vector pattern
       <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-3078px] w-[1531.705px]">
         <div className="absolute inset-[-0.03%_-0.26%_-0.45%_-1.63%]">
           <img
@@ -95,10 +102,10 @@ export default function InvestmentPackagesSection() {
             src={imgVector15}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* Top gradient glow effect */}
-      <div className="absolute backdrop-blur-[2px] bg-gradient-to-r from-[rgba(52,113,192,0.7)] to-[rgba(46,246,141,0.7)] blur-[26.5px] h-[978px] left-0 mix-blend-color-dodge w-full top-[-30px]" />
+      {/* <div className="absolute backdrop-blur-[2px] bg-gradient-to-r from-[rgba(52,113,192,0.7)] to-[rgba(46,246,141,0.7)] blur-[26.5px] h-[978px] left-0 mix-blend-color-dodge w-full top-[-30px]" /> */}
 
       {/* Fixed container for the animation */}
       <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
@@ -114,6 +121,16 @@ export default function InvestmentPackagesSection() {
           <motion.h1
             style={{
               fontSize: headingFontSize,
+              y: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [300, 0]
+              ),
+              x: useTransform(
+                scrollYProgress,
+                [0, 0.2],
+                [10, 0]
+              )
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
@@ -238,6 +255,6 @@ export default function InvestmentPackagesSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
