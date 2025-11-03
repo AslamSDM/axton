@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Zap } from "lucide-react";
 
 // Data for the statistics section
 const stats = [
@@ -143,7 +142,7 @@ export const AxtonHero = () => {
           src="https://placehold.co/39x39"
         />
         <div className="w-40 h-10 left-[1310px] top-[28px] absolute border border-emerald-400" />
-        <div className="w-[1531.70px] h-[5586.47px] left-[69.80px] top-[-68px] absolute mix-blend-hard-light outline outline-[50px] outline-offset-[-25px] outline-emerald-400" />
+        <div className="w-[1531.70px] h-[5586.47px] left-[69.80px] top-[-68px] absolute mix-blend-hard-light outline-offset-[-25px] outline-emerald-400" />
         <div className="w-6 h-4 left-[56px] top-[38px] absolute bg-white" />
         <div className="w-[1296px] left-[94px] top-[227px] absolute justify-start text-zinc-300 text-5xl font-bold font-['Space_Mono'] leading-[67px]">
           Reinventing Passive Income Through Blockchain Intelligence
@@ -160,7 +159,7 @@ export const AxtonHero = () => {
         <div className="left-[349px] top-[486px] absolute justify-start text-white text-sm font-bold font-['Space_Mono']">
           View Smart Contract
         </div>
-        <div className="w-4 h-5 left-[134px] top-[486px] absolute outline outline-2 outline-offset-[-1px] outline-white" />
+        <div className="w-4 h-5 left-[134px] top-[486px] absolute outline-offset-[-1px] outline-white" />
         <div className="w-52 h-28 left-[94px] top-[569px] absolute bg-stone-950/50 border border-zinc-800 backdrop-blur-lg" />
         <div className="w-52 h-28 left-[312px] top-[569px] absolute bg-stone-950/80 border border-zinc-800 backdrop-blur-lg" />
         <div className="w-52 h-28 left-[530px] top-[569px] absolute bg-stone-950/50 border border-zinc-800 backdrop-blur-lg" />

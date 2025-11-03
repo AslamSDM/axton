@@ -94,14 +94,11 @@ export default function AboutSection() {
           </motion.h2>
         </motion.div>
 
-        {/* Fading in content */}
         <motion.div
           style={{ opacity: contentOpacity }}
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-24 md:pt-[120px] pointer-events-auto overflow-y-auto mt-24"
         >
-          {/* Animated About Heading */}
 
-          {/* About Description - appears last */}
           <motion.div className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] max-w-full md:max-w-[1084px] mb-8 md:mb-16">
             <p className="mb-4">
               Axton Protocol is a next-generation decentralized wealth system
@@ -111,80 +108,69 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          {/* Feature Cards Section - appears last */}
-          <motion.div className="relative flex flex-col md:flex-row items-center justify-center gap-3 mb-8">
+          <motion.div className="relative flex justify-center items-center">
             {/* Left card */}
-            <div className="h-[200px] sm:h-[240px] md:h-[265px] w-full sm:w-[320px] md:w-[370px] relative">
-              <div className="absolute backdrop-blur-[2px] inset-0 opacity-80 overflow-hidden">
-                <img
-                  alt=""
-                  className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                  src={imgImage29}
-                />
+            <div className="relative z-10 translate-x-40 scale-90 opacity-80">
+              <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
+                <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
+                  <img
+                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
+                    src={imgImage29}
+                  />
+
+                </div>
+                <div className="absolute top-4 left-15 h-[30%] w-[25%]">
+                  <img
+                    alt=""
+                    className="block max-w-none size-full mix-blend-color-burn"
+                    src={imgVector}
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Center card (larger with shadow) */}
-            <div className="h-[240px] sm:h-[280px] md:h-[336px] w-full sm:w-[380px] md:w-[468px] relative shadow-[0px_0px_80px_0px_rgba(255,166,133,0.5)] z-20">
-              <div className="absolute backdrop-blur-[2px] inset-0 opacity-80 overflow-hidden">
-                <img
-                  alt=""
-                  className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                  src={imgImage29}
-                />
-              </div>
-
-              {/* Info Card Overlay */}
-              <div className="absolute backdrop-blur-[17.5px] bg-[rgba(0,0,0,0.7)] border-[0.5px] border-neutral-900 h-auto md:h-[113px] w-[90%] sm:w-[380px] md:w-[421px] bottom-3 md:bottom-5 left-1/2 transform -translate-x-1/2 px-4 md:px-8 py-3 md:py-4">
-                <h3 className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[25px] text-white tracking-[-0.05em] md:tracking-[-1.25px] mb-1 md:mb-2">
-                  Built on BSC
-                </h3>
-                <p className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.6px] max-w-full md:max-w-[333px]">
-                  Fast, secure, BEP-20 USDT based transactions with minimal fees
-                  and maximum efficiency.
-                </p>
+            {/* Center card (bigger & on top) */}
+            <div className="relative z-20 scale-105">
+              <div className="h-[260px] sm:h-[300px] md:h-[360px] w-[360px] md:w-[468px] relative shadow-[0px_0px_80px_0px_rgba(255,166,133,0.5)]">
+                <div className="absolute inset-0 backdrop-blur-[2px] opacity-90 overflow-hidden">
+                  <img
+                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
+                    src={imgImage29}
+                  />
+                </div>
+                <div className="absolute top-4 left-4 h-[40%] w-[40%]">
+                  <img
+                    alt=""
+                    className="block max-w-none size-full mix-blend-color-burn"
+                    src={imgGroup}
+                  />
+                </div>
               </div>
             </div>
 
             {/* Right card */}
-            <div className="h-[200px] sm:h-[240px] md:h-[265px] w-full sm:w-[320px] md:w-[370px] relative">
-              <div className="absolute backdrop-blur-[2px] inset-0 opacity-80 overflow-hidden">
-                <img
-                  alt=""
-                  className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                  src={imgImage29}
-                />
+            <div className="relative z-10 -translate-x-40 scale-90 opacity-80">
+              <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
+                <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
+                  <img
+                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
+                    src={imgImage29}
+                  />
+                </div>
+                <div className="absolute top-4 right-15 h-[30%] w-[30%]">
+                  <img
+                    alt=""
+                    className="block max-w-none size-full mix-blend-color-burn"
+                    src={imgGroup29}
+                  />
+                </div>
               </div>
-            </div>
-
-            {/* Decorative vector elements - hidden on mobile */}
-            <div className="hidden md:block absolute top-[51.31%] left-[24.8%] w-[5.09%] h-[10.07%]">
-              <img
-                alt=""
-                className="block max-w-none size-full"
-                src={imgVector}
-              />
-            </div>
-
-            <div className="hidden md:block absolute top-[51.31%] right-[32.39%] w-[6.3%] h-[10.08%]">
-              <img
-                alt=""
-                className="block max-w-none size-full"
-                src={imgGroup29}
-              />
-            </div>
-
-            <div className="hidden md:block absolute top-1/2 left-[33%] w-[9.76%] h-[13%]">
-              <img
-                alt=""
-                className="block max-w-none size-full"
-                src={imgGroup}
-              />
             </div>
           </motion.div>
 
+
           {/* Gradient bottom line - appears last */}
-          <motion.div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] h-[3px] w-full max-w-[470px] mx-auto" />
+          <motion.div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] h-[3px] w-full max-w-[470px] mx-auto mt-6" />
         </motion.div>
       </div>
     </motion.section>
