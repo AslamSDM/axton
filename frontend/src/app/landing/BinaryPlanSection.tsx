@@ -5,10 +5,8 @@ import { useRef } from "react";
 
 const imgFrame =
   "/images/binary_section_1.svg";
-const imgGroup58 =
-  "/images/binary_section_2.svg";
-const imgGroup59 =
-  "/images/binary_section_3.svg";
+const binaryImg = "/images/binaryplan.png"
+// const dotgrid = "/images/dotgrid.svg"
 
 export default function BinaryPlanSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -127,103 +125,8 @@ export default function BinaryPlanSection() {
           style={{ opacity: contentOpacity }}
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[60px] sm:pt-[70px] md:pt-[80px] pointer-events-auto overflow-y-auto"
         >
-          {/* Binary Tree Structure */}
-          <div className="relative mt-12 sm:mt-16 md:mt-20 pb-8">
-            {/* You (Top User) */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 text-center">
-              <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
-                <img
-                  alt=""
-                  className="block max-w-none size-full"
-                  src={imgGroup58}
-                />
-              </div>
-              <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                You
-              </p>
-              <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
-                $1000
-              </p>
-            </div>
-
-            {/* Connection Lines */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-[110px] sm:top-[130px] md:top-[150px] h-[60px] w-[85px] sm:h-[74px] sm:w-[105px] md:h-[88.527px] md:w-[125.32px]">
-              <img
-                alt=""
-                className="block max-w-none size-full"
-                src={imgGroup59}
-              />
-            </div>
-
-            {/* Left and Right Teams */}
-            <div className="flex flex-col sm:flex-row justify-center items-center sm:gap-16 md:gap-24 lg:gap-32 mt-[180px] sm:mt-[210px] md:mt-[250px] gap-8">
-              {/* Left Team */}
-              <div className="text-center">
-                <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
-                    src={imgGroup58}
-                  />
-                </div>
-                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                  Left Team
-                </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
-                  $1000
-                </p>
-              </div>
-
-              {/* Right Team */}
-              <div className="text-center">
-                <div className="relative w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px] mb-3 md:mb-4 mx-auto">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
-                    src={imgGroup58}
-                  />
-                </div>
-                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                  Right Team
-                </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px]">
-                  $1000
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Cards */}
-            <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 md:gap-6 lg:gap-8 mt-8 md:mt-12 max-w-[700px] mx-auto">
-              {/* Weaker */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
-                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                  Weaker
-                </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
-                  $1000
-                </p>
-              </div>
-
-              {/* Daily Match */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
-                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                  Daily Match (10%)
-                </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
-                  $1000
-                </p>
-              </div>
-
-              {/* Carry Forward */}
-              <div className="backdrop-blur-[17.5px] backdrop-filter bg-[rgba(15,15,15,0.2)] border border-[#2f2f2f] p-4 sm:p-5 md:p-6 flex-1 sm:w-[180px] md:w-[205px] min-h-[100px] md:h-[118px] flex flex-col justify-center">
-                <p className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-center text-white tracking-[-0.05em] md:tracking-[-0.7px] mb-1 md:mb-2">
-                  Carry Forward
-                </p>
-                <p className="font-['Space_Mono',monospace] font-bold text-lg sm:text-xl md:text-[24px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-1.2px] text-center">
-                  $1000
-                </p>
-              </div>
-            </div>
+          <div className="flex justify-center w-full h-[80vh] pt-28 ">
+            <img src={binaryImg} className="h-[90%]" />
           </div>
         </motion.div>
       </div>

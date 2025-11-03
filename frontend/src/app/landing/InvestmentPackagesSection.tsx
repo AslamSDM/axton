@@ -79,7 +79,7 @@ export default function InvestmentPackagesSection() {
     <motion.section
       id="packages"
       ref={containerRef}
-      className=" relative w-full h-[300vh] overflow-hidden "
+      className=" relative w-full h-[300vh] overflow-hidden"
       style={{
         // backgroundColor: useTransform(
         //   scrollYProgress,
@@ -156,20 +156,31 @@ export default function InvestmentPackagesSection() {
                       backgroundSize: "69.94px 69.94px",
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] mix-blend-overlay" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(46,246,141,0.6)_0%,_rgba(71,143,245,0.6)_100%)] mix-blend-overlay backdrop-blur-[12px]" />
                 </div>
 
                 {/* Featured Badge for 1000 USDT package */}
                 {pkg.featured && (
-                  <div className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 z-20">
+                  <div className="absolute -top-6 sm:-top-1/4 left-1/12 transform -translate-x-1/2 z-20 scale-90">
                     <div className="relative">
-                      <div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
-                        <span className="font-['Space_Mono',monospace] text-[8px] sm:text-[9px] md:text-[10px] text-white text-center uppercase leading-tight">
-                          Suggested
-                          <br />
-                          Plans
-                        </span>
+
+                      <div className="relative w-48 h-48 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+                          <defs>
+                            <path id="circlePath"
+                              d="M 50,50
+                                m -25,0
+                                a 25,25 0 1,1 50,0
+                                a 25,25 0 1,1 -50,0" />
+                          </defs>
+                          <text className="fill-white text-[6px] tracking-[2px] uppercase">
+                            <textPath href="#circlePath" startOffset="0%">
+                              SUGGESTED PLANS • SUGGESTED PLANS • SUGGESTED PLANS •
+                            </textPath>
+                          </text>
+                        </svg>
                       </div>
+
                     </div>
                   </div>
                 )}
@@ -187,7 +198,7 @@ export default function InvestmentPackagesSection() {
                   </div>
 
                   {/* Package Details */}
-                  <div className="space-y-4 md:space-y-6">
+                  <div className="space-y-4 md:space-y-2">
                     {/* Daily ROI */}
                     <div className="flex justify-between items-start pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />

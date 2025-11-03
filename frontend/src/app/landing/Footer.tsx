@@ -1,5 +1,6 @@
 export default function Footer() {
   return (
+
     <footer className="relative bg-[#0b0b0d] border-t border-[#2f2f2f] py-8 md:py-12 px-4 sm:px-6 md:px-8">
       <div className="max-w-[1512px] mx-auto">
         {/* Main Footer Content */}
