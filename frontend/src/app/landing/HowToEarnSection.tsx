@@ -4,14 +4,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 // Image assets from AxtonLandingPage2 & AxtonLandingPage3
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/43a3cbc7-9957-43d7-b3ff-80b861133535";
-const imgGroup56 =
-  "https://www.figma.com/api/mcp/asset/9a0e2963-ea40-4ddb-81fb-69a50d1450d0";
 const imgTexture =
-  "https://www.figma.com/api/mcp/asset/88261558-f306-4aef-9abf-bf7c69423c73";
+  "/images/earn_section_container_bg.png";
 const imgLine18 =
-  "https://www.figma.com/api/mcp/asset/8ab9162f-1922-446b-a86c-dc012f33369d";
+  "/images/earn_section_line.svg";
 
 export default function HowToEarnSection() {
   const containerRef = useRef<HTMLDivElement>(null);

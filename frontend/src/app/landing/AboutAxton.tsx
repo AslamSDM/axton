@@ -4,19 +4,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const imgImage29 =
-  "https://www.figma.com/api/mcp/asset/47a62e0c-2778-49b3-8b68-e7fad3cc161f";
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/041e1ab0-0979-4eac-921e-b07c31faf731";
-const imgGroup56 =
-  "https://www.figma.com/api/mcp/asset/c2df3e40-b32f-4dd4-9dea-aafdad066c95";
+  "/images/about_section_bg.png";
 const imgVector =
-  "https://www.figma.com/api/mcp/asset/fc80f979-e507-43de-96a9-0d069f099ecf";
+  "/images/about_section_icon1.svg";
 const imgGroup29 =
-  "https://www.figma.com/api/mcp/asset/0d8d8921-fc3e-4550-96a4-7a234b364e27";
+  "/images/about_section_icon2.svg";
 const imgGroup =
-  "https://www.figma.com/api/mcp/asset/551bf648-a7d2-4714-a2db-f76f37520ac1";
+  "/images/about_section_icon3.svg";
 
-export default function AxtonLandingPage1() {
+export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

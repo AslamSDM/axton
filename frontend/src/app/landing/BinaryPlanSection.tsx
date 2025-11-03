@@ -3,17 +3,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-// Image assets from AxtonLandingPage7 & AxtonLandingPage8
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/c0f71f40-93b6-44cc-b7f0-1f0e8a71d969";
-const imgGroup56 =
-  "https://www.figma.com/api/mcp/asset/58c8fe9e-6b25-44ef-a19b-895b00a46bd9";
 const imgFrame =
-  "https://www.figma.com/api/mcp/asset/f0424ca8-0598-4d00-9fae-0cccf4cada43";
+  "/images/binary_section_1.svg";
 const imgGroup58 =
-  "https://www.figma.com/api/mcp/asset/5367076d-5fcb-4f44-b7df-a9ed1d1c5fe6";
+  "/images/binary_section_2.svg";
 const imgGroup59 =
-  "https://www.figma.com/api/mcp/asset/c69a1609-371a-4bea-96fb-51c3e1acc23b";
+  "/images/binary_section_3.svg";
 
 export default function BinaryPlanSection() {
   const containerRef = useRef<HTMLDivElement>(null);

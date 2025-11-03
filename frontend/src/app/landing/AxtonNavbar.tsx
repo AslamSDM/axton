@@ -1,7 +1,7 @@
 import { ConnectWallet } from "@/components/ConnectWallet";
 
 const imgWhatsAppImage20251008At1630064Aed90101 =
-  "https://www.figma.com/api/mcp/asset/55a9350c-eff8-43a5-9d71-2bb6e766a97b";
+  "/images/navbar_1.jpeg";
 
 interface AxtonNavbarProps {
   onMenuClick?: () => void;

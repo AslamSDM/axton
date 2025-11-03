@@ -3,15 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-// Image assets from AxtonLandingPage5 & AxtonLandingPage6
-const imgVector15 =
-  "https://www.figma.com/api/mcp/asset/38f2b4bc-591b-4e62-9305-c15f37684b53";
-const imgGroup56 =
-  "https://www.figma.com/api/mcp/asset/869caf1d-1aa2-4192-9d0c-003ee75e0607";
 const imgTexture =
-  "https://www.figma.com/api/mcp/asset/f856b579-dbb2-4edf-86a1-25b32e410fbf";
+  "/images/earn_section_container_bg.png";
 const imgLine21 =
-  "https://www.figma.com/api/mcp/asset/ec536e5f-9771-4c07-bfc4-477714545e59";
+  "/images/earn_section_line.svg";
 
 // Package data
 const packages = [

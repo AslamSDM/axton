@@ -4,13 +4,13 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const imgTexture =
-  "https://www.figma.com/api/mcp/asset/68bf11ef-814b-47d0-a7e1-f09a731052d1";
+  "/images/analytics_section_container_bg.png";
 const imgFrame =
-  "https://www.figma.com/api/mcp/asset/2ac7f69e-ab1d-40d2-bbcf-1a0b319f702d";
+  "/images/analytics_section_1.svg";
 const imgVector14 =
-  "https://www.figma.com/api/mcp/asset/65561ed1-7dc3-4dd4-bf0a-0b6ace336dd8";
+  "/images/analytics_section_2.svg";
 const imgEllipse18 =
-  "https://www.figma.com/api/mcp/asset/1307b120-ac0e-4bbf-9575-414a50f7c53b";
+  "/images/analytics_section_3.svg";
 
 export default function AnalyticsSection() {
   const containerRef = useRef<HTMLDivElement>(null);

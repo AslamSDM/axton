@@ -10,19 +10,13 @@ export default function AxtonHero() {
     offset: ["start start", "end start"],
   });
 
-  // Transform scroll progress to opacity values
-  // const heroOpacity = useTransform(
-  //   scrollYProgress,
-  //   [0, 0.5, 0.9, 1],
-  //   [1, 1, 0, 0]
-  // );
   const statsY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
   const statsOpacity = useTransform(
     scrollYProgress,
     [0, 0.3, 0.9, 1],
     [0, 1, 1, 0]
   );
-  // const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
   const titleY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
   const titleFontSize = useTransform(
     scrollYProgress,
