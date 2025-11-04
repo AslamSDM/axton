@@ -161,7 +161,7 @@ export function ActiveDealsTable(): React.ReactElement {
             {/* Updated this container to align filters to the right */}
             <div className="flex flex-wrap justify-between items-center mb-6">
                 <div className='text-lg'>Active Deals</div>
-                <div className='flex flex-wrap gap-6'>
+                <div className='flex flex-wrap gap-6 items-center'>
                     <div>
                         <LabeledDropdown
                             label='Token'
@@ -190,7 +190,7 @@ export function ActiveDealsTable(): React.ReactElement {
                             defaultValue='All'
                         />
                     </div>
-                    <button className="bg-gradient-to-r from-teal-400 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg ml-8">
+                    <button className="bg-gradient-to-r from-teal-400 to-blue-500 text-white font-semibold py-2 rounded-lg ml-8 h-12 px-12">
                         Apply
                     </button>
                 </div>

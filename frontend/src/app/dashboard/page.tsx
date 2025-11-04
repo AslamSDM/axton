@@ -7,6 +7,7 @@ import { MarketOverviewTable } from "@/components/market-overview-table";
 import { GlobeVisualization } from "@/components/globe-visualization";
 import { ReferralStakingCards } from "@/components/referral-staking-cards";
 import { OtcMovementsTable } from "@/components/otc-movements-table";
+import DealButton from "@/components/DealButton";
 
 function DashboardPage() {
   return (
@@ -60,7 +61,10 @@ function DashboardPage() {
         <div className="lg:col-span-2">
           <MarketOverviewTable />
         </div>
-        <GlobeVisualization />
+        <div className="flex flex-col gap-4 justify-center">
+          <GlobeVisualization />
+          <DealButton />
+        </div>
       </div>
 
       {/* Referral & Staking */}

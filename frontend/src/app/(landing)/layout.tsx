@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { MenuIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 // Smooth scroll implementation
 const useSmoothScroll = () => {
