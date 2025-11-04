@@ -36,7 +36,7 @@ export default function RootLayout({
 
       {/* Foreground content */}
       <div className="relative z-20">
-        <Sidebar active="dashboard" />
+        <Sidebar />
         <div className="ml-16">
           <Header />
           {children}
