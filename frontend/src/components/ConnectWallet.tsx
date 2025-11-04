@@ -41,8 +41,8 @@ export function ConnectWallet() {
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-sm blur-sm group-hover:blur-md transition-all" />
-                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-6 py-3 rounded-sm">
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
+                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-4 sm:px-6 py-2 sm:py-3 rounded-sm">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.02em] md:tracking-[-0.7px] whitespace-nowrap">
                         Connect Wallet
                       </span>
                     </div>
@@ -58,8 +58,8 @@ export function ConnectWallet() {
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 rounded-sm blur-sm group-hover:blur-md transition-all" />
-                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-red-500 px-6 py-3 rounded-sm">
-                      <span className="font-['Space_Mono',monospace] font-bold text-[14px] text-white tracking-[-0.7px]">
+                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-red-500 px-4 sm:px-6 py-2 sm:py-3 rounded-sm">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.02em] md:tracking-[-0.7px] whitespace-nowrap">
                         Wrong network
                       </span>
                     </div>
@@ -68,34 +68,35 @@ export function ConnectWallet() {
               }
 
               return (
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3">
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="relative group"
+                    className="relative group hidden sm:block"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-sm blur-sm group-hover:blur-md transition-all" />
-                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-4 py-3 rounded-sm flex items-center gap-2">
+                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-3 sm:px-4 py-2 sm:py-3 rounded-sm flex items-center gap-2">
                       {chain.hasIcon && (
                         <div
                           style={{
                             background: chain.iconBackground,
-                            width: 16,
-                            height: 16,
+                            width: 14,
+                            height: 14,
                             borderRadius: 999,
                             overflow: "hidden",
                           }}
+                          className="sm:w-4 sm:h-4"
                         >
                           {chain.iconUrl && (
                             <img
                               alt={chain.name ?? "Chain icon"}
                               src={chain.iconUrl}
-                              style={{ width: 16, height: 16 }}
+                              style={{ width: "100%", height: "100%" }}
                             />
                           )}
                         </div>
                       )}
-                      <span className="font-['Space_Mono',monospace] text-[12px] text-white tracking-[-0.6px]">
+                      <span className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.02em] md:tracking-[-0.6px] whitespace-nowrap">
                         {chain.name}
                       </span>
                     </div>
@@ -107,8 +108,8 @@ export function ConnectWallet() {
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-sm blur-sm group-hover:blur-md transition-all" />
-                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-6 py-3 rounded-sm">
-                      <span className="font-['Space_Mono',monospace] text-[12px] text-white tracking-[-0.6px]">
+                    <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-sm">
+                      <span className="font-['Space_Mono',monospace] text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.02em] md:tracking-[-0.6px] whitespace-nowrap">
                         {account.displayName}
                       </span>
                     </div>

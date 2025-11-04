@@ -45,19 +45,19 @@ export default function AxtonSidebar({
 
       {/* Sidebar Panel */}
       <div
-        className={`fixed left-0 top-0 h-screen w-[462px] bg-[#1f1f1f] z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed left-0 top-0 h-screen w-full sm:w-[380px] md:w-[462px] bg-[#1f1f1f] z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onCloseAction}
-          className="absolute right-[48px] top-[32px] flex items-center gap-2 hover:opacity-80 transition-opacity"
+          className="absolute right-[24px] sm:right-[36px] md:right-[48px] top-[24px] md:top-[32px] flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <span className="font-['Space_Mono',monospace] text-[18px] text-white tracking-[-0.9px]">
+          <span className="font-['Space_Mono',monospace] text-[14px] sm:text-[16px] md:text-[18px] text-white tracking-[-0.05em] md:tracking-[-0.9px]">
             Close
           </span>
-          <div className="w-[17px] h-[17px]">
+          <div className="w-[15px] h-[15px] md:w-[17px] md:h-[17px]">
             <img
               alt="Close"
               className="block max-w-none size-full"
@@ -67,19 +67,19 @@ export default function AxtonSidebar({
         </button>
 
         {/* Navigation Menu */}
-        <nav className="pt-[172px] px-[72px]">
+        <nav className="pt-[120px] sm:pt-[150px] md:pt-[172px] px-[32px] sm:px-[52px] md:px-[72px]">
           {/* Menu Items */}
-          <ul className="space-y-[48px]">
+          <ul className="space-y-[32px] sm:space-y-[40px] md:space-y-[48px]">
             {menuItems.map((item, index) => (
               <li key={index}>
                 <button
                   onClick={() => handleNavClick(item.id)}
-                  className="flex items-center gap-4 group cursor-pointer w-full text-left"
+                  className="flex items-center gap-3 md:gap-4 group cursor-pointer w-full text-left"
                 >
-                  <span className="font-['Space_Mono',monospace] font-bold text-[44px] text-white tracking-[-2.2px] group-hover:text-[#2ef68d] transition-colors">
+                  <span className="font-['Space_Mono',monospace] font-bold text-[28px] sm:text-[36px] md:text-[44px] text-white tracking-[-0.05em] md:tracking-[-2.2px] group-hover:text-[#2ef68d] transition-colors">
                     {item.title}
                   </span>
-                  <span className="font-['Space_Mono',monospace] text-[24px] text-[#2ef68d] tracking-[-1.2px]">
+                  <span className="font-['Space_Mono',monospace] text-[16px] sm:text-[20px] md:text-[24px] text-[#2ef68d] tracking-[-0.05em] md:tracking-[-1.2px]">
                     {item.number}
                   </span>
                 </button>
@@ -88,11 +88,11 @@ export default function AxtonSidebar({
           </ul>
 
           {/* Socials Section */}
-          <div className="mt-[268px]">
-            <p className="font-['Space_Mono',monospace] text-[24px] text-white tracking-[-1.2px] mb-4">
+          <div className="mt-[180px] sm:mt-[220px] md:mt-[268px]">
+            <p className="font-['Space_Mono',monospace] text-[18px] sm:text-[20px] md:text-[24px] text-white tracking-[-0.05em] md:tracking-[-1.2px] mb-3 md:mb-4">
               Socials
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               {/* GitHub */}
               <a
                 href="#"
