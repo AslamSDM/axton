@@ -107,9 +107,8 @@ export function GlobeVisualization() {
             setCurrentTransaction({
               from: arc.fromCity,
               to: arc.toCity,
-              amount: `${amounts[Math.floor(Math.random() * amounts.length)]} ${
-                currencies[Math.floor(Math.random() * currencies.length)]
-              }`,
+              amount: `${amounts[Math.floor(Math.random() * amounts.length)]} ${currencies[Math.floor(Math.random() * currencies.length)]
+                }`,
               type: types[Math.floor(Math.random() * types.length)],
             });
           } else {
@@ -147,9 +146,9 @@ export function GlobeVisualization() {
         const a =
           Math.sin(dLat / 2) * Math.sin(dLat / 2) +
           Math.cos((lat1 * Math.PI) / 180) *
-            Math.cos((lat2 * Math.PI) / 180) *
-            Math.sin(dLng / 2) *
-            Math.sin(dLng / 2);
+          Math.cos((lat2 * Math.PI) / 180) *
+          Math.sin(dLng / 2) *
+          Math.sin(dLng / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c; // Distance in km
       };
@@ -277,15 +276,14 @@ export function GlobeVisualization() {
             <div className="bg-zinc-900/95 backdrop-blur-sm border border-zinc-700  px-3 py-2 text-xs text-center min-w-[200px] shadow-lg">
               <p className="text-zinc-300">
                 <span
-                  className={`${
-                    currentTransaction.type === "BUY"
+                  className={`${currentTransaction.type === "BUY"
                       ? "text-green-400"
                       : currentTransaction.type === "SELL"
-                      ? "text-red-400"
-                      : currentTransaction.type === "SWAP"
-                      ? "text-blue-400"
-                      : "text-amber-400"
-                  }`}
+                        ? "text-red-400"
+                        : currentTransaction.type === "SWAP"
+                          ? "text-blue-400"
+                          : "text-amber-400"
+                    }`}
                 >
                   ●
                 </span>{" "}
@@ -295,15 +293,14 @@ export function GlobeVisualization() {
               <p className="font-bold text-white">
                 {currentTransaction.amount}{" "}
                 <span
-                  className={`${
-                    currentTransaction.type === "BUY"
+                  className={`${currentTransaction.type === "BUY"
                       ? "text-green-400"
                       : currentTransaction.type === "SELL"
-                      ? "text-red-400"
-                      : currentTransaction.type === "SWAP"
-                      ? "text-blue-400"
-                      : "text-amber-400"
-                  }`}
+                        ? "text-red-400"
+                        : currentTransaction.type === "SWAP"
+                          ? "text-blue-400"
+                          : "text-amber-400"
+                    }`}
                 >
                   {currentTransaction.type}
                 </span>
@@ -312,9 +309,6 @@ export function GlobeVisualization() {
           </div>
         )}
       </div>
-      <Button variant="gradient" className="w-full py-3 mt-4 text-base">
-        ⚡ Initiate An OTC Deal
-      </Button>
     </Card>
   );
 }

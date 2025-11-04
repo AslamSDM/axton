@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import AxtonHero from "./AxtonHero";
-import AboutSection from "./AboutAxton";
-import HowToEarnSection from "./HowToEarnSection";
-import InvestmentPackagesSection from "./InvestmentPackagesSection";
-import BinaryPlanSection from "./BinaryPlanSection";
-import AnalyticsSection from "./AnalyticsSection";
-import CTASection from "./CTASection";
-import AxtonSidebar from "./AxtonSidebar";
-import AxtonNavbar from "./AxtonNavbar";
+import AxtonHero from "./_components/AxtonHero";
+import AboutSection from "./_components/AboutAxton";
+import HowToEarnSection from "./_components/HowToEarnSection";
+import InvestmentPackagesSection from "./_components/InvestmentPackagesSection";
+import BinaryPlanSection from "./_components/BinaryPlanSection";
+import AnalyticsSection from "./_components/AnalyticsSection";
+import CTASection from "./_components/CTASection";
+import AxtonSidebar from "./_components/AxtonSidebar";
+import AxtonNavbar from "./_components/AxtonNavbar";
 
-import Footer from "./Footer";
+import Footer from "./_components/Footer";
 
 export default function LandingPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

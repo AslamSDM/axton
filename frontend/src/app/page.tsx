@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { Sidebar } from "@/components/sidebar";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -141,7 +140,7 @@ export default function Page() {
 
       {/* Content layer */}
       <div className="relative z-10">
-        <Sidebar />
+        <Sidebar active="dashboard" />
         <div className="ml-16">
           <Header />
           <DashboardPage />
