@@ -1,11 +1,6 @@
 "use client";
-import { BarChart2, Layers, Users, Settings, Wallet } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-
-type Props = {
-  active: string
-}
+import { usePathname, useRouter } from "next/navigation";
 
 type Link = {
   name: string
@@ -16,34 +11,29 @@ type Link = {
 const links: Link[] = [
   {
     name: "dashboard",
-    icon: <BarChart2 className="h-5 w-5" />,
+    icon: <img src="/images/dashboard/sidebar_1.svg" className="w-5 h-5" />,
     route: "/dashboard"
   },
   {
     name: "otc",
-    icon: <Layers className="h-5 w-5" />,
+    icon: <img src="/images/dashboard/sidebar_2.svg" className="w-5 h-5" />,
     route: "/dashboard/otc"
   },
   {
     name: "wallet",
-    icon: <Wallet className="h-5 w-5" />,
-    route: ""
-  },
-  {
-    name: "users",
-    icon: <Users className="h-5 w-5" />,
-    route: ""
-  },
-  {
-    name: "settings",
-    icon: <Settings className="h-5 w-5" />,
+    icon: <img src="/images/dashboard/sidebar_3.svg" className="w-5 h-5" />,
     route: ""
   },
 ]
 
-export function Sidebar({ active }: Props) {
+export function Sidebar() {
+
 
   const router = useRouter()
+  const pathname = usePathname();
+
+  console.log(pathname)
+
   return (
     <aside className="fixed left-0 top-0 h-full w-16 flex flex-col items-center py-4 bg-zinc-950 border-r border-zinc-800 z-10">
       <div className="p-2 mb-4 relative w-8 h-8">
@@ -62,7 +52,7 @@ export function Sidebar({ active }: Props) {
             return (
               <button
                 key={link.name}
-                className={`p-3 ${active == link.name ? "bg-zinc-800 text-white" : "text-zinc-400 hover:bg-zinc-800 hover:text-white"}`}
+                className={`p-3 ${pathname == link.route ? "bg-zinc-800 text-white border-l-4 border-blue-400" : "text-zinc-400 hover:bg-zinc-800 hover:text-white"}`}
                 onClick={() => router.push(link.route)}
               >
                 {link.icon}
