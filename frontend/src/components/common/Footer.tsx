@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import { CopyrightBar } from './CopyrightBar';
+import { CopyrightBar } from '../../app/2/_components/CopyrightBar';
 
 // --- Logo Component ---
 // Placeholder SVG for the logo in the image

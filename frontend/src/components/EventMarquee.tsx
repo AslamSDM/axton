@@ -16,7 +16,7 @@ const truncateAddress = (address: string, startChars = 6, endChars = 4) => {
   return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
 };
 
-export function Header() {
+export function EventMarquee() {
   const transactions = useOtcStore((state) => state.transactions);
   const isConnected = useOtcStore((state) => state.isConnected);
   const connect = useOtcStore((state) => state.connect);

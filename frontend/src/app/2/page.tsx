@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Sidebar } from "@/components/sidebar";
-import { Header } from "./_components/Header";
-import { Footer } from "./_components/Footer";
+import { Header } from "../../components/common/Header";
+import { Footer } from "../../components/common/Footer";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import LetterGlitch from "@/components/LetterGlitch";
 import OverViewCard from "./_components/OverViewCard";
@@ -107,26 +107,6 @@ export default function Page() {
       {/* Fixed background grid */}
       <div className="fixed inset-0 z-0 ">
         <div className="blur-xs h-full">
-          {/* <FaultyTerminal
-            scale={3}
-            gridMul={[2, 1]}
-            digitSize={1}
-            timeScale={1}
-            pause={false}
-            scanlineIntensity={1}
-            glitchAmount={1}
-            flickerAmount={1}
-            noiseAmp={1}
-            chromaticAberration={0}
-            dither={0}
-            curvature={0}
-            tint="#7eff5aff"
-            mouseReact={true}
-            mouseStrength={0.5}
-            pageLoadAnimation={false}
-            brightness={1}
-          /> */}
-
           <LetterGlitch
             glitchColors={["#ff0000", "#00ff00", "#0000ff"]}
             characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

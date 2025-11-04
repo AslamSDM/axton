@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { Sidebar } from "@/components/sidebar";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { CommunitySection } from "@/components/community-section";
+import { EventMarquee } from "@/components/EventMarquee";
+import { Footer } from "@/components/common/Footer";
+import { CommunityBar } from "@/components/community-section";
 import { StatCard } from "@/components/stat-card";
 import { MarketOverviewTable } from "@/components/market-overview-table";
 import { GlobeVisualization } from "@/components/globe-visualization";
@@ -11,6 +11,7 @@ import { ReferralStakingCards } from "@/components/referral-staking-cards";
 import { OtcMovementsTable } from "@/components/otc-movements-table";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import LetterGlitch from "@/components/LetterGlitch";
+import { Header } from "@/components/common/Header";
 // --- MAIN PAGE COMPONENT ---
 
 function DashboardPage() {
@@ -74,7 +75,7 @@ function DashboardPage() {
       </div>
 
       {/* Latest OTC Movements */}
-      <OtcMovementsTable />``
+      <OtcMovementsTable />
     </main>
   );
 }
@@ -99,26 +100,6 @@ export default function Page() {
       {/* Fixed background grid */}
       <div className="fixed inset-0 z-0 ">
         <div className="blur-xs h-full">
-          {/* <FaultyTerminal
-            scale={3}
-            gridMul={[2, 1]}
-            digitSize={1}
-            timeScale={1}
-            pause={false}
-            scanlineIntensity={1}
-            glitchAmount={1}
-            flickerAmount={1}
-            noiseAmp={1}
-            chromaticAberration={0}
-            dither={0}
-            curvature={0}
-            tint="#7eff5aff"
-            mouseReact={true}
-            mouseStrength={0.5}
-            pageLoadAnimation={false}
-            brightness={1}
-          /> */}
-
           <LetterGlitch
             glitchColors={["#ff0000", "#00ff00", "#0000ff"]}
             characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -143,8 +124,9 @@ export default function Page() {
         <Sidebar active="dashboard" />
         <div className="ml-16">
           <Header />
+          <EventMarquee />
           <DashboardPage />
-          <CommunitySection />
+          <CommunityBar />
           <Footer />
         </div>
       </div>
