@@ -1,22 +1,16 @@
 "use client";
 import React from "react";
-import { Sidebar } from "@/components/common/sidebar";
-import { Header } from "../../../components/common/Header";
-import { Footer } from "../../../components/common/Footer";
-import { FlickeringGrid } from "@/components/ui/flickering-grid";
-import LetterGlitch from "@/components/LetterGlitch";
 import OverViewCard from "./_components/OverViewCard";
 import { OTCListingTable } from "./_components/OTCListingTable";
-import DealButton from "./_components/DealButton";
+import DealButton from "../../../components/DealButton";
 import { OTCMovementTable } from "./_components/OTCMovement";
 import { OTCMarketDepth } from "./_components/OTCMarketDepth";
-import { TabBar } from "./_components/TabBar";
-// --- MAIN PAGE COMPONENT ---
+import { TabBar } from "../../../components/TabBar";
 
 function OTCPage() {
   return (
     <main className="px-8 py-6">
-      <TabBar />
+      <TabBar activeTab="OTC Overview" />
       <div className="border-[1.25px] border-zinc-800 p-4 mb-4">
 
         <h2 className="text-lg font-semibold mb-4">
@@ -76,7 +70,6 @@ function OTCPage() {
         </div>
         <div className="flex flex-col gap-4">
           <DealButton />
-          {/* <GlobeVisualization /> */}
           <OTCMarketDepth />
         </div>
       </div>
