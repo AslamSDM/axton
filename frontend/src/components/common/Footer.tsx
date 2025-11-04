@@ -1,27 +1,7 @@
 import React from 'react';
 import Image from "next/image";
-import { CopyrightBar } from '../../app/2/_components/CopyrightBar';
-
-// --- Logo Component ---
-// Placeholder SVG for the logo in the image
-const AxtonLogo = ({ className = "" }: { className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        className={`w-8 h-8 ${className}`}
-    >
-        {/* A simple 'A' shape for Axton */}
-        <path d="M12 2 L4 20 L8 20 L10 14 L14 14 L16 20 L20 20 Z" stroke="#00F0B0" />
-        {/* Small triangle inside */}
-        <path d="M10 10 L12 6 L14 10 Z" fill="#00F0B0" stroke="#00F0B0" />
-    </svg>
-);
 
 
-// --- Footer Link Column ---
 interface FooterLinkColumnProps {
     title: string;
     links: string[];
@@ -42,7 +22,18 @@ const FooterLinkColumn: React.FC<FooterLinkColumnProps> = ({ title, links }) => 
     </div>
 );
 
-// --- Main Footer Component ---
+export function CopyrightBar(): React.ReactElement {
+    const currentYear = new Date().getFullYear();
+
+    return (
+        <div className="w-full bg-black pb-4 flex justify-center items-center text-zinc-500 text-sm">
+            <span>
+                © {currentYear} Axton Protocol. All rights reserved.
+            </span>
+        </div>
+    );
+}
+
 export function Footer(): React.ReactElement {
     const protocolLinks = ["Markets", "OTC", "Swap", "Stake"];
     const resourcesLinks = ["Analytics", "API", "Docs", "GitHub"];

@@ -17,12 +17,12 @@ const links: Link[] = [
   {
     name: "dashboard",
     icon: <BarChart2 className="h-5 w-5" />,
-    route: "/"
+    route: "/dashboard"
   },
   {
     name: "otc",
     icon: <Layers className="h-5 w-5" />,
-    route: "/2"
+    route: "/dashboard/otc"
   },
   {
     name: "wallet",
@@ -61,6 +61,7 @@ export function Sidebar({ active }: Props) {
           links.map((link) => {
             return (
               <button
+                key={link.name}
                 className={`p-3 ${active == link.name ? "bg-zinc-800 text-white" : "text-zinc-400 hover:bg-zinc-800 hover:text-white"}`}
                 onClick={() => router.push(link.route)}
               >
