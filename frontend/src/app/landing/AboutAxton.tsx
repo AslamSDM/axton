@@ -108,9 +108,9 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          <motion.div className="relative flex justify-center items-center">
-            {/* Left card */}
-            <div className="relative z-10 translate-x-40 scale-90 opacity-80">
+          <motion.div className="relative flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+            {/* Left card - Hidden on mobile */}
+            <div className="relative z-10 md:translate-x-40 md:scale-90 opacity-80 hidden md:block">
               <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
                 <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
                   <img
@@ -130,8 +130,8 @@ export default function AboutSection() {
             </div>
 
             {/* Center card (bigger & on top) */}
-            <div className="relative z-20 scale-105">
-              <div className="h-[260px] sm:h-[300px] md:h-[360px] w-[360px] md:w-[468px] relative shadow-[0px_0px_80px_0px_rgba(255,166,133,0.5)]">
+            <div className="relative z-20 md:scale-105 w-full max-w-[400px] md:max-w-none">
+              <div className="h-[280px] sm:h-[320px] md:h-[360px] w-full md:w-[468px] relative shadow-[0px_0px_80px_0px_rgba(255,166,133,0.5)]">
                 <div className="absolute inset-0 backdrop-blur-[2px] opacity-90 overflow-hidden">
                   <img
                     className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
@@ -148,8 +148,8 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Right card */}
-            <div className="relative z-10 -translate-x-40 scale-90 opacity-80">
+            {/* Right card - Hidden on mobile */}
+            <div className="relative z-10 md:-translate-x-40 md:scale-90 opacity-80 hidden md:block">
               <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
                 <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
                   <img
