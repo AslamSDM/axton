@@ -1,7 +1,6 @@
 import { ConnectWallet } from "@/components/ConnectWallet";
 
-const imgWhatsAppImage20251008At1630064Aed90101 =
-  "/images/navbar_1.jpeg";
+const imgWhatsAppImage20251008At1630064Aed90101 = "/images/navbar_1.jpeg";
 
 interface AxtonNavbarProps {
   onMenuClick?: () => void;

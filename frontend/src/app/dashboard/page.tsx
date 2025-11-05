@@ -7,7 +7,7 @@ import { MarketOverviewTable } from "@/components/market-overview-table";
 import { GlobeVisualization } from "@/components/globe-visualization";
 import { ReferralStakingCards } from "@/components/referral-staking-cards";
 import { OtcMovementsTable } from "@/components/otc-movements-table";
-import DealButton from "@/components/DealButton";
+import { InitDealDrawer } from "./otc/mydeals/_components/InitDealDrawer";
 
 function DashboardPage() {
   return (
@@ -63,7 +63,7 @@ function DashboardPage() {
         </div>
         <div className="flex flex-col gap-4 justify-center">
           <GlobeVisualization />
-          <DealButton />
+          <InitDealDrawer />
         </div>
       </div>
 

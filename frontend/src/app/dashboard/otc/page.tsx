@@ -2,7 +2,7 @@
 import React from "react";
 import OverViewCard from "./_components/OverViewCard";
 import { OTCListingTable } from "./_components/OTCListingTable";
-import DealButton from "../../../components/DealButton";
+import { InitDealDrawer } from "./mydeals/_components/InitDealDrawer";
 import { OTCMovementTable } from "./_components/OTCMovement";
 import { OTCMarketDepth } from "./_components/OTCMarketDepth";
 import { TabBar } from "../../../components/TabBar";
@@ -12,10 +12,7 @@ function OTCPage() {
     <main className="px-8 py-6">
       <TabBar activeTab="OTC Overview" />
       <div className="border-[1.25px] border-zinc-800 p-4 mb-4">
-
-        <h2 className="text-lg font-semibold mb-4">
-          Market Overview
-        </h2>
+        <h2 className="text-lg font-semibold mb-4">Market Overview</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-items-start gap-2">
           <OverViewCard
@@ -69,20 +66,17 @@ function OTCPage() {
           <OTCListingTable />
         </div>
         <div className="flex flex-col gap-4">
-          <DealButton />
+          <InitDealDrawer />
           <OTCMarketDepth />
         </div>
       </div>
 
       <OTCMovementTable />
-
     </main>
   );
 }
 
 // --- The App Layout ---
 export default function Page() {
-  return (
-    <OTCPage />
-  );
+  return <OTCPage />;
 }
