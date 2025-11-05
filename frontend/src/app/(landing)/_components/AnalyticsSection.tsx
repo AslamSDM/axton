@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTailwindBreakpoints } from "@/hooks/useTailwindBreakpoints";
 
 const imgTexture =
   "/images/analytics_section_container_bg.png";
@@ -14,6 +15,8 @@ const imgEllipse18 =
 
 export default function AnalyticsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const { isBelowLg } = useTailwindBreakpoints();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -55,7 +58,7 @@ export default function AnalyticsSection() {
     <motion.section
       id="analytics"
       ref={containerRef}
-      className="relative w-full h-[300vh] overflow-hidden bg-[#0b0b0d9e]"
+      className="relative w-full h-[400vh] overflow-hidden bg-[#0b0b0d9e]"
       style={{
         backgroundColor: useTransform(
           scrollYProgress,
@@ -97,7 +100,7 @@ export default function AnalyticsSection() {
               y: useTransform(
                 scrollYProgress,
                 [0, 0.2],
-                [300, 100]
+                [300, 50]
               ),
               x: useTransform(
                 scrollYProgress,
@@ -113,17 +116,30 @@ export default function AnalyticsSection() {
 
         {/* Main Content */}
         <motion.main
-          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[57px] pt-32 md:pt-[200px] pointer-events-auto overflow-y-auto"
+          className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[57px] pt-32 pointer-events-auto overflow-hidden"
           style={{ opacity: contentOpacity }}
         >
-          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px] pt-12">
+          <p
+            className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px] mt-[40px]"
+          >
             Real-time insights into network performance and ROI distribution
           </p>
 
           {/* Analytics Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-full md:max-w-[1263px]">
             {/* Total ROI Distributed Card */}
-            <div className="relative h-[400px] sm:h-[420px] md:h-[450px]">
+            <motion.div
+              className="relative h-[400px] sm:h-[420px] md:h-[450px]"
+              style={{
+                y: useTransform(scrollYProgress,
+                  isBelowLg ? [0.4, 0.6] : [0, 1],
+                  isBelowLg ? [0, -500] : [0, 0]),
+                opacity: useTransform(scrollYProgress,
+                  [0.4, 0.45, 0.55, 0.6],
+                  isBelowLg ? [1, 1, 0, 0] : [1, 1, 1, 1]
+                )
+              }}
+            >
               {/* Card Background with Texture */}
               <div className="absolute inset-0 bg-black/50">
                 <div
@@ -189,10 +205,21 @@ export default function AnalyticsSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Live Network Growth Card */}
-            <div className="relative h-[400px] sm:h-[420px] md:h-[450px]">
+            <motion.div
+              className="relative h-[400px] sm:h-[420px] md:h-[450px]"
+              style={{
+                y: useTransform(scrollYProgress,
+                  isBelowLg ? [0.4, 0.6] : [0, 1],
+                  isBelowLg ? [500, -400] : [0, 0]),
+                opacity: useTransform(scrollYProgress,
+                  [0.4, 0.45, 0.55, 0.6],
+                  isBelowLg ? [0, 0, 1, 1] : [1, 1, 1, 1]
+                )
+              }}
+            >
               {/* Card Background with Texture */}
               <div className="absolute inset-0 bg-black/50">
                 <div
@@ -286,10 +313,10 @@ export default function AnalyticsSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.main>
-      </div>
-    </motion.section>
+      </div >
+    </motion.section >
   );
 }

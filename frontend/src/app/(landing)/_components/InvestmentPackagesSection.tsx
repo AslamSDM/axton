@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useTailwindBreakpoints } from "@/hooks/useTailwindBreakpoints";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const imgTexture =
@@ -41,8 +42,19 @@ const packages = [
   },
 ];
 
+
+const cardCount = packages.length; // 4
+const activeRangeStart = 0.2;
+const activeRangeEnd = 0.9;
+const activeScrollLength = activeRangeEnd - activeRangeStart; // 0.7
+const stepLength = activeScrollLength / cardCount; // 0.175
+
+
 export default function InvestmentPackagesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const { isBelowLg } = useTailwindBreakpoints();
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -75,32 +87,49 @@ export default function InvestmentPackagesSection() {
     [0, 1, 1, 0]
   );
 
+
+  const getCardYTransform = (index: number): MotionValue<number> => {
+    // Define the precise window where this card moves
+    const stepStart = activeRangeStart + index * stepLength;
+    const transitionInEnd = stepStart + 0.05; // Quick entry
+    const transitionOutStart = activeRangeStart + (index + 1) * stepLength - 0.05; // Quick exit start
+    const stepEnd = activeRangeStart + (index + 1) * stepLength;
+
+    return useTransform(
+      scrollYProgress,
+      isBelowLg
+        ? ([stepStart, transitionInEnd, transitionOutStart, stepEnd] as number[])
+        : ([0, 1] as number[]),
+      isBelowLg
+        ? ([100, 0, 0, -500] as number[]) // Slides in from 500px down, stays, slides out to -500px up
+        : ([0, 0] as number[])             // Static on large screens
+    );
+  };
+
+  const getCardOpacityTransform = (index: number): MotionValue<number> => {
+    const stepStart = activeRangeStart + index * stepLength;
+    const stepEnd = activeRangeStart + (index + 1) * stepLength;
+
+    return useTransform(
+      scrollYProgress,
+      isBelowLg
+        ? ([stepStart, stepStart + 0.05, stepEnd - 0.05, stepEnd] as number[])
+        : ([0.2, 1] as number[]), // Use a wide range for static 1 opacity
+      isBelowLg
+        ? ([0, 1, 1, 0] as number[]) // Fade from 0 to 1, stay, fade back to 0
+        : ([1, 1] as number[])
+    );
+  };
+
   return (
     <motion.section
       id="packages"
       ref={containerRef}
-      className=" relative w-full h-[300vh] overflow-hidden"
+      className={`relative w-full ${isBelowLg ? "h-[1200vh]" : "h-[300vh]"} overflow-hidden`}
       style={{
-        // backgroundColor: useTransform(
-        //   scrollYProgress,
-        //   [0, 0.2, 1],
-        //   ["#0b0b0d", "#0b0b0d", "#0b0b0d00"]
-        // ),
+
       }}
     >
-      {/* Background vector pattern
-      <div className="absolute h-[5586.469px] left-[69.8px] mix-blend-hard-light top-[-3078px] w-[1531.705px]">
-        <div className="absolute inset-[-0.03%_-0.26%_-0.45%_-1.63%]">
-          <img
-            alt=""
-            className="block max-w-none size-full"
-            src={imgVector15}
-          />
-        </div>
-      </div> */}
-
-      {/* Top gradient glow effect */}
-      {/* <div className="absolute backdrop-blur-[2px] bg-gradient-to-r from-[rgba(52,113,192,0.7)] to-[rgba(46,246,141,0.7)] blur-[26.5px] h-[978px] left-0 mix-blend-color-dodge w-full top-[-30px]" /> */}
 
       {/* Fixed container for the animation */}
       <div className="fixed top-20 left-0 w-full h-screen pointer-events-none z-10">
@@ -137,127 +166,142 @@ export default function InvestmentPackagesSection() {
         <motion.div
           style={{ opacity: contentOpacity }}
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[100px] md:pt-[120px] pointer-events-auto overflow-y-auto"
+
         >
           <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] max-w-[1084px] mb-4 md:mb-8">
             Select the package that fits your investment goals
           </p>
 
           {/* Package Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-[1760px] pb-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="relative">
-                {/* Texture Background with Gradient Overlay */}
-                <div className="absolute inset-0 min-h-[380px] sm:h-[400px] md:h-[426px]">
-                  <div
-                    className="absolute inset-0 opacity-10 pointer-events-none"
-                    style={{
-                      backgroundImage: `url('${imgTexture}')`,
-                      backgroundRepeat: "repeat",
-                      backgroundSize: "69.94px 69.94px",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(46,246,141,0.6)_0%,_rgba(71,143,245,0.6)_100%)] mix-blend-overlay backdrop-blur-[12px]" />
-                </div>
+          <div className="grid grid-cols-1  lg:grid-cols-4 gap-4 md:gap-8 max-w-[1760px] pb-8">
+            {packages.map((pkg, index) => {
+              const cardY = getCardYTransform(index);
+              const cardOpacity = getCardOpacityTransform(index);
 
-                {/* Featured Badge for 1000 USDT package */}
-                {pkg.featured && (
-                  <div className="absolute -top-6 sm:-top-1/4 left-1/12 transform -translate-x-1/2 z-20 scale-90">
-                    <div className="relative">
+              return (
+                <motion.div
+                  key={index}
+                  className={isBelowLg ? "absolute w-[92vw]" : "relative"}
+                  style={{
+                    y: cardY,
+                    opacity: cardOpacity,
+                    // Ensure current/entering card is on top during transition
+                    zIndex: isBelowLg ? index + 10 : 'auto',
+                  }}
+                >
+                  {/* Texture Background with Gradient Overlay */}
+                  <div className="absolute inset-0 min-h-[380px] sm:h-[400px] md:h-[426px]">
+                    <div
+                      className="absolute inset-0 opacity-10 pointer-events-none"
+                      style={{
+                        backgroundImage: `url('${imgTexture}')`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "69.94px 69.94px",
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(46,246,141,0.6)_0%,_rgba(71,143,245,0.6)_100%)] mix-blend-overlay backdrop-blur-[12px]" />
+                  </div>
 
-                      <div className="relative w-48 h-48 flex items-center justify-center">
-                        <svg viewBox="0 0 100 100" className="absolute w-full h-full">
-                          <defs>
-                            <path id="circlePath"
-                              d="M 50,50
+                  {/* Featured Badge for 1000 USDT package */}
+                  {pkg.featured && (
+                    <div className="absolute -top-6 sm:-top-1/4 left-1/12 transform -translate-x-1/2 z-20 scale-90">
+                      <div className="relative">
+
+                        <div className="relative w-48 h-48 flex items-center justify-center">
+                          <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+                            <defs>
+                              <path id="circlePath"
+                                d="M 50,50
                                 m -25,0
                                 a 25,25 0 1,1 50,0
                                 a 25,25 0 1,1 -50,0" />
-                          </defs>
-                          <text className="fill-white text-[6px] tracking-[2px] uppercase">
-                            <textPath href="#circlePath" startOffset="0%">
-                              SUGGESTED PLANS • SUGGESTED PLANS • SUGGESTED PLANS •
-                            </textPath>
-                          </text>
-                        </svg>
+                            </defs>
+                            <text className="fill-white text-[6px] tracking-[2px] uppercase">
+                              <textPath href="#circlePath" startOffset="0%">
+                                SUGGESTED PLANS • SUGGESTED PLANS • SUGGESTED PLANS •
+                              </textPath>
+                            </text>
+                          </svg>
+                        </div>
+
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Card Content */}
+                  <div className="relative p-5 sm:p-6 md:p-8 min-h-[380px] sm:h-[400px] md:h-[426px]">
+                    {/* Package Amount */}
+                    <div className="text-center mb-6 md:mb-8 pt-3 md:pt-4">
+                      <p className="font-['Space_Mono',monospace] font-bold text-2xl sm:text-3xl md:text-[35px] text-white tracking-[-0.05em] md:tracking-[-1.75px] mb-1">
+                        {pkg.amount}
+                      </p>
+                      <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[15px] text-[#929292] tracking-[-0.05em] md:tracking-[-0.75px]">
+                        USDT
+                      </p>
+                    </div>
+
+                    {/* Package Details */}
+                    <div className="space-y-4 md:space-y-2">
+                      {/* Daily ROI */}
+                      <div className="flex justify-between items-start pb-3 md:pb-4 border-b border-white/10">
+                        <img alt="" className="w-full h-[1px]" src={imgLine21} />
+                      </div>
+                      <div className="flex justify-between items-start">
+                        <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
+                          Daily ROI
+                        </span>
+                        <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
+                          {pkg.dailyROI}
+                        </span>
                       </div>
 
+                      {/* Maximum Income */}
+                      <div className="pb-3 md:pb-4 border-b border-white/10">
+                        <img alt="" className="w-full h-[1px]" src={imgLine21} />
+                      </div>
+                      <div className="flex justify-between items-start">
+                        <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
+                          Maximum Income
+                        </span>
+                        <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
+                          {pkg.maxIncome}
+                        </span>
+                      </div>
+
+                      {/* Binary Cap */}
+                      <div className="pb-3 md:pb-4 border-b border-white/10">
+                        <img alt="" className="w-full h-[1px]" src={imgLine21} />
+                      </div>
+                      <div className="flex justify-between items-start">
+                        <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
+                          Binary Cap
+                        </span>
+                        <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
+                          {pkg.binaryCap}
+                        </span>
+                      </div>
+
+                      {/* Duration */}
+                      <div className="flex justify-between items-start">
+                        <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
+                          Duration
+                        </span>
+                        <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
+                          {pkg.duration}
+                        </span>
+                      </div>
                     </div>
+
+                    {/* Activate Button */}
+                    <button className="absolute bottom-5 sm:bottom-6 md:bottom-8 left-5 sm:left-6 md:left-8 right-5 sm:right-6 md:right-8 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[38px] sm:h-[40px] md:h-[42px] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
+                        Activate Now
+                      </span>
+                    </button>
                   </div>
-                )}
-
-                {/* Card Content */}
-                <div className="relative p-5 sm:p-6 md:p-8 min-h-[380px] sm:h-[400px] md:h-[426px]">
-                  {/* Package Amount */}
-                  <div className="text-center mb-6 md:mb-8 pt-3 md:pt-4">
-                    <p className="font-['Space_Mono',monospace] font-bold text-2xl sm:text-3xl md:text-[35px] text-white tracking-[-0.05em] md:tracking-[-1.75px] mb-1">
-                      {pkg.amount}
-                    </p>
-                    <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[15px] text-[#929292] tracking-[-0.05em] md:tracking-[-0.75px]">
-                      USDT
-                    </p>
-                  </div>
-
-                  {/* Package Details */}
-                  <div className="space-y-4 md:space-y-2">
-                    {/* Daily ROI */}
-                    <div className="flex justify-between items-start pb-3 md:pb-4 border-b border-white/10">
-                      <img alt="" className="w-full h-[1px]" src={imgLine21} />
-                    </div>
-                    <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Daily ROI
-                      </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {pkg.dailyROI}
-                      </span>
-                    </div>
-
-                    {/* Maximum Income */}
-                    <div className="pb-3 md:pb-4 border-b border-white/10">
-                      <img alt="" className="w-full h-[1px]" src={imgLine21} />
-                    </div>
-                    <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Maximum Income
-                      </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {pkg.maxIncome}
-                      </span>
-                    </div>
-
-                    {/* Binary Cap */}
-                    <div className="pb-3 md:pb-4 border-b border-white/10">
-                      <img alt="" className="w-full h-[1px]" src={imgLine21} />
-                    </div>
-                    <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Binary Cap
-                      </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {pkg.binaryCap}
-                      </span>
-                    </div>
-
-                    {/* Duration */}
-                    <div className="flex justify-between items-start">
-                      <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Duration
-                      </span>
-                      <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {pkg.duration}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Activate Button */}
-                  <button className="absolute bottom-5 sm:bottom-6 md:bottom-8 left-5 sm:left-6 md:left-8 right-5 sm:right-6 md:right-8 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[38px] sm:h-[40px] md:h-[42px] flex items-center justify-center hover:opacity-90 transition-opacity">
-                    <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                      Activate Now
-                    </span>
-                  </button>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              )
+            })}
           </div>
         </motion.div>
       </div>
