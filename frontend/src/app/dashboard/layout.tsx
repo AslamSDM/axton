@@ -29,8 +29,22 @@ export default function RootLayout({
       {/* Animated background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="blur-[2px] h-full">
-          <LetterGlitch glitchColors={["#ff0000", "#00ff00", "#0000ff"]} characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" glitchSpeed={50} centerVignette={true} outerVignette={false} smooth={true} />
-          <FlickeringGrid className="absolute inset-0 z-0 size-full" squareSize={2} gridGap={6} color="#7daa98ff" maxOpacity={0.3} flickerChance={0.5} />
+          <LetterGlitch
+            glitchColors={["#5f1b1bff", "#1e7d1eff", "#34349fff"]}
+            characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+          <FlickeringGrid
+            className="absolute inset-0 z-0 size-full"
+            squareSize={2}
+            gridGap={6}
+            color="#7daa98ff"
+            maxOpacity={0.3}
+            flickerChance={0.5}
+          />
         </div>
       </div>
 

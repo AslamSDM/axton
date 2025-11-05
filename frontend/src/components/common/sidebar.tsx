@@ -3,36 +3,34 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 type Link = {
-  name: string
+  name: string;
   icon: React.ReactNode;
-  route: string
-}
+  route: string;
+};
 
 const links: Link[] = [
   {
     name: "dashboard",
     icon: <img src="/images/dashboard/sidebar_1.svg" className="w-5 h-5" />,
-    route: "/dashboard"
+    route: "/dashboard",
   },
   {
     name: "otc",
     icon: <img src="/images/dashboard/sidebar_2.svg" className="w-5 h-5" />,
-    route: "/dashboard/otc"
+    route: "/dashboard/otc",
   },
   {
-    name: "wallet",
+    name: "roi",
     icon: <img src="/images/dashboard/sidebar_3.svg" className="w-5 h-5" />,
-    route: ""
+    route: "/dashboard/roi",
   },
-]
+];
 
 export function Sidebar() {
-
-
-  const router = useRouter()
+  const router = useRouter();
   const pathname = usePathname();
 
-  console.log(pathname)
+  console.log(pathname);
 
   return (
     <aside className="fixed left-0 top-0 h-full w-16 flex flex-col items-center py-4 bg-zinc-950 border-r border-zinc-800 z-10">
@@ -46,20 +44,21 @@ export function Sidebar() {
         />
       </div>
       <nav className="flex flex-col items-center gap-4">
-
-        {
-          links.map((link) => {
-            return (
-              <button
-                key={link.name}
-                className={`p-3 ${pathname == link.route ? "bg-zinc-800 text-white border-l-4 border-blue-400" : "text-zinc-400 hover:bg-zinc-800 hover:text-white"}`}
-                onClick={() => router.push(link.route)}
-              >
-                {link.icon}
-              </button>
-            )
-          })
-        }
+        {links.map((link) => {
+          return (
+            <button
+              key={link.name}
+              className={`p-3 ${
+                pathname == link.route
+                  ? "bg-zinc-800 text-white border-l-4 border-blue-400"
+                  : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+              }`}
+              onClick={() => router.push(link.route)}
+            >
+              {link.icon}
+            </button>
+          );
+        })}
       </nav>
     </aside>
   );
