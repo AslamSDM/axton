@@ -33,21 +33,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".temp/AnimatedSection.tsx",
-    ".temp/AxtonHeroFull.tsx",
-    ".temp/AxtonLandingPage.tsx",
-    ".temp/AxtonLandingPage2.tsx",
-    ".temp/AxtonLandingPage3.tsx",
-    ".temp/AxtonLandingPage4.tsx",
-    ".temp/AxtonLandingPage5.tsx",
-    ".temp/AxtonLandingPage6.tsx",
-    ".temp/AxtonLandingPage7.tsx",
-    ".temp/AxtonLandingPage8.tsx",
-    ".temp/AxtonLandingPage9.tsx",
-    ".temp/AxtonLandingPage10.tsx",
-    ".temp/AxtonLandingPage11.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".temp"
   ]
 }
