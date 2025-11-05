@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
+import { Button } from './ui/button';
 
 // --- Icon Component ---
 const ZapIcon = ({ className = "" }: { className?: string }) => (
@@ -16,11 +17,17 @@ const ZapIcon = ({ className = "" }: { className?: string }) => (
     </svg>
 );
 
-const DealButton = () => (
-    <button className="flex items-center justify-center w-full max-w-5xl p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold text-lg shadow-lg hover:opacity-90 transition-opacity h-12 cursor-pointer">
-        <ZapIcon className="mr-3" />
-        Initiate An OTC Deal
-    </button>
+const DealButton = forwardRef<HTMLButtonElement, React.ComponentProps<"button">>(
+    ({ className, ...props }, ref) => (
+        <Button
+            ref={ref}
+            {...props}
+            className={`flex items-center justify-center w-full max-w-5xl p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold text-lg shadow-lg hover:opacity-90 transition-opacity h-12 cursor-pointer ${className}`}
+        >
+            <ZapIcon className="mr-3" />
+            Initiate An OTC Deal
+        </Button>
+    )
 );
 
 export default DealButton;

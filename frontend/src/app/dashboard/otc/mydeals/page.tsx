@@ -4,6 +4,7 @@ import React from "react";
 import DealButton from "@/components/DealButton";
 import { TabBar } from "@/components/TabBar";
 import { ActiveDealsTable } from "./_components/ActiveDealsTable";
+import { InitDealDrawer } from "./_components/InitDealDrawer";
 
 function Page() {
     return (
@@ -12,7 +13,8 @@ function Page() {
 
             <div className="flex justify-end w-full">
                 <div className="w-80">
-                    <DealButton />
+                    {/* <DealButton /> */}
+                    <InitDealDrawer />
                 </div>
             </div>
 
