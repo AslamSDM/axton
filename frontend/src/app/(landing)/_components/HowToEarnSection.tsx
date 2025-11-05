@@ -99,7 +99,10 @@ export default function HowToEarnSection() {
           {/* Income Cards Section */}
           <div className="relative flex flex-col lg:flex-row gap-4 md:gap-8 justify-center items-start px-0 md:px-8 lg:px-[64px] mt-4 md:mt-8 pb-8">
             {/* Card 1 - ROI Income */}
-            <div className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0">
+            <div
+              className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0"
+
+            >
               <div className="absolute inset-0 min-h-[300px] md:h-[349.755px] w-full">
                 <div
                   className="absolute inset-0 opacity-10 pointer-events-none"

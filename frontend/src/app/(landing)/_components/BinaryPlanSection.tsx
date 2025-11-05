@@ -125,8 +125,8 @@ export default function BinaryPlanSection() {
           style={{ opacity: contentOpacity }}
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[60px] sm:pt-[70px] md:pt-[80px] pointer-events-auto overflow-y-auto"
         >
-          <div className="flex justify-center w-full h-[80vh] pt-28 ">
-            <img src={binaryImg} className="h-[90%]" />
+          <div className="flex justify-center w-full pt-28 ">
+            <img src={binaryImg} className="w-[90vw] md:w-[80vw] lg:w-[50vw]" />
           </div>
         </motion.div>
       </div>

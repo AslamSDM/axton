@@ -3,14 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const imgImage29 =
-  "/images/about_section_bg.png";
-const imgVector =
-  "/images/about_section_icon1.svg";
-const imgGroup29 =
-  "/images/about_section_icon2.svg";
-const imgGroup =
-  "/images/about_section_icon3.svg";
+const imgImage =
+  "/images/about_section_img.png";
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -107,70 +101,16 @@ export default function AboutSection() {
               high-speed, low-cost transactions.
             </p>
           </motion.div>
+          <div className="relative flex justify-center w-full">
+            <img
+              className="md:w-[80vw] lg:w-[50vw]"
+              src={imgImage}
+            />
+          </div>
 
           <motion.div className="relative flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
-            {/* Left card - Hidden on mobile */}
-            <div className="relative z-10 md:translate-x-40 md:scale-90 opacity-80 hidden md:block">
-              <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
-                <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
-                  <img
-                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                    src={imgImage29}
-                  />
 
-                </div>
-                <div className="absolute top-4 left-15 h-[30%] w-[25%]">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full mix-blend-color-burn"
-                    src={imgVector}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Center card (bigger & on top) */}
-            <div className="relative z-20 md:scale-105 w-full max-w-[400px] md:max-w-none">
-              <div className="h-[280px] sm:h-[320px] md:h-[360px] w-full md:w-[468px] relative shadow-[0px_0px_80px_0px_rgba(255,166,133,0.5)]">
-                <div className="absolute inset-0 backdrop-blur-[2px] opacity-90 overflow-hidden">
-                  <img
-                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                    src={imgImage29}
-                  />
-                </div>
-                <div className="absolute top-4 left-4 h-[40%] w-[40%]">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full mix-blend-color-burn"
-                    src={imgGroup}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Right card - Hidden on mobile */}
-            <div className="relative z-10 md:-translate-x-40 md:scale-90 opacity-80 hidden md:block">
-              <div className="h-[240px] sm:h-[280px] md:h-[300px] w-[320px] md:w-[370px] relative">
-                <div className="absolute inset-0 backdrop-blur-[2px] opacity-80 overflow-hidden">
-                  <img
-                    className="absolute h-[196.07%] left-[-0.01%] max-w-none top-[-96.07%] w-[100.02%]"
-                    src={imgImage29}
-                  />
-                </div>
-                <div className="absolute top-4 right-15 h-[30%] w-[30%]">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full mix-blend-color-burn"
-                    src={imgGroup29}
-                  />
-                </div>
-              </div>
-            </div>
           </motion.div>
-
-
-          {/* Gradient bottom line - appears last */}
-          <motion.div className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] h-[3px] w-full max-w-[470px] mx-auto mt-6" />
         </motion.div>
       </div>
     </motion.section>
