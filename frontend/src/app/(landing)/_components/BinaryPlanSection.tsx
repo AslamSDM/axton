@@ -3,9 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const imgFrame =
-  "/images/binary_section_1.svg";
-const binaryImg = "/images/binaryplan.png"
+const imgFrame = "/images/binary_section_1.svg";
+const binaryImg = "/images/binaryplan.png";
 // const dotgrid = "/images/dotgrid.svg"
 
 export default function BinaryPlanSection() {
@@ -100,23 +99,16 @@ export default function BinaryPlanSection() {
           <motion.h1
             style={{
               fontSize: headingFontSize,
-              y: useTransform(
-                scrollYProgress,
-                [0, 0.2],
-                [300, 0]
-              ),
-              x: useTransform(
-                scrollYProgress,
-                [0, 0.2],
-                [10, 0]
-              )
+              y: useTransform(scrollYProgress, [0, 0.2], [300, 0]),
+              x: useTransform(scrollYProgress, [0, 0.2], [10, 0]),
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
-            Binary Plan Structure
+            Security & Privacy Features
           </motion.h1>
           <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mt-3 md:mt-4 mb-4 md:mb-8">
-            Build two teams and earn matching bonuses daily
+            Military-grade encryption, smart contract escrow, and complete
+            anonymity
           </p>
         </motion.div>
 

@@ -15,27 +15,27 @@ export default function CTASection() {
           className="font-['Space_Mono',monospace] font-bold text-2xl sm:text-3xl md:text-[35px] tracking-[-0.05em] md:tracking-[-1.75px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] bg-clip-text mb-4 md:mb-6"
           style={{ WebkitTextFillColor: "transparent" }}
         >
-          Join the Next Generation of Wealth Builders
+          Execute Your Next OTC Deal with Complete Anonymity
         </h1>
 
         <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] max-w-full md:max-w-[1084px] mx-auto mb-8 md:mb-12">
-          Built on smart contracts. Powered by blockchain. Managed by
-          intelligence.
+          Built on smart contracts. Secured by blockchain. Protected by
+          zero-knowledge proofs.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
-          {/* Start Now Button - Filled with Gradient */}
+          {/* Start Trading Button - Filled with Gradient */}
           <button className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] w-full sm:w-[205px] flex items-center justify-center hover:opacity-90 transition-opacity">
             <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-[14px] text-white tracking-[-0.7px]">
-              Start Now
+              Start Trading
             </span>
           </button>
 
-          {/* Learn How it works Button - Outlined */}
+          {/* View Platform Button - Outlined */}
           <button className="border border-[#2ef68d] h-[42px] w-full sm:w-[205px] flex items-center justify-center hover:bg-[#2ef68d]/10 transition-colors">
             <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-[14px] text-white tracking-[-0.7px]">
-              Learn How it works
+              View Platform
             </span>
           </button>
         </div>

@@ -44,22 +44,23 @@ export default function AxtonHero() {
             style={{
               y: titleY,
               fontSize: titleFontSize,
-              mixBlendMode: 'exclusion'
+              mixBlendMode: "exclusion",
             }}
             className="font-['Space_Mono',monospace] font-bold text-[#d9d9d9] tracking-[-0.02em] max-w-full md:max-w-[80%] mb-4 md:mb-8 leading-[1.125em] mt-[200px]"
           >
-            Reinventing Passive Income Through Blockchain Intelligence
+            Anonymized OTC Trading for Crypto Whales
           </motion.h1>
 
           <motion.p
             style={{
               opacity: statsOpacity,
-              y: statsY
+              y: statsY,
             }}
             className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-base text-white/80 tracking-[-0.02em] max-w-full md:max-w-[624px] mb-6 md:mb-8"
           >
-            Axton Protocol merges DeFi transparency with network-powered earning
-            — built on Binance Smart Chain (BEP-20 USDT).
+            Axton Protocol enables secure, private, and large-scale OTC deals
+            with built-in escrow protection, collateral management, and
+            zero-knowledge identity verification on Binance Smart Chain.
           </motion.p>
 
           <motion.div
@@ -68,13 +69,13 @@ export default function AxtonHero() {
           >
             <button className="bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[42px] px-6 md:px-8 flex items-center justify-center hover:opacity-90 transition-opacity w-full sm:w-auto">
               <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-sm text-white tracking-[-0.02em]">
-                Start Earning
+                Start Trading OTC
               </span>
             </button>
 
             <button className="border border-[#2ef68d] h-[42px] px-6 md:px-8 flex items-center justify-center hover:bg-[#2ef68d]/10 transition-colors w-full sm:w-auto">
               <span className="font-['Space_Mono',monospace] font-bold text-xs md:text-sm text-white tracking-[-0.02em]">
-                View Smart Contract
+                View Documentation
               </span>
             </button>
           </motion.div>
@@ -85,38 +86,37 @@ export default function AxtonHero() {
           >
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
-                Total Investors
+                Total OTC Volume
               </p>
               <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
-                12,254
+                $1.2B
               </p>
             </div>
-
 
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
-                24h ROI Paid
+                Active Deals
               </p>
               <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
-                $1,20,254
+                2,547
               </p>
             </div>
 
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
-                Active Referrals
+                Verified Traders
               </p>
               <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
-                25,689
+                8,432
               </p>
             </div>
 
             <div className="backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.5)] border border-[#2f2f2f] p-4 md:p-6">
               <p className="font-['Space_Mono',monospace] text-[10px] md:text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
-                Binary Volume
+                Avg Deal Size
               </p>
               <p className="font-['Space_Mono',monospace] font-bold text-lg md:text-2xl text-white tracking-[-0.02em]">
-                $5.1M
+                $425K
               </p>
             </div>
           </motion.div>

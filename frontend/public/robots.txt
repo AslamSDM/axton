@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin/dashboard pages from being indexed
+Disallow: /dashboard/
+
+# Sitemap location
+Sitemap: https://axtonprotocol.com/sitemap.xml

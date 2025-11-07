@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { LabeledDropdown } from "./LabeledDropdown";
+import { useBalanceCheck } from "@/hooks/useBalanceCheck";
+import { toast } from "sonner";
 
 const ChevronDown = ({ className = "" }: { className?: string }) => (
   <svg
@@ -605,6 +607,35 @@ export function ActiveDealsTable(): React.ReactElement {
     handleFilterChange();
   };
 
+  const { checkBalanceAndProceed } = useBalanceCheck();
+
+  const handleViewDeal = (dealId: string) => {
+    checkBalanceAndProceed(() => {
+      toast.info("Deal Preview", {
+        description: `Loading detailed view for deal #${dealId}...`,
+      });
+      console.log(`View deal ${dealId}`);
+    });
+  };
+
+  const handleMessageDeal = (dealId: string) => {
+    checkBalanceAndProceed(() => {
+      toast.info("Messaging", {
+        description: `Opening chat with counterparty for deal #${dealId}...`,
+      });
+      console.log(`Message deal ${dealId}`);
+    });
+  };
+
+  const handleMoreOptions = (dealId: string) => {
+    checkBalanceAndProceed(() => {
+      toast.info("Deal Options", {
+        description: `Loading options menu for deal #${dealId}...`,
+      });
+      console.log(`More options for deal ${dealId}`);
+    });
+  };
+
   return (
     <div className="text-white w-full mx-auto font-mono bg-[#0000009c] p-6 mt-8">
       {/* Filters Section */}
@@ -700,13 +731,22 @@ export function ActiveDealsTable(): React.ReactElement {
                   </td>
                   <td>
                     <div className="flex items-center space-x-3 text-zinc-400">
-                      <button className="hover:text-white">
+                      <button
+                        className="hover:text-white"
+                        onClick={() => handleViewDeal(deal.id)}
+                      >
                         <Eye className="w-5 h-5" />
                       </button>
-                      <button className="hover:text-white">
+                      <button
+                        className="hover:text-white"
+                        onClick={() => handleMessageDeal(deal.id)}
+                      >
                         <MessageCircle className="w-5 h-5" />
                       </button>
-                      <button className="hover:text-white">
+                      <button
+                        className="hover:text-white"
+                        onClick={() => handleMoreOptions(deal.id)}
+                      >
                         <MoreVertical className="w-5 h-5" />
                       </button>
                     </div>

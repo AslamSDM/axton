@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Globe, Dot, RefreshCw } from "lucide-react";
 import { marketData as fallbackData } from "@/lib/data";
 import { useEffect, useState } from "react";
+import { useBalanceCheck } from "@/hooks/useBalanceCheck";
+import { toast } from "sonner";
 
 type MarketData = {
   asset: string;
@@ -85,6 +87,23 @@ export function MarketOverviewTable() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const { checkBalanceAndProceed } = useBalanceCheck();
+
+  const handleTrade = (
+    action: "BUY" | "SELL",
+    asset: string,
+    price: number
+  ) => {
+    checkBalanceAndProceed(() => {
+      const actionText = action === "BUY" ? "Purchase" : "Sell";
+      toast.success(`${actionText} Order Initiated`, {
+        description: `Preparing to ${action.toLowerCase()} ${asset} at $${price.toLocaleString()}...`,
+      });
+      console.log(`${action} ${asset} at $${price}`);
+    });
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -195,6 +214,9 @@ export function MarketOverviewTable() {
                         <Button
                           variant="ghost"
                           className="px-6 py-1.5 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-semibold"
+                          onClick={() =>
+                            handleTrade("BUY", item.asset, item.price)
+                          }
                         >
                           BUY
                         </Button>
@@ -202,6 +224,9 @@ export function MarketOverviewTable() {
                         <Button
                           variant="ghost"
                           className="px-6 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-semibold"
+                          onClick={() =>
+                            handleTrade("SELL", item.asset, item.price)
+                          }
                         >
                           SELL
                         </Button>

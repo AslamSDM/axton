@@ -1,6 +1,7 @@
 "use client";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useSwitchChain } from "wagmi";
@@ -54,6 +55,23 @@ export function ConnectWallet() {
             })}
             className="flex gap-2"
           >
+            {/* Trade on Aster Button */}
+            <Link
+              href="https://www.asterdex.com/en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex"
+            >
+              <button type="button" className="relative group">
+                <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-4 sm:px-6 py-0 sm:py-0 rounded-sm flex items-center justify-center">
+                  <img
+                    src="https://static.asterdexstatic.com/cloud-futures/static/images/aster/logo.svg"
+                    alt="Aster Logo"
+                    className="w-20 h-12 object-contain"
+                  />
+                </div>
+              </button>
+            </Link>
             {(() => {
               if (!connected) {
                 return (
@@ -146,52 +164,6 @@ export function ConnectWallet() {
                 </div>
               );
             })()}
-            {!isOnDashboard && (
-              <button
-                onClick={() => router.push("/dashboard")}
-                type="button"
-                className="relative group animate-in fade-in slide-in-from-left-5 duration-500"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] rounded-sm blur-sm group-hover:blur-md transition-all animate-pulse" />
-                <div className="relative backdrop-blur-[17.5px] bg-[rgba(15,15,15,0.8)] border border-[#2ef68d] px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-sm flex items-center gap-2">
-                  {/* Terminal Icon */}
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="sm:w-4 sm:h-4"
-                  >
-                    <path
-                      d="M8 9L11 12L8 15"
-                      stroke="#2ef68d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M13 15H16"
-                      stroke="#2ef68d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <rect
-                      x="3"
-                      y="4"
-                      width="18"
-                      height="16"
-                      rx="2"
-                      stroke="#2ef68d"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                  <span className="font-['Space_Mono',monospace] font-bold text-[10px] sm:text-[11px] md:text-[12px] text-white tracking-[-0.02em] md:tracking-[-0.6px] whitespace-nowrap hidden sm:inline">
-                    Terminal
-                  </span>
-                </div>
-              </button>
-            )}
           </div>
         );
       }}

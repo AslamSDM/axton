@@ -92,11 +92,15 @@ export function InitDealDrawer() {
   const [tradeType, setTradeType] = useState<"BUY" | "SELL" | "SWAP">("BUY");
   const [amount, setAmount] = useState("");
   const [pricePerUnit, setPricePerUnit] = useState("");
-  const [counterpartyType, setCounterpartyType] = useState<"specific" | "open-market">("specific");
+  const [counterpartyType, setCounterpartyType] = useState<
+    "specific" | "open-market"
+  >("specific");
   const [counterpartyAddress, setCounterpartyAddress] = useState("");
   const [collateralPercentage, setCollateralPercentage] = useState(120);
   const [escrowProtection, setEscrowProtection] = useState(false);
-  const [settlementSchedule, setSettlementSchedule] = useState<"Instant" | "24H" | "Custom">("Instant");
+  const [settlementSchedule, setSettlementSchedule] = useState<
+    "Instant" | "24H" | "Custom"
+  >("Instant");
   const [customDate, setCustomDate] = useState("");
   const [customTime, setCustomTime] = useState("");
 
@@ -128,41 +132,43 @@ export function InitDealDrawer() {
 
   const calculateGasEstimate = () => {
     // Base gas + additional if escrow protection
-    let baseGas = 12.50;
-    if (escrowProtection) baseGas += 5.00;
-    if (settlementSchedule === "Custom") baseGas += 2.50;
+    let baseGas = 12.5;
+    if (escrowProtection) baseGas += 5.0;
+    if (settlementSchedule === "Custom") baseGas += 2.5;
     return baseGas;
   };
 
   const calculateTotalFees = () => {
-    return calculatePlatformFee() + calculateEscrowFee() + calculateGasEstimate();
+    return (
+      calculatePlatformFee() + calculateEscrowFee() + calculateGasEstimate()
+    );
   };
 
   const calculateRiskLevel = () => {
     let risk = 0;
-    
+
     // Base risk on trade type
     if (tradeType === "SWAP") risk += 30;
     if (tradeType === "SELL") risk += 20;
     if (tradeType === "BUY") risk += 10;
-    
+
     // Risk based on collateral
     if (collateralPercentage < 110) risk += 30;
     else if (collateralPercentage < 120) risk += 20;
     else risk += 10;
-    
+
     // Risk based on counterparty
     if (counterpartyType === "open-market") risk += 25;
     else risk += 5;
-    
+
     // Risk based on settlement
     if (settlementSchedule === "Instant") risk += 5;
     else if (settlementSchedule === "24H") risk += 15;
     else risk += 25;
-    
+
     // Add escrow protection benefit
     if (escrowProtection) risk -= 15;
-    
+
     return Math.max(0, Math.min(100, risk));
   };
 
@@ -175,7 +181,10 @@ export function InitDealDrawer() {
   const riskLevel = calculateRiskLevel();
 
   // Mock price data for assets
-  const assetPrices: Record<string, { price: number; change: number; liquidity: string }> = {
+  const assetPrices: Record<
+    string,
+    { price: number; change: number; liquidity: string }
+  > = {
     BTC: { price: 45200, change: 2.34, liquidity: "12.4M" },
     ETH: { price: 3450, change: -1.23, liquidity: "8.2M" },
     SOL: { price: 150, change: 5.67, liquidity: "4.5M" },
@@ -242,14 +251,21 @@ export function InitDealDrawer() {
               onValueChange={(value) => setSelectedAsset(value)}
             />
             <div className="flex justify-between items-center text-sm">
-              <span className={`font-medium ${currentAssetData.change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                24h Price: {currentAssetData.change >= 0 ? '+' : ''}{currentAssetData.change.toFixed(2)}%
+              <span
+                className={`font-medium ${
+                  currentAssetData.change >= 0
+                    ? "text-green-400"
+                    : "text-red-400"
+                }`}
+              >
+                24h Price: {currentAssetData.change >= 0 ? "+" : ""}
+                {currentAssetData.change.toFixed(2)}%
               </span>
               <span className="text-blue-400 font-medium">
                 Liquidity: ${currentAssetData.liquidity}
               </span>
             </div>
-            
+
             {/* Trade Input Section with Dynamic State */}
             <div className="space-y-6 w-full mt-6 bg-transparent">
               <div className="space-y-4">
@@ -275,7 +291,9 @@ export function InitDealDrawer() {
 
               <div className="flex gap-4">
                 <div className="flex-1 space-y-2">
-                  <Label className="text-zinc-400 text-sm font-medium">Amount</Label>
+                  <Label className="text-zinc-400 text-sm font-medium">
+                    Amount
+                  </Label>
                   <div className="relative">
                     <Input
                       type="text"
@@ -291,7 +309,9 @@ export function InitDealDrawer() {
                 </div>
 
                 <div className="flex-1 space-y-2">
-                  <Label className="text-zinc-400 text-sm font-medium">Price per Unit</Label>
+                  <Label className="text-zinc-400 text-sm font-medium">
+                    Price per Unit
+                  </Label>
                   <div className="relative">
                     <Input
                       type="text"
@@ -311,7 +331,11 @@ export function InitDealDrawer() {
                 <div className="flex justify-between items-center">
                   <span className="text-zinc-400 text-sm">Total Value</span>
                   <span className="text-green-400 text-lg font-mono font-bold">
-                    ${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    $
+                    {totalValue.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </span>
                 </div>
               </div>
@@ -331,7 +355,10 @@ export function InitDealDrawer() {
                     onChange={() => setCounterpartyType("specific")}
                     className="text-teal-400"
                   />
-                  <Label htmlFor="specific-counterparty" className="text-white text-base font-mono">
+                  <Label
+                    htmlFor="specific-counterparty"
+                    className="text-white text-base font-mono"
+                  >
                     Specific
                   </Label>
                 </div>
@@ -343,7 +370,10 @@ export function InitDealDrawer() {
                     onChange={() => setCounterpartyType("open-market")}
                     className="text-teal-400"
                   />
-                  <Label htmlFor="open-market-counterparty" className="text-white text-base font-mono">
+                  <Label
+                    htmlFor="open-market-counterparty"
+                    className="text-white text-base font-mono"
+                  >
                     Open Market
                   </Label>
                 </div>
@@ -370,7 +400,11 @@ export function InitDealDrawer() {
                     Collateral %
                   </Label>
                   <span className="text-teal-400 text-xs font-mono">
-                    Amount: ${collateralAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    Amount: $
+                    {collateralAmount.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </span>
                 </div>
                 <div className="flex-1 space-y-2 w-full">
@@ -380,12 +414,16 @@ export function InitDealDrawer() {
                     max="150"
                     step="5"
                     value={collateralPercentage}
-                    onChange={(e) => setCollateralPercentage(parseInt(e.target.value))}
+                    onChange={(e) =>
+                      setCollateralPercentage(parseInt(e.target.value))
+                    }
                     className="w-full"
                   />
                   <div className="flex justify-between text-zinc-400 text-sm font-mono mt-2">
                     <span>100 %</span>
-                    <span className="text-blue-400">{collateralPercentage} %</span>
+                    <span className="text-blue-400">
+                      {collateralPercentage} %
+                    </span>
                     <span>150 %</span>
                   </div>
                   <div className="flex items-center space-x-3 mt-4">
@@ -400,7 +438,8 @@ export function InitDealDrawer() {
                       htmlFor="escrow-protection"
                       className="text-white text-base font-mono cursor-pointer"
                     >
-                      Escrow Protection {escrowProtection && `(+$${escrowFee.toFixed(2)} fee)`}
+                      Escrow Protection{" "}
+                      {escrowProtection && `(+$${escrowFee.toFixed(2)} fee)`}
                     </Label>
                   </div>
                 </div>
@@ -431,7 +470,9 @@ export function InitDealDrawer() {
               {settlementSchedule === "Custom" && (
                 <div className="flex flex-col md:flex-row gap-4 mt-4">
                   <div className="flex-1 space-y-2">
-                    <Label className="text-zinc-400 text-base font-mono">Date</Label>
+                    <Label className="text-zinc-400 text-base font-mono">
+                      Date
+                    </Label>
                     <Input
                       type="date"
                       value={customDate}
@@ -440,7 +481,9 @@ export function InitDealDrawer() {
                     />
                   </div>
                   <div className="flex-1 space-y-2">
-                    <Label className="text-zinc-400 text-base font-mono">Time</Label>
+                    <Label className="text-zinc-400 text-base font-mono">
+                      Time
+                    </Label>
                     <Input
                       type="time"
                       value={customTime}
