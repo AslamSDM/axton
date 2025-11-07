@@ -1,5 +1,6 @@
 "use client";
 
+import { useTailwindBreakpoints } from "@/hooks/useTailwindBreakpoints";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -9,6 +10,9 @@ const imgLine18 = "/images/earn_section_line.svg";
 
 export default function HowToEarnSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const { isBelowLg } = useTailwindBreakpoints();
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -44,7 +48,7 @@ export default function HowToEarnSection() {
   return (
     <motion.section
       ref={containerRef}
-      className="relative w-full h-[300vh]"
+      className={`relative w-full ${isBelowLg ? "h-[900vh]" : "h-[300vh]"}`}
       style={{
         backgroundColor: useTransform(
           scrollYProgress,
@@ -89,7 +93,21 @@ export default function HowToEarnSection() {
           {/* Income Cards Section */}
           <div className="relative flex flex-col lg:flex-row gap-4 md:gap-8 justify-center items-start px-0 md:px-8 lg:px-[64px] mt-4 md:mt-8 pb-8">
             {/* Card 1 - ROI Income */}
-            <div className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0">
+            <motion.div
+              className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0"
+              style={{
+                y: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0.2, 0.4, 0.5] : [0, 1], // Transition Out: 0.4 -> 0.5
+                  isBelowLg ? [0, 0, -500] : [0, 0] // Slides up
+                ),
+                opacity: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0, 0.35, 0.45, 0.5] : [0.2, 1], // Fades out completely during transition
+                  isBelowLg ? [1, 1, 0, 0] : [1, 1]
+                ),
+              }}
+            >
               <div className="absolute inset-0 min-h-[300px] md:h-[349.755px] w-full">
                 <div
                   className="absolute inset-0 opacity-10 pointer-events-none"
@@ -121,10 +139,24 @@ export default function HowToEarnSection() {
                   <p>Instant verification</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Referral Commission */}
-            <div className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0">
+            <motion.div
+              className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0"
+              style={{
+                y: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0.4, 0.5, 0.7, 0.8] : [0, 1], // Transition In: 0.4 -> 0.5, Transition Out: 0.7 -> 0.8
+                  isBelowLg ? [0, -200, -200, -500] : [0, 0] // Slides up from bottom, stays, slides up to exit
+                ),
+                opacity: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0.4, 0.45, 0.75, 0.8] : [0.2, 1], // Fades in and out during transitions
+                  isBelowLg ? [0, 1, 1, 0] : [1, 1]
+                ),
+              }}
+            >
               <div className="absolute inset-0 min-h-[300px] md:h-[349.755px] w-full">
                 <div
                   className="absolute inset-0 opacity-10 pointer-events-none"
@@ -157,10 +189,24 @@ export default function HowToEarnSection() {
                   <p>Escrow: Enabled (0.15% fee)</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 - Binary Matching Bonus */}
-            <div className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0">
+            <motion.div
+              className="relative w-full lg:w-[400px] max-w-[400px] mx-auto lg:mx-0"
+              style={{
+                y: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0.7, 0.8] : [0, 1], // Transition In: 0.7 -> 0.8
+                  isBelowLg ? [500, -500] : [0, 0] // Slides up from bottom
+                ),
+                opacity: useTransform(
+                  scrollYProgress,
+                  isBelowLg ? [0.7, 0.75, 0.9, 1] : [0.2, 1], // Fades in, then uses global fade-out (0.9 -> 1.0)
+                  isBelowLg ? [0, 1, 1, 0] : [1, 1]
+                ),
+              }}
+            >
               <div className="absolute bg-gradient-to-r from-[#2ef68d] to-[#478ff5] h-[3px] w-full top-0 left-0" />
               <div className="absolute bg-gradient-to-r from-[#2ef68d] to-[#478ff5] blur-[25px] h-[23px] w-full top-[3px] left-0" />
               <div className="absolute inset-0 min-h-[300px] md:h-[351px] w-full">
@@ -195,7 +241,7 @@ export default function HowToEarnSection() {
                   <p>Gas: ~$15 per transaction</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

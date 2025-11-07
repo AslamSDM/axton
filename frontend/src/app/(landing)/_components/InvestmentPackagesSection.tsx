@@ -6,35 +6,35 @@ import { useRef } from "react";
 const imgTexture = "/images/earn_section_container_bg.png";
 const imgLine21 = "/images/earn_section_line.svg";
 
-// Trading Features data
-const features = [
+// Package data
+const packages = [
   {
-    name: "Standard",
-    volume: "Up to $1M",
-    fee: "0.25%",
-    escrowFee: "0.15%",
-    settlement: "24H",
+    amount: "20",
+    dailyROI: "0.1 USDT",
+    maxIncome: "40 USDT (2x)",
+    binaryCap: "50 USDT",
+    duration: "200 Days",
   },
   {
-    name: "Professional",
-    volume: "Up to $10M",
-    fee: "0.20%",
-    escrowFee: "0.12%",
-    settlement: "Instant/24H",
+    amount: "50",
+    dailyROI: "0.25 USDT",
+    maxIncome: "100 USDT (2x)",
+    binaryCap: "150 USDT",
+    duration: "200 Days",
   },
   {
-    name: "Enterprise",
-    volume: "Up to $50M",
-    fee: "0.15%",
-    escrowFee: "0.10%",
-    settlement: "Custom",
+    amount: "100",
+    dailyROI: "0.5 USDT",
+    maxIncome: "200 USDT (2x)",
+    binaryCap: "300 USDT",
+    duration: "200 Days",
   },
   {
-    name: "Whale Tier",
-    volume: "Unlimited",
-    fee: "0.10%",
-    escrowFee: "0.08%",
-    settlement: "Priority",
+    amount: "1000",
+    dailyROI: "5 USDT",
+    maxIncome: "2000 USDT (2x)",
+    binaryCap: "3000 USDT",
+    duration: "200 Days",
     featured: true,
   },
 ];
@@ -121,7 +121,7 @@ export default function InvestmentPackagesSection() {
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.15em] md:tracking-[-6.25px] leading-tight"
           >
-            Trading Tiers & Features
+            Choose Your Investment Package
           </motion.h1>
         </motion.div>
 
@@ -131,12 +131,12 @@ export default function InvestmentPackagesSection() {
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[56px] pt-[100px] md:pt-[120px] pointer-events-auto overflow-y-auto"
         >
           <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] max-w-[1084px] mb-4 md:mb-8">
-            Scale your trading operations with volume-based tier benefits
+            Select the package that fits your investment goals
           </p>
 
-          {/* Feature Cards Grid */}
+          {/* Package Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-[1760px] pb-8">
-            {features.map((feature, index) => (
+            {packages.map((pkg, index) => (
               <div key={index} className="relative">
                 {/* Texture Background with Gradient Overlay */}
                 <div className="absolute inset-0 min-h-[380px] sm:h-[400px] md:h-[426px]">
@@ -151,8 +151,8 @@ export default function InvestmentPackagesSection() {
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(46,246,141,0.6)_0%,_rgba(71,143,245,0.6)_100%)] mix-blend-overlay backdrop-blur-[12px]" />
                 </div>
 
-                {/* Featured Badge for Whale Tier */}
-                {feature.featured && (
+                {/* Featured Badge for 1000 USDT package */}
+                {pkg.featured && (
                   <div className="absolute -top-6 sm:-top-1/4 left-1/12 transform -translate-x-1/2 z-20 scale-90">
                     <div className="relative">
                       <div className="relative w-48 h-48 flex items-center justify-center">
@@ -171,8 +171,8 @@ export default function InvestmentPackagesSection() {
                           </defs>
                           <text className="fill-white text-[6px] tracking-[2px] uppercase">
                             <textPath href="#circlePath" startOffset="0%">
-                              WHALE TIER • WHALE TIER • WHALE TIER • WHALE TIER
-                              •
+                              SUGGESTED PLANS • SUGGESTED PLANS • SUGGESTED
+                              PLANS •
                             </textPath>
                           </text>
                         </svg>
@@ -183,72 +183,72 @@ export default function InvestmentPackagesSection() {
 
                 {/* Card Content */}
                 <div className="relative p-5 sm:p-6 md:p-8 min-h-[380px] sm:h-[400px] md:h-[426px]">
-                  {/* Tier Name */}
+                  {/* Package Amount */}
                   <div className="text-center mb-6 md:mb-8 pt-3 md:pt-4">
                     <p className="font-['Space_Mono',monospace] font-bold text-2xl sm:text-3xl md:text-[35px] text-white tracking-[-0.05em] md:tracking-[-1.75px] mb-1">
-                      {feature.name}
+                      {pkg.amount}
                     </p>
                     <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[15px] text-[#929292] tracking-[-0.05em] md:tracking-[-0.75px]">
-                      TIER
+                      USDT
                     </p>
                   </div>
 
-                  {/* Tier Details */}
+                  {/* Package Details */}
                   <div className="space-y-4 md:space-y-2">
-                    {/* Volume Cap */}
+                    {/* Daily ROI */}
                     <div className="flex justify-between items-start pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
                       <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Volume Cap
+                        Daily ROI
                       </span>
                       <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {feature.volume}
+                        {pkg.dailyROI}
                       </span>
                     </div>
 
-                    {/* Platform Fee */}
+                    {/* Maximum Income */}
                     <div className="pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
                       <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Platform Fee
+                        Maximum Income
                       </span>
                       <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {feature.fee}
+                        {pkg.maxIncome}
                       </span>
                     </div>
 
-                    {/* Escrow Fee */}
+                    {/* Binary Cap */}
                     <div className="pb-3 md:pb-4 border-b border-white/10">
                       <img alt="" className="w-full h-[1px]" src={imgLine21} />
                     </div>
                     <div className="flex justify-between items-start">
                       <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Escrow Fee
+                        Binary Cap
                       </span>
                       <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {feature.escrowFee}
+                        {pkg.binaryCap}
                       </span>
                     </div>
 
-                    {/* Settlement */}
+                    {/* Duration */}
                     <div className="flex justify-between items-start">
                       <span className="font-['Space_Mono',monospace] text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                        Settlement
+                        Duration
                       </span>
                       <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-[#02c8c8] tracking-[-0.05em] md:tracking-[-0.7px]">
-                        {feature.settlement}
+                        {pkg.duration}
                       </span>
                     </div>
                   </div>
 
-                  {/* Trade Button */}
+                  {/* Activate Button */}
                   <button className="absolute bottom-5 sm:bottom-6 md:bottom-8 left-5 sm:left-6 md:left-8 right-5 sm:right-6 md:right-8 bg-gradient-to-r from-[#2ef68d] to-[#478ff5] border border-[#2ef68d] h-[38px] sm:h-[40px] md:h-[42px] flex items-center justify-center hover:opacity-90 transition-opacity">
                     <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.05em] md:tracking-[-0.7px]">
-                      Start Trading
+                      Activate Now
                     </span>
                   </button>
                 </div>
