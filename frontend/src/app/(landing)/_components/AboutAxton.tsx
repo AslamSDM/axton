@@ -2,6 +2,11 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+const Iridescence = dynamic(() => import("@/components/Iridescence"), {
+  ssr: false,
+});
 
 const imgImage = "/images/about_section_img.png";
 
@@ -37,6 +42,13 @@ export default function AboutSection() {
     [0, 1, 1, 0]
   );
 
+  // Iridescence opacity - fade in at start, fade out at end
+  const iridescenceOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 0.1, 0.1, 0]
+  );
+
   return (
     <motion.section
       id="about"
@@ -50,6 +62,19 @@ export default function AboutSection() {
         ),
       }}
     >
+      {/* Iridescence Background */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-screen mix-blend-lighten pointer-events-none"
+        style={{ opacity: iridescenceOpacity }}
+      >
+        <Iridescence
+          color={[0.18, 0.95, 0.55]}
+          speed={0.5}
+          amplitude={0.05}
+          mouseReact={true}
+        />
+      </motion.div>
+
       {/* Fixed container for the animation */}
       <div className="fixed top-16 md:top-20 left-0 w-full h-screen pointer-events-none z-10">
         {/* Animated Heading */}

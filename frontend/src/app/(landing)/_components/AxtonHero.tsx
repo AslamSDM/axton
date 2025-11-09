@@ -2,6 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+const Orb = dynamic(() => import("@/components/Orb"), { ssr: false });
 
 export default function AxtonHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,11 +32,31 @@ export default function AxtonHero() {
     [1, 1, 1, 0]
   );
 
+  // Orb opacity - fade in at start, fade out at end
+  const orbOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 0.3, 0.3, 0]
+  );
+
   return (
     <section
       ref={containerRef}
       className="relative w-full overflow-hidden h-[300vh]"
     >
+      {/* Orb Background */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-screen mix-blend-screen pointer-events-none"
+        style={{ opacity: orbOpacity }}
+      >
+        <Orb
+          hue={160}
+          hoverIntensity={0.15}
+          rotateOnHover={false}
+          forceHoverState={true}
+        />
+      </motion.div>
+
       {/* Content Container - Fixed and Animated */}
       <motion.div
         className="fixed top-16 md:top-20 left-0 right-0 h-screen w-full px-4 sm:px-8 md:px-16 lg:px-[94px] "

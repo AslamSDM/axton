@@ -2,6 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+const Dither = dynamic(() => import("@/components/Dither"), { ssr: false });
 
 const imgFrame = "/images/binary_section_1.svg";
 const binaryImg = "/images/binaryplan.png";
@@ -45,6 +48,13 @@ export default function BinaryPlanSection() {
     [0, 1, 1, 0]
   );
 
+  // Dither opacity - fade in at start, fade out at end
+  const ditherOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 0.2, 0.2, 0]
+  );
+
   return (
     <motion.section
       id="structure"
@@ -58,6 +68,24 @@ export default function BinaryPlanSection() {
         ),
       }}
     >
+      {/* Dither Wave Background */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-screen mix-blend-screen pointer-events-none"
+        style={{ opacity: ditherOpacity }}
+      >
+        <Dither
+          waveSpeed={0.03}
+          waveFrequency={2}
+          waveAmplitude={0.4}
+          waveColor={[0.18, 0.95, 0.55]}
+          colorNum={3}
+          pixelSize={3}
+          disableAnimation={false}
+          enableMouseInteraction={false}
+          mouseRadius={0.8}
+        />
+      </motion.div>
+
       {/* Dot Grid Background */}
       <div className="absolute h-[914px] left-0 opacity-10 overflow-clip top-0 w-full">
         {[...Array(11)].map((_, i) => (

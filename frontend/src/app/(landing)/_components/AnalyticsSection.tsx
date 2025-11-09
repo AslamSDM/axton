@@ -3,15 +3,14 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTailwindBreakpoints } from "@/hooks/useTailwindBreakpoints";
+import dynamic from "next/dynamic";
 
-const imgTexture =
-  "/images/analytics_section_container_bg.png";
-const imgFrame =
-  "/images/analytics_section_1.svg";
-const imgVector14 =
-  "/images/analytics_section_2.svg";
-const imgEllipse18 =
-  "/images/analytics_section_3.svg";
+const Silk = dynamic(() => import("@/components/Silk"), { ssr: false });
+
+const imgTexture = "/images/analytics_section_container_bg.png";
+const imgFrame = "/images/analytics_section_1.svg";
+const imgVector14 = "/images/analytics_section_2.svg";
+const imgEllipse18 = "/images/analytics_section_3.svg";
 
 export default function AnalyticsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,6 +53,13 @@ export default function AnalyticsSection() {
     [0, 1, 1, 0]
   );
 
+  // Silk opacity - fade in at start, fade out at end
+  const silkOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 0.15, 0.15, 0]
+  );
+
   return (
     <motion.section
       id="analytics"
@@ -67,6 +73,20 @@ export default function AnalyticsSection() {
         ),
       }}
     >
+      {/* Silk Background */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-screen mix-blend-overlay pointer-events-none"
+        style={{ opacity: silkOpacity }}
+      >
+        <Silk
+          speed={3}
+          scale={1.5}
+          color="#2ef68d"
+          noiseIntensity={1.2}
+          rotation={0.3}
+        />
+      </motion.div>
+
       {/* Dot Grid Background */}
       <div className="absolute h-[150px] left-0 opacity-10 overflow-clip top-0 w-full">
         {[...Array(11)].map((_, i) => (
@@ -97,16 +117,8 @@ export default function AnalyticsSection() {
           <motion.h1
             style={{
               fontSize: headingFontSize,
-              y: useTransform(
-                scrollYProgress,
-                [0, 0.2],
-                [300, 50]
-              ),
-              x: useTransform(
-                scrollYProgress,
-                [0, 0.2],
-                [10, 0]
-              )
+              y: useTransform(scrollYProgress, [0, 0.2], [300, 50]),
+              x: useTransform(scrollYProgress, [0, 0.2], [10, 0]),
             }}
             className="font-['Space_Mono',monospace] font-bold text-white tracking-[-0.05em] md:tracking-[-1.75px] leading-tight max-w-full md:max-w-[592px]"
           >
@@ -119,9 +131,7 @@ export default function AnalyticsSection() {
           className="absolute top-0 left-0 w-full h-full px-4 sm:px-8 md:px-[57px] pt-32 pointer-events-auto overflow-hidden"
           style={{ opacity: contentOpacity }}
         >
-          <p
-            className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px] mt-[40px]"
-          >
+          <p className="font-['Space_Mono',monospace] text-xs sm:text-sm md:text-[14px] text-white tracking-[-0.7px] mb-8 md:mb-12 max-w-full md:max-w-[1084px] mt-[40px]">
             Real-time insights into network performance and ROI distribution
           </p>
 
@@ -131,13 +141,16 @@ export default function AnalyticsSection() {
             <motion.div
               className="relative h-[400px] sm:h-[420px] md:h-[450px]"
               style={{
-                y: useTransform(scrollYProgress,
+                y: useTransform(
+                  scrollYProgress,
                   isBelowLg ? [0.4, 0.6] : [0, 1],
-                  isBelowLg ? [0, -500] : [0, 0]),
-                opacity: useTransform(scrollYProgress,
+                  isBelowLg ? [0, -500] : [0, 0]
+                ),
+                opacity: useTransform(
+                  scrollYProgress,
                   [0.4, 0.45, 0.55, 0.6],
                   isBelowLg ? [1, 1, 0, 0] : [1, 1, 1, 1]
-                )
+                ),
               }}
             >
               {/* Card Background with Texture */}
@@ -163,8 +176,9 @@ export default function AnalyticsSection() {
                   {[115, 138, 149, 160, 171, 182, 193].map((height, index) => (
                     <div
                       key={index}
-                      className={`w-[9px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] ${index === 6 ? "border-2 border-white" : ""
-                        }`}
+                      className={`w-[9px] bg-gradient-to-r from-[#2ef68d] to-[#478ff5] ${
+                        index === 6 ? "border-2 border-white" : ""
+                      }`}
                       style={{ height: `${height}px` }}
                     />
                   ))}
@@ -211,13 +225,16 @@ export default function AnalyticsSection() {
             <motion.div
               className="relative h-[400px] sm:h-[420px] md:h-[450px]"
               style={{
-                y: useTransform(scrollYProgress,
+                y: useTransform(
+                  scrollYProgress,
                   isBelowLg ? [0.4, 0.6] : [0, 1],
-                  isBelowLg ? [500, -400] : [0, 0]),
-                opacity: useTransform(scrollYProgress,
+                  isBelowLg ? [500, -400] : [0, 0]
+                ),
+                opacity: useTransform(
+                  scrollYProgress,
                   [0.4, 0.45, 0.55, 0.6],
                   isBelowLg ? [0, 0, 1, 1] : [1, 1, 1, 1]
-                )
+                ),
               }}
             >
               {/* Card Background with Texture */}
@@ -316,7 +333,7 @@ export default function AnalyticsSection() {
             </motion.div>
           </div>
         </motion.main>
-      </div >
-    </motion.section >
+      </div>
+    </motion.section>
   );
 }

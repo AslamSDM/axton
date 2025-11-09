@@ -2,10 +2,52 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const GradientBlinds = dynamic(() => import("@/components/GradientBlinds"), {
+  ssr: false,
+});
 
 export default function CTASection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // GradientBlinds opacity - fade in when section enters, fade out when it exits
+  const gradientBlindsOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 0.3, 0.3, 0]
+  );
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-[#0b0b0d] px-4 sm:px-8">
+    <section
+      ref={containerRef}
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-[#0b0b0d] px-4 sm:px-8"
+    >
+      {/* GradientBlinds Background */}
+      <motion.div
+        className="absolute inset-0 mix-blend-lighten pointer-events-none"
+        style={{ opacity: gradientBlindsOpacity }}
+      >
+        <GradientBlinds
+          gradientColors={["#2ef68d", "#478ff5", "#2ef68d"]}
+          angle={45}
+          noise={0.2}
+          blindCount={12}
+          mouseDampening={0.1}
+          mirrorGradient={true}
+          spotlightRadius={0.6}
+          spotlightSoftness={1.2}
+          spotlightOpacity={0.8}
+          distortAmount={0.5}
+          shineDirection="right"
+          mixBlendMode="lighten"
+        />
+      </motion.div>
+
       {/* Top Gradient Glow */}
       <div className="absolute backdrop-blur-[2px] backdrop-filter bg-gradient-to-r blur-[26.5px] filter from-[rgba(52,113,192,0.7)] h-[605px] left-0 mix-blend-color-dodge to-[rgba(46,246,141,0.7)] top-[-680px] w-full" />
 

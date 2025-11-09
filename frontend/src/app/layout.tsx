@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
-import { Web3Provider } from "@/providers/Web3Provider";
+import { ClientWeb3Provider } from "@/providers/ClientWeb3Provider";
 import { Toaster } from "@/components/ui/toaster";
 
 const spaceMono = Space_Mono({
@@ -119,7 +119,7 @@ export default function RootLayout({
       <body
         className={`${spaceMono.variable} antialiased bg-black font-[var(--font-space-mono)] font-bold`}
       >
-        <Web3Provider>{children}</Web3Provider>
+        <ClientWeb3Provider>{children}</ClientWeb3Provider>
         <Toaster />
       </body>
     </html>
