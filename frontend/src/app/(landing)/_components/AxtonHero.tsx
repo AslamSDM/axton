@@ -5,6 +5,9 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 
 const Orb = dynamic(() => import("@/components/Orb"), { ssr: false });
+const GradualBlur = dynamic(() => import("@/components/GradualBlur"), {
+  ssr: false,
+});
 
 export default function AxtonHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +39,7 @@ export default function AxtonHero() {
   const orbOpacity = useTransform(
     scrollYProgress,
     [0, 0.1, 0.9, 1],
-    [0, 0.3, 0.3, 0]
+    [0, 0.6, 0.6, 0]
   );
 
   return (
@@ -46,7 +49,7 @@ export default function AxtonHero() {
     >
       {/* Orb Background */}
       <motion.div
-        className="fixed top-0 left-0 w-full h-screen mix-blend-screen pointer-events-none"
+        className="fixed top-0 left-0 w-full h-screen mix-blend-screen z-0"
         style={{ opacity: orbOpacity }}
       >
         <Orb
@@ -145,6 +148,14 @@ export default function AxtonHero() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Gradual Blur at bottom */}
+      <GradualBlur
+        position="bottom"
+        strength={3}
+        height="12rem"
+        opacity={0.9}
+      />
     </section>
   );
 }

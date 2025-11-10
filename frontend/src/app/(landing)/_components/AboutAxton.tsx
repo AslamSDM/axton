@@ -7,6 +7,9 @@ import dynamic from "next/dynamic";
 const Iridescence = dynamic(() => import("@/components/Iridescence"), {
   ssr: false,
 });
+const GradualBlur = dynamic(() => import("@/components/GradualBlur"), {
+  ssr: false,
+});
 
 const imgImage = "/images/about_section_img.png";
 
@@ -46,7 +49,7 @@ export default function AboutSection() {
   const iridescenceOpacity = useTransform(
     scrollYProgress,
     [0, 0.1, 0.9, 1],
-    [0, 0.1, 0.1, 0]
+    [0, 0.25, 0.25, 0]
   );
 
   return (
@@ -64,7 +67,7 @@ export default function AboutSection() {
     >
       {/* Iridescence Background */}
       <motion.div
-        className="fixed top-0 left-0 w-full h-screen mix-blend-lighten pointer-events-none"
+        className="fixed top-0 left-0 w-full h-screen mix-blend-lighten z-0"
         style={{ opacity: iridescenceOpacity }}
       >
         <Iridescence
@@ -129,6 +132,15 @@ export default function AboutSection() {
           <motion.div className="relative flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0"></motion.div>
         </motion.div>
       </div>
+
+      {/* Gradual Blur at top and bottom */}
+      <GradualBlur position="top" strength={3} height="10rem" opacity={0.8} />
+      <GradualBlur
+        position="bottom"
+        strength={3}
+        height="12rem"
+        opacity={0.9}
+      />
     </motion.section>
   );
 }

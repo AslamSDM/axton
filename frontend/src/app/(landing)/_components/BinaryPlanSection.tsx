@@ -5,6 +5,9 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 
 const Dither = dynamic(() => import("@/components/Dither"), { ssr: false });
+const GradualBlur = dynamic(() => import("@/components/GradualBlur"), {
+  ssr: false,
+});
 
 const imgFrame = "/images/binary_section_1.svg";
 const binaryImg = "/images/binaryplan.png";
@@ -52,7 +55,7 @@ export default function BinaryPlanSection() {
   const ditherOpacity = useTransform(
     scrollYProgress,
     [0, 0.1, 0.9, 1],
-    [0, 0.2, 0.2, 0]
+    [0, 0.4, 0.4, 0]
   );
 
   return (
@@ -70,7 +73,7 @@ export default function BinaryPlanSection() {
     >
       {/* Dither Wave Background */}
       <motion.div
-        className="fixed top-0 left-0 w-full h-screen mix-blend-screen pointer-events-none"
+        className="fixed top-0 left-0 w-full h-screen mix-blend-screen z-0"
         style={{ opacity: ditherOpacity }}
       >
         <Dither
@@ -81,7 +84,7 @@ export default function BinaryPlanSection() {
           colorNum={3}
           pixelSize={3}
           disableAnimation={false}
-          enableMouseInteraction={false}
+          enableMouseInteraction={true}
           mouseRadius={0.8}
         />
       </motion.div>
@@ -150,6 +153,15 @@ export default function BinaryPlanSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* Gradual Blur at top and bottom */}
+      <GradualBlur position="top" strength={3} height="10rem" opacity={0.8} />
+      <GradualBlur
+        position="bottom"
+        strength={3}
+        height="12rem"
+        opacity={0.9}
+      />
     </motion.section>
   );
 }

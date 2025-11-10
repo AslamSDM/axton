@@ -6,6 +6,9 @@ import { useTailwindBreakpoints } from "@/hooks/useTailwindBreakpoints";
 import dynamic from "next/dynamic";
 
 const Silk = dynamic(() => import("@/components/Silk"), { ssr: false });
+const GradualBlur = dynamic(() => import("@/components/GradualBlur"), {
+  ssr: false,
+});
 
 const imgTexture = "/images/analytics_section_container_bg.png";
 const imgFrame = "/images/analytics_section_1.svg";
@@ -57,7 +60,7 @@ export default function AnalyticsSection() {
   const silkOpacity = useTransform(
     scrollYProgress,
     [0, 0.1, 0.9, 1],
-    [0, 0.15, 0.15, 0]
+    [0, 0.35, 0.35, 0]
   );
 
   return (
@@ -75,7 +78,7 @@ export default function AnalyticsSection() {
     >
       {/* Silk Background */}
       <motion.div
-        className="fixed top-0 left-0 w-full h-screen mix-blend-overlay pointer-events-none"
+        className="fixed top-0 left-0 w-full h-screen mix-blend-overlay z-0"
         style={{ opacity: silkOpacity }}
       >
         <Silk
@@ -334,6 +337,15 @@ export default function AnalyticsSection() {
           </div>
         </motion.main>
       </div>
+
+      {/* Gradual Blur at top and bottom */}
+      <GradualBlur position="top" strength={3} height="10rem" opacity={0.8} />
+      <GradualBlur
+        position="bottom"
+        strength={3}
+        height="12rem"
+        opacity={0.9}
+      />
     </motion.section>
   );
 }
