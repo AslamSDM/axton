@@ -8,24 +8,27 @@ import { toast } from "sonner";
 
 export function ReferralStakingCards() {
   const handleViewAnalytics = () => {
-    toast.info("Trading Analytics", {
-      description: "Loading your performance metrics and insights...",
+    toast.error("Balance requirement not met", {
+      description:
+        "You need to have 10000000 USDC balance to unlock this tier.",
     });
     // Navigate to analytics page
     console.log("Navigate to analytics page");
   };
 
   const handleStakeNow = () => {
-    toast.info("Staking Interface", {
-      description: "Opening staking dashboard...",
+    toast.error("Balance requirement not met", {
+      description:
+        "You need to have 10000000 USDC balance to unlock this tier.",
     });
     // Navigate to staking interface
     console.log("Navigate to staking page");
   };
 
   const handleViewBenefits = () => {
-    toast.info("Benefits Overview", {
-      description: "Loading your tier benefits and exclusive features...",
+    toast.error("Balance requirement not met", {
+      description:
+        "You need to have 10000000 USDC balance to unlock this tier.",
     });
     // Show benefits modal or navigate to benefits page
     console.log("View trader tier benefits");
