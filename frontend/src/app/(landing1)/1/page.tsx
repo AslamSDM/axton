@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Beams from "@/components/Beams";
 import Orb from "@/components/Orb";
@@ -15,6 +16,8 @@ import { HorizontalScroll } from "./components/HorizontalScroll";
 import { ValueProposition } from "./components/ValueProposition";
 import Silk from "@/components/Silk";
 import { Navbar } from "./components/Navbar";
+import { CrypticText } from "./components/CrypticText";
+import { CountUpText } from "./components/CountUpText";
 
 export default function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,9 +73,15 @@ export default function LandingPage() {
             <div className="relative inline-block">
               <h1 className="font-['Space_Mono',monospace] text-[clamp(56px,10vw,140px)] font-bold tracking-[-0.04em] mb-8 leading-[0.95]">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2ef68d] via-[#478ff5] to-[#2ef68d] animate-gradient bg-[length:200%_auto]">
-                  Anonymized OTC Trading
+                  <CrypticText 
+                    text="Anonymized OTC Trading"
+                    duration={1500}
+                  />
                   <br />
-                  for Crypto Whales
+                  <CrypticText 
+                    text="for Crypto Whales"
+                    duration={1500}
+                  />
                 </span>
               </h1>
             </div>
@@ -83,12 +92,14 @@ export default function LandingPage() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
             >
-              <ClipButton variant="primary" size="lg">
-                Enter Ecosystem
-              </ClipButton>
-              <ClipButton variant="outline" size="lg">
+              <Link href="/dashboard">
+                <ClipButton variant="primary" size="lg">
+                  Enter Ecosystem
+                </ClipButton>
+              </Link>
+              {/* <ClipButton variant="outline" size="lg">
                 Explore Docs
-              </ClipButton>
+              </ClipButton> */}
             </motion.div>
           </motion.div>
 
@@ -107,10 +118,10 @@ export default function LandingPage() {
             ].map((stat, i) => (
               <ClipCard key={i} variant="glass" className="p-4 md:p-6">
                 <div className="font-['Space_Mono',monospace] text-xs text-white/70 tracking-[-0.02em] uppercase mb-2">
-                  {stat.label}
+                  <CrypticText text={stat.label} duration={1000} />
                 </div>
                 <div className="font-['Space_Mono',monospace] font-bold text-xl md:text-2xl text-white tracking-[-0.02em]">
-                  {stat.value}
+                  <CountUpText value={stat.value} duration={2000} delay={1200 + i * 100} />
                 </div>
               </ClipCard>
             ))}
@@ -143,7 +154,7 @@ export default function LandingPage() {
       </section>
 
       {/* Real Yield Section with Silk Background */}
-      <section className="relative min-h-screen flex items-center py-32 overflow-hidden">
+      {/* <section className="relative min-h-screen flex items-center py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Silk
             speed={3}
@@ -178,7 +189,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <FeatureCard
                 title="Revenue Powered"
-                description="Consistent returns generated from multiple live platforms across the ecosystem"
+                description="Returns from live ecosystem platforms"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <path
@@ -208,7 +219,7 @@ export default function LandingPage() {
               />
               <FeatureCard
                 title="Unified Ecosystem"
-                description="Trading, banking, gaming, insurance - all connected through one powerful token"
+                description="All utilities connected through AXTO"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <circle
@@ -257,7 +268,7 @@ export default function LandingPage() {
               />
               <FeatureCard
                 title="Transparent & Secure"
-                description="Every transaction runs on blockchain for complete visibility and security"
+                description="On-chain transactions for full visibility"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <rect
@@ -281,7 +292,7 @@ export default function LandingPage() {
               />
               <FeatureCard
                 title="Scalable Growth"
-                description="As new utilities launch, AXTO demand and circulation naturally increase"
+                description="New utilities drive token demand"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <path
@@ -304,7 +315,7 @@ export default function LandingPage() {
               />
               <FeatureCard
                 title="Zero Slippage"
-                description="Execute large OTC deals with absolute precision and no price impact"
+                description="Precise OTC execution with no price impact"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <path
@@ -327,7 +338,7 @@ export default function LandingPage() {
               />
               <FeatureCard
                 title="Multi-Chain Support"
-                description="Trade across multiple blockchain networks with seamless interoperability"
+                description="Seamless cross-chain interoperability"
                 icon={
                   <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
                     <path
@@ -349,7 +360,7 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Community OTC Section with Dither */}
       <section
@@ -379,25 +390,25 @@ export default function LandingPage() {
             className="max-w-5xl"
           >
             <ClipCard variant="dark" className="p-12 md:p-16">
-              <h2 className="font-['Space_Mono',monospace] text-5xl md:text-7xl font-black mb-8 text-white tracking-[-0.05em]">
-                Community-Centered
-                <br />
+              <h2 className="font-['Space_Mono',monospace] text-5xl md:text-7xl font-black mb-6 text-white tracking-[-0.05em]">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2ef68d] to-[#478ff5]">
-                  OTC DESK
+                  <CrypticText text="OTC DESK" duration={1200} />
                 </span>
               </h2>
-              <p className="font-['Space_Mono',monospace] text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed tracking-[-0.02em]">
-                Built around participation, loyalty rewards, and sustainable
-                growth for all holders. Experience zero slippage on OTC deals
-                with full transparency.
+              <p className="font-['Space_Mono',monospace] text-lg text-gray-400 mb-8 max-w-2xl tracking-[-0.02em]">
+                <CrypticText text="Zero slippage. Full transparency. Whale-sized deals." duration={1500} />
               </p>
               <div className="flex flex-wrap gap-4">
-                <ClipButton variant="primary" size="lg">
-                  Start Trading
-                </ClipButton>
-                <ClipButton variant="ghost" size="lg">
-                  View Analytics
-                </ClipButton>
+                <Link href="/dashboard">
+                  <ClipButton variant="primary" size="lg">
+                    Start Trading
+                  </ClipButton>
+                </Link>
+                <Link href="/dashboard">
+                  <ClipButton variant="ghost" size="lg">
+                    View Analytics
+                  </ClipButton>
+                </Link>
               </div>
             </ClipCard>
           </motion.div>
@@ -413,7 +424,7 @@ export default function LandingPage() {
             {[
               {
                 title: "Escrow Protection",
-                desc: "Automated smart contract escrow ensures both parties fulfill obligations",
+                desc: "Smart contract escrow for secure settlements",
                 icon: (
                   <svg
                     className="w-8 h-8 text-[#2ef68d]"
@@ -437,7 +448,7 @@ export default function LandingPage() {
               },
               {
                 title: "Private Identity",
-                desc: "Zero-knowledge proofs verify trader legitimacy without exposing identity",
+                desc: "Anonymous verification with zero-knowledge proofs",
                 icon: (
                   <svg
                     className="w-8 h-8 text-[#2ef68d]"
@@ -459,7 +470,7 @@ export default function LandingPage() {
               },
               {
                 title: "Collateral Management",
-                desc: "Flexible collateral options with real-time valuation and liquidation",
+                desc: "Real-time valuation and flexible options",
                 icon: (
                   <svg
                     className="w-8 h-8 text-[#2ef68d]"
@@ -494,10 +505,10 @@ export default function LandingPage() {
                 <ClipCard variant="dark" className="p-6 h-full">
                   <div className="mb-4">{item.icon}</div>
                   <h4 className="font-['Space_Mono',monospace] text-lg font-bold mb-2 text-white tracking-[-0.02em]">
-                    {item.title}
+                    <CrypticText text={item.title} duration={1000} />
                   </h4>
                   <p className="font-['Space_Mono',monospace] text-sm text-gray-400 tracking-[-0.01em]">
-                    {item.desc}
+                    <CrypticText text={item.desc} duration={1200} />
                   </p>
                 </ClipCard>
               </motion.div>
@@ -536,22 +547,17 @@ export default function LandingPage() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="font-['Space_Mono',monospace] text-6xl md:text-8xl font-black mb-12 text-white tracking-[-0.05em]">
-              GLOBAL
+            <h2 className="font-['Space_Mono',monospace] text-6xl md:text-8xl font-black mb-8 text-white tracking-[-0.05em]">
+              <CrypticText text="GLOBAL" duration={1000} />
               <br />
-              USABILITY
+              <CrypticText text="USABILITY" duration={1000} />
             </h2>
-            <p className="font-['Space_Mono',monospace] text-2xl text-white/90 mb-12 leading-relaxed tracking-[-0.02em]">
-              Axton bridges blockchain with real-world finance through products
-              like the{" "}
-              <span className="font-bold text-[#2ef68d]">Axton Card</span>
-            </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
               {[
                 {
                   title: "User Empowerment",
-                  desc: "Full ownership of your digital assets",
+                  desc: "Full control of digital assets",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -577,7 +583,7 @@ export default function LandingPage() {
                 },
                 {
                   title: "Decentralized Control",
-                  desc: "You control your financial future",
+                  desc: "Own your financial future",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -599,7 +605,7 @@ export default function LandingPage() {
                 },
                 {
                   title: "Real-World Impact",
-                  desc: "Blockchain meets everyday finance",
+                  desc: "Blockchain meets daily finance",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -623,7 +629,7 @@ export default function LandingPage() {
                 },
                 {
                   title: "Instant Settlement",
-                  desc: "Fast transaction finality with minimal fees",
+                  desc: "Fast finality, minimal fees",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -642,7 +648,7 @@ export default function LandingPage() {
                 },
                 {
                   title: "Cross-Border Payments",
-                  desc: "Seamless global transactions without boundaries",
+                  desc: "Global transactions, no boundaries",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -668,7 +674,7 @@ export default function LandingPage() {
                 },
                 {
                   title: "Smart Automation",
-                  desc: "Programmable workflows for DeFi operations",
+                  desc: "Programmable DeFi workflows",
                   icon: (
                     <svg
                       className="w-10 h-10 text-[#2ef68d]"
@@ -707,10 +713,10 @@ export default function LandingPage() {
                   >
                     <div className="mb-4">{item.icon}</div>
                     <h3 className="font-['Space_Mono',monospace] text-xl font-bold mb-3 text-white group-hover:text-[#2ef68d] transition-colors tracking-[-0.02em]">
-                      {item.title}
+                      <CrypticText text={item.title} duration={1000} />
                     </h3>
                     <p className="font-['Space_Mono',monospace] text-sm text-gray-300 tracking-[-0.01em]">
-                      {item.desc}
+                      <CrypticText text={item.desc} duration={1200} />
                     </p>
                   </ClipCard>
                 </motion.div>
@@ -740,7 +746,7 @@ export default function LandingPage() {
             className="max-w-4xl mx-auto"
           >
             <h2 className="font-['Space_Mono',monospace] text-7xl md:text-9xl font-black mb-8 text-white tracking-[-0.05em]">
-              READY TO
+              <CrypticText text="READY TO" duration={1000} />
               <br />
               <span
                 className="text-transparent"
@@ -752,20 +758,18 @@ export default function LandingPage() {
                   backgroundClip: "text",
                 }}
               >
-                TRANSFORM?
+                <CrypticText text="TRANSFORM?" duration={1000} />
               </span>
             </h2>
-            <p className="font-['Space_Mono',monospace] text-2xl text-white/80 mb-12 max-w-2xl mx-auto tracking-[-0.02em]">
-              Axton turns blockchain potential into real-world performance.
-              Simple, transparent, and rewarding.
-            </p>
-            <ClipButton
-              variant="primary"
-              size="xl"
-              className="text-xl px-16 py-8"
-            >
-              Join the Ecosystem
-            </ClipButton>
+            <Link href="/dashboard">
+              <ClipButton
+                variant="primary"
+                size="xl"
+                className="text-xl px-16 py-8"
+              >
+                Join the Ecosystem
+              </ClipButton>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -792,7 +796,7 @@ export default function LandingPage() {
                 AXTON
               </h3>
               <p className="font-['Space_Mono',monospace] text-gray-400 tracking-[-0.01em]">
-                Building the future of decentralized finance
+                DeFi meets real-world finance
               </p>
             </div>
             <div>

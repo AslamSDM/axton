@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ClipCard } from "./ClipCard";
+import { CrypticText } from "./CrypticText";
 
 interface FeatureCardProps {
   title: string;
@@ -33,10 +34,10 @@ export function FeatureCard({
           {icon}
         </motion.div>
         <h3 className="font-['Space_Mono',monospace] text-2xl font-bold mb-4 text-white group-hover:text-[#2ef68d] transition-colors tracking-[-0.02em]">
-          {title}
+          <CrypticText text={title} duration={1000} />
         </h3>
         <p className="font-['Space_Mono',monospace] text-white/70 leading-relaxed tracking-[-0.02em]">
-          {description}
+          <CrypticText text={description} duration={1200} />
         </p>
 
         {/* Animated corner accent */}

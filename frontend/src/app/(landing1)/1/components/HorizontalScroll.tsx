@@ -56,7 +56,7 @@ export function HorizontalScroll() {
       className="relative py-32 overflow-hidden bg-[#0b0b0d]"
     >
       <div className="container mx-auto px-6 mb-12">
-        <motion.h2
+        {/* <motion.h2
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -70,8 +70,8 @@ export function HorizontalScroll() {
             backgroundClip: "text",
           }}
         >
-          WHY AXTON?
-        </motion.h2>
+          Key Features
+        </motion.h2> */}
       </div>
 
       <div className="relative">
