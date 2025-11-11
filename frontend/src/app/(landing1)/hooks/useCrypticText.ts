@@ -27,9 +27,9 @@ export function useCrypticText(finalText: string, duration: number = 2000) {
       const newText = chars
         .map((char, index) => {
           if (char === " " || char === "\n") return char;
-          
+
           const charProgress = (progress * chars.length - index) / 3;
-          
+
           if (charProgress >= 1) {
             return char;
           } else if (charProgress > 0) {

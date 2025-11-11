@@ -8,8 +8,15 @@ import { GlobeVisualization } from "@/components/globe-visualization";
 import { ReferralStakingCards } from "@/components/referral-staking-cards";
 import { OtcMovementsTable } from "@/components/otc-movements-table";
 import { InitDealDrawer } from "./otc/mydeals/_components/InitDealDrawer";
+import {
+  useLivePrices,
+  formatLargeNumber,
+  formatPercentage,
+} from "@/hooks/useLivePrices";
 
 function DashboardPage() {
+  const { prices, loading } = useLivePrices();
+
   return (
     <main className="px-8 py-6">
       <h2 className="text-lg font-semibold text-zinc-400 mb-4">
@@ -20,38 +27,48 @@ function DashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
         <StatCard
           title="TOTAL OTC VOLUME"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={loading ? "Loading..." : formatLargeNumber(prices.totalVolume)}
+          change={loading ? "" : formatPercentage(prices.btc.change24h)}
           icon="/dollar.png"
         />
         <StatCard
           title="DAILY WRAP COUNT"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={
+            loading
+              ? "Loading..."
+              : formatLargeNumber(prices.eth.volume24h / 1000)
+          }
+          change={loading ? "" : formatPercentage(prices.eth.change24h)}
           icon="/dashboard.png"
         />
         <StatCard
           title="TOP TRADERS"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={loading ? "Loading..." : prices.topTraders.toLocaleString()}
+          change={loading ? "" : "+ 2.5% (24H)"}
           icon="/toporders.png"
         />
         <StatCard
           title="ACTIVE PROPOSALS"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={
+            loading ? "Loading..." : prices.activeProposals.toLocaleString()
+          }
+          change={loading ? "" : "+ 1.8% (24H)"}
           icon="/file.svg"
         />
         <StatCard
           title="TOTAL LIQUIDITY"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={
+            loading ? "Loading..." : formatLargeNumber(prices.totalLiquidity)
+          }
+          change={loading ? "" : formatPercentage(prices.bnb.change24h)}
           icon="/piggy.png"
         />
         <StatCard
           title="AXN NET FLOW"
-          value="$1.23B"
-          change="+ 0.23% (24H)"
+          value={
+            loading ? "Loading..." : formatLargeNumber(prices.sol.volume24h)
+          }
+          change={loading ? "" : formatPercentage(prices.sol.change24h)}
           icon="/netflow.png"
         />
       </div>

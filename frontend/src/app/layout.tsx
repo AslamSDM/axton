@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/imagesnavbar_1.ico" },
       { url: "/Axton.png", sizes: "192x192", type: "image/png" },
       { url: "/Axton.png", sizes: "512x512", type: "image/png" },
     ],

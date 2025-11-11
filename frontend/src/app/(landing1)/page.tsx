@@ -73,15 +73,9 @@ export default function LandingPage() {
             <div className="relative inline-block">
               <h1 className="font-['Space_Mono',monospace] text-[clamp(56px,10vw,140px)] font-bold tracking-[-0.04em] mb-8 leading-[0.95]">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2ef68d] via-[#478ff5] to-[#2ef68d] animate-gradient bg-[length:200%_auto]">
-                  <CrypticText 
-                    text="Anonymized OTC Trading"
-                    duration={1500}
-                  />
+                  <CrypticText text="Anonymized OTC Trading" duration={1500} />
                   <br />
-                  <CrypticText 
-                    text="for Crypto Whales"
-                    duration={1500}
-                  />
+                  <CrypticText text="for Crypto Whales" duration={1500} />
                 </span>
               </h1>
             </div>
@@ -121,7 +115,11 @@ export default function LandingPage() {
                   <CrypticText text={stat.label} duration={1000} />
                 </div>
                 <div className="font-['Space_Mono',monospace] font-bold text-xl md:text-2xl text-white tracking-[-0.02em]">
-                  <CountUpText value={stat.value} duration={2000} delay={1200 + i * 100} />
+                  <CountUpText
+                    value={stat.value}
+                    duration={2000}
+                    delay={1200 + i * 100}
+                  />
                 </div>
               </ClipCard>
             ))}
@@ -396,7 +394,10 @@ export default function LandingPage() {
                 </span>
               </h2>
               <p className="font-['Space_Mono',monospace] text-lg text-gray-400 mb-8 max-w-2xl tracking-[-0.02em]">
-                <CrypticText text="Zero slippage. Full transparency. Whale-sized deals." duration={1500} />
+                <CrypticText
+                  text="Zero slippage. Full transparency. Whale-sized deals."
+                  duration={1500}
+                />
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/dashboard">
