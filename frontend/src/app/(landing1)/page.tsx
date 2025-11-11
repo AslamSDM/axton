@@ -88,7 +88,7 @@ export default function LandingPage() {
             >
               <Link href="/dashboard">
                 <ClipButton variant="primary" size="lg">
-                  Enter Ecosystem
+                  Enter Axton Institutional Market
                 </ClipButton>
               </Link>
               {/* <ClipButton variant="outline" size="lg">

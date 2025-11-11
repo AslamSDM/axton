@@ -130,7 +130,7 @@ export function OtcMovementsTable() {
                   </TableCell>
                   <TableCell className="text-zinc-300">{item.pair}</TableCell>
                   <TableCell className="text-green-400 font-mono font-semibold">
-                    {item.value}
+                    {item?.value}
                   </TableCell>
                   <TableCell>
                     <Tag

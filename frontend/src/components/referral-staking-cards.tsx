@@ -4,48 +4,31 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import TransparentGradientBtn from "./TransparentGradientBtn";
-import { useBalanceCheck } from "@/hooks/useBalanceCheck";
 import { toast } from "sonner";
 
 export function ReferralStakingCards() {
-  const { checkBalanceAndProceed } = useBalanceCheck();
-
-  const handleInviteFriends = () => {
-    checkBalanceAndProceed(() => {
-      // Generate referral link
-      const referralCode = Math.random()
-        .toString(36)
-        .substring(2, 8)
-        .toUpperCase();
-      const referralLink = `${window.location.origin}/ref/${referralCode}`;
-
-      // Copy to clipboard
-      navigator.clipboard.writeText(referralLink);
-
-      toast.success("Referral Link Copied!", {
-        description: `Share your link: ${referralLink}`,
-      });
+  const handleViewAnalytics = () => {
+    toast.info("Trading Analytics", {
+      description: "Loading your performance metrics and insights...",
     });
+    // Navigate to analytics page
+    console.log("Navigate to analytics page");
   };
 
   const handleStakeNow = () => {
-    checkBalanceAndProceed(() => {
-      toast.info("Staking Interface", {
-        description: "Opening staking dashboard...",
-      });
-      // Navigate to staking interface
-      console.log("Navigate to staking page");
+    toast.info("Staking Interface", {
+      description: "Opening staking dashboard...",
     });
+    // Navigate to staking interface
+    console.log("Navigate to staking page");
   };
 
   const handleViewBenefits = () => {
-    checkBalanceAndProceed(() => {
-      toast.info("Benefits Overview", {
-        description: "Loading your tier benefits and exclusive features...",
-      });
-      // Show benefits modal or navigate to benefits page
-      console.log("View trader tier benefits");
+    toast.info("Benefits Overview", {
+      description: "Loading your tier benefits and exclusive features...",
     });
+    // Show benefits modal or navigate to benefits page
+    console.log("View trader tier benefits");
   };
 
   return (
@@ -72,13 +55,13 @@ export function ReferralStakingCards() {
         </div> */}
         <CardContent className="flex p-4 relative z-10 justify-between">
           <div>
-            <p className="text-sm text-[#ececec]">TOTAL REFERRAL EARNINGS</p>
-            <p className="text-3xl font-bold text-white mt-1">1,500 AXN</p>
+            <p className="text-sm text-[#ececec]">TOTAL TRADING VOLUME</p>
+            <p className="text-3xl font-bold text-white mt-1">$4.2M</p>
           </div>
           <TransparentGradientBtn
-            text="Invite Friends"
+            text="View Stats"
             className="p-6"
-            onClick={handleInviteFriends}
+            onClick={handleViewAnalytics}
           />
         </CardContent>
       </Card>
@@ -105,14 +88,14 @@ export function ReferralStakingCards() {
         <CardContent className="p-4 flex flex-col relative z-10">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-sm text-zinc-400">TOTAL REFERRAL REWARDS</p>
+              <p className="text-sm text-zinc-400">STAKING YIELD</p>
               <p className="text-3xl font-bold text-white mt-1">
-                12.5%{" "}
-                <span className="text-base font-medium text-zinc-300">APR</span>
+                18.3%{" "}
+                <span className="text-base font-medium text-zinc-300">APY</span>
               </p>
             </div>
             <TransparentGradientBtn
-              text="Stake Now"
+              text="Stake AXN"
               className="p-6"
               onClick={handleStakeNow}
             />
@@ -122,7 +105,7 @@ export function ReferralStakingCards() {
             <div className="h-1.5 bg-zinc-700 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full"
-                style={{ width: "60%" }}
+                style={{ width: "73%" }}
               />
             </div>
           </div>
@@ -151,12 +134,14 @@ export function ReferralStakingCards() {
         </div> */}
         <CardContent className="p-4 flex items-center justify-between relative z-10">
           <div>
-            <p className="text-sm text-zinc-400">YOUR SWAP</p>
-            <p className="text-3xl font-bold text-white mt-1">Whole Trader</p>
-            <p className="text-xs text-zinc-500">Exclusive API access & Fees</p>
+            <p className="text-sm text-zinc-400">TRADER TIER</p>
+            <p className="text-3xl font-bold text-white mt-1">Elite Whale</p>
+            <p className="text-xs text-zinc-500">
+              Priority execution & zero fees
+            </p>
           </div>
           <TransparentGradientBtn
-            text="View Benefits"
+            text="Upgrade"
             className="p-6"
             onClick={handleViewBenefits}
           />

@@ -30,8 +30,6 @@ export function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <aside className="fixed left-0 top-0 h-full w-16 flex flex-col items-center py-4 bg-zinc-950 border-r border-zinc-800 z-10">
       <div className="p-2 mb-4 relative w-8 h-8">

@@ -52,48 +52,6 @@ export function Navbar() {
             </div>
 
             {/* Terminal Button */}
-            <button
-              type="button"
-              className="ml-2 sm:ml-6 bg-transparent hover:bg-gradient-to-r hover:from-[#2ef68d] hover:to-[#478ff5] px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <div className="flex items-center gap-2">
-                {/* Terminal Icon */}
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="sm:w-4 sm:h-4"
-                >
-                  <path
-                    d="M8 9L11 12L8 15"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M13 15H16"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <rect
-                    x="3"
-                    y="4"
-                    width="18"
-                    height="16"
-                    rx="2"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <span className="font-['Space_Mono',monospace] font-bold text-[11px] sm:text-[12px] md:text-[14px] text-white tracking-[-0.02em] md:tracking-[-0.7px] whitespace-nowrap hidden sm:inline">
-                  Open Terminal
-                </span>
-              </div>
-            </button>
           </div>
 
           {/* Right Section - Connect Wallet Button */}
