@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { EventMarquee } from "@/components/EventMarquee";
 import { CommunityBar } from "@/components/community-section";
 import { StatCard } from "@/components/stat-card";
@@ -9,13 +9,30 @@ import { ReferralStakingCards } from "@/components/referral-staking-cards";
 import { OtcMovementsTable } from "@/components/otc-movements-table";
 import { InitDealDrawer } from "./otc/mydeals/_components/InitDealDrawer";
 import {
-  useLivePrices,
-  formatLargeNumber,
-  formatPercentage,
-} from "@/hooks/useLivePrices";
+  useOtcStore,
+  startSimulation,
+  stopSimulation,
+} from "@/store/useOtcStore";
 
 function DashboardPage() {
-  const { prices, loading } = useLivePrices();
+  const statCardData = useOtcStore((state) => state.statCardData);
+  const isConnected = useOtcStore((state) => state.isConnected);
+  const connect = useOtcStore((state) => state.connect);
+  const disconnect = useOtcStore((state) => state.disconnect);
+
+  useEffect(() => {
+    // Connect to WebSocket
+    connect();
+
+    // Start simulation if WebSocket fails
+    startSimulation();
+
+    // Cleanup on unmount
+    return () => {
+      disconnect();
+      stopSimulation();
+    };
+  }, [connect, disconnect]);
 
   return (
     <main className="px-8 py-6">
@@ -27,48 +44,38 @@ function DashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
         <StatCard
           title="TOTAL OTC VOLUME"
-          value={loading ? "Loading..." : formatLargeNumber(prices.totalVolume)}
-          change={loading ? "" : formatPercentage(prices.btc.change24h)}
+          value={statCardData?.totalOtcVolume || "Loading..."}
+          change={statCardData?.totalOtcVolumeChange || ""}
           icon="/dollar.png"
         />
         <StatCard
           title="DAILY WRAP COUNT"
-          value={
-            loading
-              ? "Loading..."
-              : formatLargeNumber(prices.eth.volume24h / 1000)
-          }
-          change={loading ? "" : formatPercentage(prices.eth.change24h)}
+          value={statCardData?.dailyWrapCount || "Loading..."}
+          change={statCardData?.dailyWrapCountChange || ""}
           icon="/dashboard.png"
         />
         <StatCard
           title="TOP TRADERS"
-          value={loading ? "Loading..." : prices.topTraders.toLocaleString()}
-          change={loading ? "" : "+ 2.5% (24H)"}
+          value={statCardData?.topTraders || "Loading..."}
+          change={statCardData?.topTradersChange || ""}
           icon="/toporders.png"
         />
         <StatCard
           title="ACTIVE PROPOSALS"
-          value={
-            loading ? "Loading..." : prices.activeProposals.toLocaleString()
-          }
-          change={loading ? "" : "+ 1.8% (24H)"}
+          value={statCardData?.activeProposals || "Loading..."}
+          change={statCardData?.activeProposalsChange || ""}
           icon="/file.svg"
         />
         <StatCard
           title="TOTAL LIQUIDITY"
-          value={
-            loading ? "Loading..." : formatLargeNumber(prices.totalLiquidity)
-          }
-          change={loading ? "" : formatPercentage(prices.bnb.change24h)}
+          value={statCardData?.totalLiquidity || "Loading..."}
+          change={statCardData?.totalLiquidityChange || ""}
           icon="/piggy.png"
         />
         <StatCard
-          title="AXN NET FLOW"
-          value={
-            loading ? "Loading..." : formatLargeNumber(prices.sol.volume24h)
-          }
-          change={loading ? "" : formatPercentage(prices.sol.change24h)}
+          title="NET FLOW"
+          value={statCardData?.netFlow || "Loading..."}
+          change={statCardData?.netFlowChange || ""}
           icon="/netflow.png"
         />
       </div>

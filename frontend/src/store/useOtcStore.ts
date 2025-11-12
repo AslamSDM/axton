@@ -29,11 +29,17 @@ export type MarketData = {
 
 export type StatCardData = {
   totalOtcVolume: string;
+  totalOtcVolumeChange: string;
   dailyWrapCount: string;
+  dailyWrapCountChange: string;
   topTraders: string;
+  topTradersChange: string;
   activeProposals: string;
+  activeProposalsChange: string;
   totalLiquidity: string;
-  axnNetFlow: string;
+  totalLiquidityChange: string;
+  netFlow: string;
+  netFlowChange: string;
 };
 
 type OtcStore = {

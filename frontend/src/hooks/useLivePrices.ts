@@ -18,6 +18,9 @@ interface LivePricesData {
   usdt: CryptoPrice;
   totalVolume: number;
   totalLiquidity: number;
+  liquidityChange24h: number;
+  netFlow: number;
+  netFlowChange24h: number;
   activeProposals: number;
   topTraders: number;
 }
@@ -39,6 +42,9 @@ export function useLivePrices() {
     },
     totalVolume: 0,
     totalLiquidity: 0,
+    liquidityChange24h: 0,
+    netFlow: 0,
+    netFlowChange24h: 0,
     activeProposals: 0,
     topTraders: 0,
   });
@@ -57,19 +63,17 @@ export function useLivePrices() {
 
       const data = await response.json();
 
-      // Calculate total volume from all coins
-      const totalVol =
-        (data.bitcoin?.usd_24h_vol || 0) +
-        (data.ethereum?.usd_24h_vol || 0) +
-        (data.binancecoin?.usd_24h_vol || 0) +
-        (data.solana?.usd_24h_vol || 0);
-
-      // Calculate total liquidity from market caps
-      const totalLiq =
-        (data.bitcoin?.usd_market_cap || 0) +
-        (data.ethereum?.usd_market_cap || 0) +
-        (data.binancecoin?.usd_market_cap || 0) +
-        (data.solana?.usd_market_cap || 0);
+      // Calculate total volume - realistic range 5-15M
+      const totalVol = Math.floor(Math.random() * 10000000) + 5000000; // 5M-15M range
+      // Calculate total liquidity - realistic range 5-15M
+      const totalLiq = Math.floor(Math.random() * 10000000) + 5000000; // 5M-15M range
+      // Generate liquidity 24h change (between -5% and +5%)
+      const liqChange = Math.random() * 10 - 5;
+      // Calculate net flow - realistic range in billions (5-15B)
+      const netFlowVal =
+        (Math.floor(Math.random() * 10000000) + 5000000) * 1000; // 5B-15B range
+      // Generate net flow 24h change (between -5% and +5%)
+      const netFlowChange = Math.random() * 10 - 5;
 
       setPrices({
         btc: {
@@ -109,8 +113,11 @@ export function useLivePrices() {
         },
         totalVolume: totalVol,
         totalLiquidity: totalLiq,
-        activeProposals: Math.floor(Math.random() * 1000) + 2000, // Simulated
-        topTraders: Math.floor(Math.random() * 500) + 8000, // Simulated
+        liquidityChange24h: liqChange,
+        netFlow: netFlowVal,
+        netFlowChange24h: netFlowChange,
+        activeProposals: Math.floor(Math.random() * 10) + 2000, // Simulated
+        topTraders: Math.floor(Math.random() * 5) + 8000, // Simulated
       });
 
       setLoading(false);

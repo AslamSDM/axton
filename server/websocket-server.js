@@ -120,16 +120,84 @@ const generateMarketData = () => {
   });
 };
 
+// Persistent base values that are consistent across the day
+const baseStatValues = {
+  totalOtcVolume: 8.47, // Fixed base value in millions
+  totalLiquidity: 12.35, // Fixed base value in millions
+  netFlow: 7.89, // Fixed base value in billions
+  dailyWrapCount: 24567,
+  topTraders: 8342,
+  activeProposals: 2047,
+  // Daily changes - these stay consistent throughout the day
+  volumeChange: 2.34,
+  liquidityChange: -1.24,
+  netFlowChange: -3.38,
+  wrapCountChange: 1.87,
+  topTradersChange: 0.52,
+  proposalsChange: 1.23,
+};
+
+// Very small fluctuation (±0.01) to simulate minor changes
+const addTinyFluctuation = (value, maxChange = 0.02) => {
+  const fluctuation = (Math.random() - 0.5) * maxChange;
+  return (value + fluctuation).toFixed(2);
+};
+
+const addTinyIntFluctuation = (value, maxChange = 5) => {
+  const fluctuation = Math.floor((Math.random() - 0.5) * maxChange);
+  return value + fluctuation;
+};
+
 const generateStatCardData = () => {
+  // Apply very small fluctuations to base values
+  const totalOtcVolume = addTinyFluctuation(
+    baseStatValues.totalOtcVolume,
+    0.03
+  );
+  const totalLiquidity = addTinyFluctuation(
+    baseStatValues.totalLiquidity,
+    0.03
+  );
+  const netFlow = addTinyFluctuation(baseStatValues.netFlow, 0.03);
+  const volumeChange = addTinyFluctuation(baseStatValues.volumeChange, 0.02);
+  const liquidityChange = addTinyFluctuation(
+    baseStatValues.liquidityChange,
+    0.02
+  );
+  const netFlowChange = addTinyFluctuation(baseStatValues.netFlowChange, 0.02);
+
   return {
-    totalOtcVolume: `$${(Math.random() * 2 + 1).toFixed(2)}B`,
-    dailyWrapCount: `${Math.floor(Math.random() * 50000 + 10000)}`,
-    topTraders: `${Math.floor(Math.random() * 1000 + 500)}`,
-    activeProposals: `${Math.floor(Math.random() * 100 + 20)}`,
-    totalLiquidity: `$${(Math.random() * 5 + 2).toFixed(2)}B`,
-    axnNetFlow: `${Math.random() > 0.5 ? "+" : "-"}${(
-      Math.random() * 1
-    ).toFixed(2)}%`,
+    totalOtcVolume: `$${totalOtcVolume}M`,
+    totalOtcVolumeChange: `${
+      volumeChange >= 0 ? "+" : ""
+    }${volumeChange}% (24H)`,
+    dailyWrapCount: `${addTinyIntFluctuation(
+      baseStatValues.dailyWrapCount,
+      10
+    )}`,
+    dailyWrapCountChange: `+ ${addTinyFluctuation(
+      baseStatValues.wrapCountChange,
+      0.01
+    )}% (24H)`,
+    topTraders: `${addTinyIntFluctuation(baseStatValues.topTraders, 5)}`,
+    topTradersChange: `+ ${addTinyFluctuation(
+      baseStatValues.topTradersChange,
+      0.01
+    )}% (24H)`,
+    activeProposals: `${addTinyIntFluctuation(
+      baseStatValues.activeProposals,
+      3
+    )}`,
+    activeProposalsChange: `+ ${addTinyFluctuation(
+      baseStatValues.proposalsChange,
+      0.01
+    )}% (24H)`,
+    totalLiquidity: `$${totalLiquidity}M`,
+    totalLiquidityChange: `${
+      liquidityChange >= 0 ? "+" : ""
+    }${liquidityChange}% (24H)`,
+    netFlow: `$${netFlow}B`,
+    netFlowChange: `${netFlowChange >= 0 ? "+" : ""}${netFlowChange}% (24H)`,
     timestamp: Date.now(),
   };
 };
@@ -137,23 +205,27 @@ const generateStatCardData = () => {
 // Store connected clients
 const clients = new Set();
 
+// Cache for consistent data across all clients
+let cachedStatCardData = generateStatCardData();
+let cachedMarketData = generateMarketData();
+
 // WebSocket connection handler
 wss.on("connection", (ws) => {
   console.log("New client connected");
   clients.add(ws);
 
-  // Send initial data
+  // Send cached data to new clients
   ws.send(
     JSON.stringify({
       type: "market_data",
-      data: generateMarketData(),
+      data: cachedMarketData,
     })
   );
 
   ws.send(
     JSON.stringify({
       type: "stat_cards",
-      data: generateStatCardData(),
+      data: cachedStatCardData,
     })
   );
 
@@ -213,20 +285,22 @@ setInterval(() => {
 }, Math.random() * 3000 + 3000);
 
 setInterval(() => {
-  // Update market data every 30 seconds
+  // Update cached market data every 30 seconds
+  cachedMarketData = generateMarketData();
   broadcast({
     type: "market_data",
-    data: generateMarketData(),
+    data: cachedMarketData,
   });
 }, 30000);
 
 setInterval(() => {
-  // Update stat cards every 15 seconds
+  // Update cached stat cards every 5 seconds with tiny fluctuations
+  cachedStatCardData = generateStatCardData();
   broadcast({
     type: "stat_cards",
-    data: generateStatCardData(),
+    data: cachedStatCardData,
   });
-}, 15000);
+}, 5000);
 
 // Start server
 const PORT = process.env.PORT || 8080;
